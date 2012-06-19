@@ -77,7 +77,7 @@ Sources of info
   - http://thinkvitamin.com/code/why-you-should-switch-from-subversion-to-git/
   - http://www.slideshare.net/emilerl/git-presentation-purple-scout-ab-malm
   - http://think-like-a-git.net/sections/graphs-and-git/references.html
-  - Also explicit comparation of git vs svn http://www.codeforest.net/git-vs-svn
+  - Also explicit comparison of git vs svn http://www.codeforest.net/git-vs-svn
   - Video presentation of what commits and branches mean http://blip.tv/open-source-developers-conference/git-for-ages-4-and-up-4460524
 
 
