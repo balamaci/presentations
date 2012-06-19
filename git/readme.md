@@ -16,7 +16,7 @@ Contents
 ### Linus Torvalds is using it
   - Working on the linux kernel on it.
   - Linus hates CVS and SVN and did research at that time looking for a solution that was .
-  - Nothing that he looked at pleased him, so he came up with git because "his brain was not rotten away by CVS way of thinking.
+  - Nothing that he looked at satisfied him at that time, so he came up with git because "his brain was not rotten away by CVS way of thinking.
 
 ### Git is distributed while SVN is not
   - Distributed means
@@ -37,13 +37,14 @@ Contents
 
   - Cloning an entire git repository can be quite as fast as checking out from SVN the latest version.
 
-###
 
 ### Branching is 'cheap'.
-  - 40 bytes cheap.
+  - 40 bytes cheap. A branch is just a pointer to a commit.
   - switching to a branch
+  - in SVN branching means make copy of the
 
-
+### Git workings
+  -
 
 ### Multiple Remotes
 
@@ -65,16 +66,19 @@ Contents
 
 
 ### Disadvantages to GIT over SVN
-  -
+  - No fine control of user rights readonly for some users. You can have clone of repository to be readonly from which you only push to.
+  - No way to checkout just a specific branch of a project.
+  - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning.
 
 
 Sources of info
 ----------------
-
+  - Linus Torvalds on git http://www.youtube.com/watch?v=4XpnKHJAok8[p
   - http://thinkvitamin.com/code/why-you-should-switch-from-subversion-to-git/
   - http://www.slideshare.net/emilerl/git-presentation-purple-scout-ab-malm
   - http://think-like-a-git.net/sections/graphs-and-git/references.html
-  - http://blip.tv/open-source-developers-conference/git-for-ages-4-and-up-4460524
+  - Also explicit comparation of git vs svn http://www.codeforest.net/git-vs-svn
+  - Video presentation of what commits and branches mean http://blip.tv/open-source-developers-conference/git-for-ages-4-and-up-4460524
 
 
 Git cheat sheets
