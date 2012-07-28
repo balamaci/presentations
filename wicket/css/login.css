@@ -1,0 +1,115 @@
+.login-page {
+    color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    height: 100%;
+    line-height: 1;
+    position: relative;
+    background-color: white;
+}
+
+
+
+.login-box .wrapper {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 0 10px;
+}
+
+.login-box {
+    /*position:absolute;*/
+    margin-top:200px;
+    width:100%;height:194px;
+}
+
+.login-box .logo {
+    height:60px;top:auto;left:auto;position:relative;
+}
+
+.login-box .logo a {
+    margin:5px auto;width:224px;
+}
+
+.login-box input {
+    width:100%;
+}
+
+.login-box input[type=password], .login-box input[type=email] {
+    padding:10px;
+    font-size:14px;
+    margin:0;
+    border:1px solid #bbb;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.login-box input[type=email] {
+    border-bottom:none;
+    -webkit-border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
+    border-radius:5px 5px 0 0;
+    -moz-background-clip:padding;
+    -webkit-background-clip:padding-box;
+    background-clip:padding-box;
+    height:auto;
+}
+
+.login-box input[type=password] {
+    -webkit-border-radius:0 0 5px 5px;
+    -moz-border-radius:0 0 5px 5px;
+    border-radius:0 0 5px 5px;
+    -moz-background-clip:padding;
+    -webkit-background-clip:padding-box;
+    background-clip:padding-box;
+    margin-bottom:10px;
+    height:auto;
+}
+
+.login-box .lvl-1{
+    height:40px;line-height:40px;
+}
+
+.login-footer { position:absolute;
+    width:100%;
+    bottom:20px;
+    text-align:center;
+}
+
+.login-footer small {
+    display:block;
+    margin-top:10px;
+}
+
+@media screen and (max-width:250px){.login-box{margin-top:-120px;}.login-box .logo{height:40px;}
+    .login-box .logo a {
+        margin:0 auto;
+        background-position:3px -43px;
+        height:34px;
+        width:150px;
+    }
+}
+
+.but.lvl-1{
+    height:32px;
+    line-height:32px;
+    border:1px solid #d1a645;
+    color:#000;padding:0 13px;font-size:14px;
+    background:#ffdf6c;
+    background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #ffce1c), color-stop(1, #ffecab));background:-ms-linear-gradient(bottom, #ffce1c, #ffecab);background:-moz-linear-gradient(center bottom, #ffce1c 0%, #ffecab 100%);background:-o-linear-gradient(top, #ffecab, #ffce1c);-webkit-box-shadow:inset 0 1px 0 #fffcf1;-moz-box-shadow:inset 0 1px 0 #fffcf1;
+    box-shadow:inset 0 1px 0 #fffcf1;
+}
+
+.but.lvl-1:hover {
+    text-decoration:none;
+    background:#fbd05b;
+    background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #fbc018), color-stop(1, #fbdb8e));background:-ms-linear-gradient(bottom, #fbc018, #fbdb8e);background:-moz-linear-gradient(center bottom, #fbc018 0%, #fbdb8e 100%);background:-o-linear-gradient(top, #fbdb8e, #fbc018);-webkit-box-shadow:inset 0 1px 0 #fef1c6;-moz-box-shadow:inset 0 1px 0 #fef1c6;box-shadow:inset 0 1px 0 #fef1c6;
+}
+.but.lvl-1:active {
+    background:#f9c74c;background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #f9ba15), color-stop(1, #f9d581));background:-ms-linear-gradient(bottom, #f9ba15, #f9d581);background:-moz-linear-gradient(center bottom, #f9ba15 0%, #f9d581 100%);background:-o-linear-gradient(top, #f9d581, #f9ba15);-webkit-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.6);-moz-box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.6);box-shadow:inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.but.lvl-1.disabled {
+    border-color:#e8dbc0;cursor:default;color:#8c8c8c;background:#feeeb9;
+    background:-webkit-gradient(linear, left bottom, left top, color-stop(0, #fce79d), color-stop(1, #fff5d4));background:-ms-linear-gradient(bottom, #fce79d, #fff5d4);background:-moz-linear-gradient(center bottom, #fce79d 0%, #fff5d4 100%);
+    background:-o-linear-gradient(top, #fff5d4, #fce79d);-webkit-box-shadow:none;
+}

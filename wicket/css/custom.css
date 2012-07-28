@@ -1,0 +1,193 @@
+#start {
+}
+
+#list-actions {
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #c3d9e7), color-stop(1, #dae8f1));
+    background: -ms-linear-gradient(bottom, #c3d9e7, #dae8f1);
+    background: -moz-linear-gradient(center bottom, #c3d9e7 0%, #dae8f1 100%);
+    background: -o-linear-gradient(top, #dae8f1, #c3d9e7);
+    list-style: none outside none;
+    margin: 0;
+    padding: 9px 9px 0;
+    position: relative;
+}
+
+#list-actions a {
+    text-decoration: none;
+}
+
+#list-actions > li {
+    float: left;
+    margin: 0 8px 8px 0;
+    position: relative;
+}
+
+.content-main {
+    background: none repeat scroll 0 0 padding-box #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    margin-left: 0;
+}
+
+.content-footer {
+    background: none repeat scroll 0 0 padding-box #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    margin-left: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+
+#list-actions .but {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #1c577f;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+    padding: 0 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: #2f6f9f;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2c6590), color-stop(1, #4184b1));
+    background: -ms-linear-gradient(bottom, #2c6590, #4184b1);
+    background: -moz-linear-gradient(center bottom, #2c6590 0%, #4184b1 100%);
+    background: -o-linear-gradient(top, #4184b1, #2c6590);
+    -webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#list-actions .but:hover {
+    border-color: #236693;
+    text-decoration: none;
+    background: #417ea8;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2f6f9f), color-stop(1, #4991c1));
+    background: -ms-linear-gradient(bottom, #2f6f9f, #4991c1);
+    background: -moz-linear-gradient(center bottom, #2f6f9f 0%, #4991c1 100%);
+    background: -o-linear-gradient(top, #4991c1, #2f6f9f);
+}
+#list-actions .but:active {
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+#list-actions .dropdown:hover > a {
+    border-bottom: 1px solid #2f6f9f;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: #417ea8;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2f6f9f), color-stop(1, #4991c1));
+    background: -ms-linear-gradient(bottom, #2f6f9f, #4991c1);
+    background: -moz-linear-gradient(center bottom, #2f6f9f 0%, #4991c1 100%);
+    background: -o-linear-gradient(top, #4991c1, #2f6f9f);
+}
+#list-actions .dropdown > a {
+    padding-right: 29px;
+}
+#list-actions .dropdown > a:after {
+    content: " ";
+    display: block;
+    width: 8px;
+    height: 5px;
+    position: absolute;
+    top: 11px;
+    right: 13px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeNpi+P///5b/uMEWBiDBD8RXsUiCxPhBCkBYBYjfIkm+hYoxwBSAsBMQ/wTiP1A2WJwRrAoBMqH0dJgAQIABACprd17Sen4tAAAAAElFTkSuQmCC);
+}
+#list-actions .dropdown ul {
+    display: none;
+    background: #2f6f9f;
+    padding: 7px;
+    list-style: none;
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 200px;
+    -webkit-border-radius: 0 4px 4px 4px;
+    -moz-border-radius: 0 4px 4px 4px;
+    border-radius: 0 4px 4px 4px;
+    -webkit-border-radius: 0 4px 4px 4px;
+    -moz-border-radius: 0 4px 4px 4px;
+    border-radius: 0 4px 4px 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+#list-actions .dropdown ul a {
+    display: block;
+    padding: 7px;
+    color: #fff;
+    text-decoration: none;
+}
+#list-actions .dropdown ul a:hover {
+    background: #215f88;
+}
+#list-actions .dropdown:hover ul {
+    display: block;
+    z-index: 1;
+}
+#list-actions .dropdown.aside ul {
+    left: auto;
+    right: 0;
+    -webkit-border-radius: 4px 0 4px 4px;
+    -moz-border-radius: 4px 0 4px 4px;
+    border-radius: 4px 0 4px 4px;
+    -webkit-border-radius: 4px 0 4px 4px;
+    -moz-border-radius: 4px 0 4px 4px;
+    border-radius: 4px 0 4px 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.header {
+    background-color: #6994B9;
+    height: 57px;
+    padding-top: 7px;
+    width: 100%;
+}
