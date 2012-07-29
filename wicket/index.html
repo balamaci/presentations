@@ -29,9 +29,20 @@
         .text-aladin {
             font-family: 'Aladin', cursive;
         }
+        .topics {
+            padding-left: 10px;
+        }
+        .topics li {
+            padding: 5px;
+        }
+
         .footnote {
+            padding-left: 50px;
             list-style: disc;
             padding-top: 10px;
+        }
+        .models li {
+            padding-top: 10px ;
         }
     </style>
 </head>
@@ -49,13 +60,16 @@
         <img src="img/webde.png" alt="" style="min-width: 100%; width: 100%;">
         <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">WEB.DE Mailer</p>
     </div>
+
     <div id="webde-fotomanager" class="step slide" data-x="200" data-y="-2500">
         <img src="img/fotomanager.png" alt="" style="min-width: 100%; width: 100%;">
     </div>
+
     <div id="webde-ums" class="step slide" data-x="1400" data-y="-2500">
         <img src="img/ums-webde.png" alt="" style="min-width: 100%; width: 100%;">
         <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">UMS WEB.DE</p>
     </div>
+
     <div id="nice" class="step slide" data-x="2000" data-y="-200" data-scale="2" data-rotate="90">
         <div style="position: relative; background-image: url('img/tiny2.png');  background-size: 800px; background-repeat:  no-repeat; width: 100%; height: 100%;">
             <!--<img src="img/tiny.png" alt="" style="min-width: 100%; width: 100%;">-->
@@ -185,8 +199,8 @@
                 <a class="but" href="">Projects</a>
                 <ul>
                     <li><a href="#webde">WEB.DE Mail</a></li>
-                    <li><a href="#">Foto Manager</a></li>
-                    <li><a href="">WEB.DE/GMX UMS</a></li>
+                    <li><a href="#webde-fotomanager">Foto Manager</a></li>
+                    <li><a href="#webde-ums">WEB.DE/GMX UMS</a></li>
                     <li><a href="">WEB.DE MillionenKlick</a></li>
                 </ul>
             </li>
@@ -195,23 +209,23 @@
                 <a class="but" href="#clean-html">Clean Code</a>
                 <ul>
                     <li><a href="#clean-html">Separate LF from logic</a></li>
-                    <li><a href="../infos">Validators</a></li>
+                    <li><a href="#clean-java">Validators</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
                 <a class="but" href="./tiles">Good OOP Design</a>
                 <ul>
-                    <li><a href="./banners">Separate Html</a></li>
-                    <li><a href="../infos">Separate Model</a></li>
+                    <li><a href="">Extending Components</a></li>
+                    <li><a href="">Reusing Components</a></li>
+                    <li><a href="#models">Separate Model from Component</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
-                <a class="but" href="./tiles">Testable</a>
+                <a class="but" href="#tester">Testable</a>
                 <ul>
-                    <li><a href="./banners">Own Test API</a></li>
-                    <li><a href="../infos"></a></li>
+                    <li><a href="#tester">Own Test API</a></li>
                 </ul>
             </li>
         </ul>
@@ -223,12 +237,15 @@
         </div>
 
         <div class="content-footer" style="background-color: blue;">
-
         </div>
+        <ul class="footnote">
+            <li></li>
+        </ul>
+
     </div>
 
-    <div id="basetemplate-html" class="step slide" data-x="-2000" data-y="3000" data-rotate="90">
-        <h3>BaseTemplatePage.html</b></h3><b>BaseTemplatePage.java</b></h3>
+    <div id="basetemplate-html" class="step slide" data-x="-2000" data-y="3000" data-rotate="90" style="padding: 0 10px;">
+        <h3><b style="color: green;">BaseTemplatePage.html</b></h3>
         <pre class="code-text github">
             <code class="html" style="background-color: #f5deb3; border-radius: 10px;">
                 &lt;!DOCTYPE html&gt;
@@ -236,44 +253,89 @@
                 xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd/"&gt;
 
                 &lt;head&gt;
-                &lt;title wicket:id="pageTitle"&gt;&lt;/title&gt;
-                &lt;link rel="SHORTCUT ICON" href="favicon.png"/&gt;
+                    &lt;title wicket:id="pageTitle"&gt;&lt;/title&gt;
 
-                &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
-                &lt;script src="js/libs/modernizr-2.5.3.min.js"&gt;&lt;/script&gt;
+                    &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
                 &lt;/head&gt;
 
-                &lt;body&gt;
-                &lt;header&gt;
-                    &lt;img src="webde-logo.png"/&gt;
-                    &lt;div wicket:id="search-panel"&gt;&lt;/div&gt;
+                    &lt;body&gt;
+                        &lt;header&gt;
+                            &lt;img src="webde-logo.png"/&gt;
+                            &lt;div wicket:id="search-panel"&gt;&lt;/div&gt;
 
-                    &lt;div wicket:id="nav-menu-panel"&gt;&lt;/div&gt;
-                &lt;/header&gt;
+                            &lt;div wicket:id="nav-menu-panel"&gt;&lt;/div&gt;
+                        &lt;/header&gt;
 
-                        &lt;wicket:child/&gt;
-
-                &lt;/body&gt;
+                            &lt;wicket:child/&gt;
+                    &lt;/body&gt;
                 &lt;/html&gt;
             </code>
         </pre>
+        <h3><b style="color: blue;">BaseTemplatePage.java</b></h3>
         <pre class="code-text">
                 <code class="java">
                 public abstract class BaseTemplatePage extends WebPage {
 
+                    public BaseTemplatePage(PageParameters parameters) {
+                        super(parameters);
+
+                        Label lblPageTitle = new Label("pageTitle", getPageTitle());
+
+                        SearchPanel searchPanel = new SearchPanel("search-panel");
+                        add(searchPanel);
+
+                        NavMenuPanel navMenuPanel = new NavMenuPanel("nav-menu-panel");
+                        add(navMenuPanel);
+                    }
+
+                    public abstract String getPageTitle();
                 }
                 </code>
         </pre>
     </div>
 
-    <div id="other" class="step slide" data-x="-3000" data-y="3000" data-rotate="90">
-        <ol class="">
+    <div id="mock" class="step slide" data-x="-3000" data-y="3000" data-rotate="180" style="padding: 0 10px;">
+        <img src="img/mock.png" alt="" width="700" height="550"/>
+        <ul class="footnote">
+            <li>CheckoutPage inherits BaseTemplatePage</li>
+            <li>Security  </li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div id="models" class="step slide" data-x="-5000" data-y="3000" data-scale="1" data-z="-3000" data-rotate="270">
+        <div style="float: left;">
+            <img src="img/models-3.jpg" alt="" width="420" height="620"/>
+        </div>
+        <div style="float: left; font-size: 18px; width: 300px;padding-left: 10px;">
+            <h2 style="color: #ff4500;">Wicket Models</h2>
+            <ol class="models" style="padding-top: 20px;">
+                <li>Nice abstraction for data retrieval</li>
+                <li>Nice abstraction for data retrieval</li>
+                <li>Same component <b>AddressPanel</b> - different models Customer, Shipping</li>
+                <li><b>EntityModel</b> - same model reused to different components</li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="other" class="step slide" data-x="3000" data-y="2000" data-rotate="90" data-scale="2">
+        <div>
+        <h3 style="font-size: 22px; font-weight: bold;">Other good things</h3>
+        <ol class="topics" style="font-size: 20px;list-style: disc;">
             <li>POJO Style Session Object</li>
             <li>Inter-Components Events - Decoupling</li>
             <li>Visitors</li>
-            <li>Listeners - RequestListeners, Compoen</li>
+            <li>Listeners - RequestListeners, Component Listener</li>
             <li>Integrates nicely with the Spring Framework @SpringBean</li>
         </ol>
+        </div>
+
+        <div style="padding-top: 50px;">
+            <h3 style="font-size: 22px; font-weight: bold;">Some bad(not so good) things</h3>
+            <ol class="topics" style="font-size: 20px;list-style: disc;">
+                <li>Stateful component framework - state is kept in session. LB or session replication required</li>
+            </ol>
+        </div>
     </div>
     <div id="tester" class="step slide">
         <h3>Wicket Tester - A helper class to ease unit testing of Wicket applications without the need for a servlet container.</h3>
