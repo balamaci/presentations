@@ -238,9 +238,6 @@
 
         <div class="content-footer" style="background-color: blue;">
         </div>
-        <ul class="footnote">
-            <li></li>
-        </ul>
 
     </div>
 
@@ -256,6 +253,8 @@
                     &lt;title wicket:id="pageTitle"&gt;&lt;/title&gt;
 
                     &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
+                    &lt;script src="js/libs/site.js"&gt;&lt;/script&gt;
+
                 &lt;/head&gt;
 
                     &lt;body&gt;
@@ -298,21 +297,20 @@
         <img src="img/mock.png" alt="" width="700" height="550"/>
         <ul class="footnote">
             <li>CheckoutPage inherits BaseTemplatePage</li>
-            <li>Security  </li>
-            <li></li>
+            <li>Can implement security by looking at Page type - Admin, Frontend for ex.</li>
+            <li>Custom Reusable components made by composition of other components</li>
         </ul>
     </div>
 
-    <div id="models" class="step slide" data-x="-5000" data-y="3000" data-scale="1" data-z="-3000" data-rotate="270">
+    <div id="models" class="step slide" data-x="-4200" data-y="3000" data-scale="1" data-z="-3000" data-rotate="270">
         <div style="float: left;">
             <img src="img/models-3.jpg" alt="" width="420" height="620"/>
         </div>
         <div style="float: left; font-size: 18px; width: 300px;padding-left: 10px;">
             <h2 style="color: #ff4500;">Wicket Models</h2>
             <ol class="models" style="padding-top: 20px;">
-                <li>Nice abstraction for data retrieval</li>
-                <li>Nice abstraction for data retrieval</li>
-                <li>Same component <b>AddressPanel</b> - different models Customer, Shipping</li>
+                <li>What are models?</li>
+                <li style="padding-top: 20px;">Same component <b>AddressPanel</b> - different models Customer, Shipping</li>
                 <li><b>EntityModel</b> - same model reused to different components</li>
             </ol>
         </div>
