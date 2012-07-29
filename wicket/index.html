@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
@@ -31,6 +31,7 @@
         }
         .footnote {
             list-style: disc;
+            padding-top: 10px;
         }
     </style>
 </head>
@@ -44,19 +45,26 @@
     <div id="start" class="step slide" data-x="-1000" data-y="-1500">
         <img src="img/wicket_intro.png" alt="" style="min-width: 100%; width: 100%;">
     </div>
-    <div id="webde" class="step slide" data-x="0" data-y="-1500">
+    <div id="webde" class="step slide" data-x="-1000" data-y="-2500">
         <img src="img/webde.png" alt="" style="min-width: 100%; width: 100%;">
         <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">WEB.DE Mailer</p>
+    </div>
+    <div id="webde-fotomanager" class="step slide" data-x="200" data-y="-2500">
+        <img src="img/fotomanager.png" alt="" style="min-width: 100%; width: 100%;">
+    </div>
+    <div id="webde-ums" class="step slide" data-x="1400" data-y="-2500">
+        <img src="img/ums-webde.png" alt="" style="min-width: 100%; width: 100%;">
+        <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">UMS WEB.DE</p>
     </div>
     <div id="nice" class="step slide" data-x="2000" data-y="-200" data-scale="2" data-rotate="90">
         <div style="position: relative; background-image: url('img/tiny2.png');  background-size: 800px; background-repeat:  no-repeat; width: 100%; height: 100%;">
             <!--<img src="img/tiny.png" alt="" style="min-width: 100%; width: 100%;">-->
             <ul class="text-aladin" style="position: absolute; top: 50px; left: 100px; color: red; font-size: 36px;list-style: disc;">
-                <li>Clean separation</li>
-                <li>Nice Object Oriented design</li>
+                <li>Clean separation Layout vs Logic</li>
+                <li>Nice OO design</li>
                 <li>Reusable components</li>
                 <li>You are in control</li>
-                <li>Testable code</li>
+                <li>Own Testing API</li>
             </ul>
             <span style="position: absolute; top: 80px; left:450px;font-size: 40px; color: #ff4500;" class="text-aladin">Beautiful Code</span>
         </div>
@@ -64,7 +72,9 @@
 
     <div id="login" class="step slide" data-x="-1000" data-y="1500">
         <div class="login-box">
+
             <div class="wrapper">
+                <h3><img src="//img.web.de/v/hp10/hd-logo.png" style="padding-bottom: 30px;"/></h3>
                 <form>
                     <input type="email" value="" placeholder="E-Mail-Address" name="user-name" id="user-name">
 
@@ -77,7 +87,7 @@
     </div>
 
     <div id="clean-html" class="step slide" data-x="0" data-y="1500">
-        <h3>LogingPage.html near LoginPage.java</h3>
+        <h3><b style="color: blue">LogingPage.html</b>, <b style="color: green;">LoginPage.properties</b> near <b>LoginPage.java</b></h3>
         <pre class="code-text github">
             <code class="html" style="background-color: #f5deb3; border-radius: 10px;">
                 &lt;!DOCTYPE html&gt;
@@ -98,7 +108,6 @@
                     &lt;form wicket:id="login-form" id="login"&gt;
                         &lt;fieldset&gt;
                             &lt;div class="inputs"&gt;
-                                &lt;label for="username"&gt;User&lt;/label&gt;
                                 &lt;input type="email" wicket:id="username" id="username" placeholder="E-Mail-Address"/&gt;
 
                                 &lt;input type="password" id="password" wicket:id="password" placeholder="Password"/&gt;
@@ -135,9 +144,7 @@
                     Form loginForm = new Form&lt;Void&gt;("login-form") {
                         @Override
                         protected void onSubmit() {
-                            if ( ! continueToOriginalDestination()) {
-                                setResponsePage(HomePage.class);
-                            }
+                            setResponsePage(HomePage.class);
                         }
                     };
                     loginForm.add(new LoginValidator(emailAddress, password));
@@ -153,37 +160,42 @@
 
                     password = new PasswordTextField("password", new Model&lt;String&gt;());
                     loginForm.add(password);
-
                 }
             }
         </code></pre>
         <ul class="footnote">
-            <li>Separate login in Validators</li>
+            <li>Separate Login logic in Validators</li>
             <li>We don't work with URLs and parameters</li>
+            <li>Easy refactoring and tracking where a component is used</li>
         </ul>
     </div>
-    <div id="inheritance" class="step slide" data-x="0" data-y="3000">
-
+    <div id="inheritance" class="step slide" data-x="-1000" data-y="3000" style="padding: 0 10px;" data-rotate="90">
+        <div class="header" style="background-color: #fff;height: 70px;">
+            <img src="//img.web.de/v/hp10/hd-logo.png" alt="" width="70" height="70"/>
+            <div style="float: right">
+                <input type="text" size="15" placeholder="Search">
+            </div>
+        </div>
         <div class="content-main wrap">
         <ul class="clearfix" id="list-actions" style="font-size: 16px;">
             <li><a class="but" href="./">Home</a></li>
 
 
             <li class="dropdown">
-                <a class="but" href="./products">Projects</a>
+                <a class="but" href="">Projects</a>
                 <ul>
-                    <li><a href="./">WEB.DE Mail</a></li>
-                    <li><a href="./categories">Foto Manager</a></li>
-                    <li><a href="./pachete">Pachete</a></li>
-                    <li><a href="./cadouri">Cadouri</a></li>
+                    <li><a href="#webde">WEB.DE Mail</a></li>
+                    <li><a href="#">Foto Manager</a></li>
+                    <li><a href="">WEB.DE/GMX UMS</a></li>
+                    <li><a href="">WEB.DE MillionenKlick</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
-                <a class="but" href="./tiles">Clean Code</a>
+                <a class="but" href="#clean-html">Clean Code</a>
                 <ul>
-                    <li><a href="./banners">Separate LF from logic</a></li>
-                    <li><a href="../infos">Separate .java files</a></li>
+                    <li><a href="#clean-html">Separate LF from logic</a></li>
+                    <li><a href="../infos">Validators</a></li>
                 </ul>
             </li>
 
@@ -191,33 +203,125 @@
                 <a class="but" href="./tiles">Good OOP Design</a>
                 <ul>
                     <li><a href="./banners">Separate Html</a></li>
-                    <li><a href="../infos"></a></li>
+                    <li><a href="../infos">Separate Model</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
                 <a class="but" href="./tiles">Testable</a>
                 <ul>
-                    <li><a href="./banners">Separate Html</a></li>
+                    <li><a href="./banners">Own Test API</a></li>
                     <li><a href="../infos"></a></li>
-                </ul>
-            </li>
-
-            <li class="aside dropdown">
-                <a class="but" href="#">Administrare</a>
-                <ul>
-                    <li><a href="./settings">Setari</a></li>
-                    <li></li>
-                    <li><a href="./template">Design</a></li>
-                    <li><a href="./notifications">Notificari</a></li>
-                    <li><a href="./users">Utilizatori</a></li>
                 </ul>
             </li>
         </ul>
             </div>
-        <div class="content-footer">
+        <div style="background-color: #FAFFBD; height: 300px; position: relative;text-align: center">
+            <h1 style="margin: auto;max-width: 300px;font-size: 18px;padding-top: 100px;">
+                Child Markup provided by extending page class
+            </h1>
+        </div>
+
+        <div class="content-footer" style="background-color: blue;">
 
         </div>
+    </div>
+
+    <div id="basetemplate-html" class="step slide" data-x="-2000" data-y="3000" data-rotate="90">
+        <h3>BaseTemplatePage.html</b></h3><b>BaseTemplatePage.java</b></h3>
+        <pre class="code-text github">
+            <code class="html" style="background-color: #f5deb3; border-radius: 10px;">
+                &lt;!DOCTYPE html&gt;
+                &lt;html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd/"&gt;
+
+                &lt;head&gt;
+                &lt;title wicket:id="pageTitle"&gt;&lt;/title&gt;
+                &lt;link rel="SHORTCUT ICON" href="favicon.png"/&gt;
+
+                &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
+                &lt;script src="js/libs/modernizr-2.5.3.min.js"&gt;&lt;/script&gt;
+                &lt;/head&gt;
+
+                &lt;body&gt;
+                &lt;header&gt;
+                    &lt;img src="webde-logo.png"/&gt;
+                    &lt;div wicket:id="search-panel"&gt;&lt;/div&gt;
+
+                    &lt;div wicket:id="nav-menu-panel"&gt;&lt;/div&gt;
+                &lt;/header&gt;
+
+                        &lt;wicket:child/&gt;
+
+                &lt;/body&gt;
+                &lt;/html&gt;
+            </code>
+        </pre>
+        <pre class="code-text">
+                <code class="java">
+                public abstract class BaseTemplatePage extends WebPage {
+
+                }
+                </code>
+        </pre>
+    </div>
+
+    <div id="other" class="step slide" data-x="-3000" data-y="3000" data-rotate="90">
+        <ol class="">
+            <li>POJO Style Session Object</li>
+            <li>Inter-Components Events - Decoupling</li>
+            <li>Visitors</li>
+            <li>Listeners - RequestListeners, Compoen</li>
+            <li>Integrates nicely with the Spring Framework @SpringBean</li>
+        </ol>
+    </div>
+    <div id="tester" class="step slide">
+        <h3>Wicket Tester - A helper class to ease unit testing of Wicket applications without the need for a servlet container.</h3>
+            <pre class="code-text"><code class="java">
+            @RunWith(SpringJUnit4ClassRunner.class)
+            @ContextConfiguration(locations = { "/applicationContext-test.xml" })
+            public class TestHomePage {
+                private WicketTester tester;
+
+                @Before
+                public void beforeTest() {
+                    final ApplicationContextMock mockContext = new ApplicationContextMock();
+
+                    addSpringBeans(mockContext);
+                    UmsApplication webApplication = new UmsApplication() {
+                        @Override
+                        protected SpringComponentInjector createSpringComponentInjector() {
+                            return  new SpringComponentInjector(this, mockContext, true);
+                        }
+                    };
+
+                    tester = new WicketTester(webApplication);
+                }
+
+
+                @Test
+                public void testSendMMS() {
+                    tester.startPage(HomePage.class);
+
+                    FormTester formTester = tester.newFormTester(CONTENT_PANEL + ":form");
+                    Form form = formTester.getForm();
+
+                    TextArea txtMessageContent = (TextArea) form.get("textMessage");
+                    formTester.setValue(txtMessageContent, "Wicket is nice I tell you.");
+
+                    TextField txtFrom = (TextField) form.get("from");
+                    formTester.setValue(txtFrom, "+40722533281");
+
+                    AjaxButton btnSendMessage = (AjaxButton) form.get("submit");
+                    tester.executeAjaxEvent(btnSendMessage, "onclick");
+
+                    tester.assertNoErrorMessage();
+
+                    tester.assertComponent(CONTENT_PANEL, ConfirmationPanel.class);
+                }
+            }
+            </code></pre>
+
     </div>
 </div>
 
