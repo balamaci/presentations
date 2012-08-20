@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
@@ -29,6 +29,21 @@
         .text-aladin {
             font-family: 'Aladin', cursive;
         }
+        .topics {
+            padding-left: 10px;
+        }
+        .topics li {
+            padding: 5px;
+        }
+
+        .footnote {
+            padding-left: 50px;
+            list-style: disc;
+            padding-top: 10px;
+        }
+        .models li {
+            padding-top: 10px ;
+        }
     </style>
 </head>
 <body class="impress-not-supported">
@@ -38,43 +53,55 @@
 </div>
 
 <div id="impress">
-    <div id="start" class="step slide" data-x="-1000" data-y="-1500">
-        <img src="img/wicket_intro.png" alt="" style="min-width: 100%; width: 100%;">
+<div id="start" class="step slide" data-x="-1000" data-y="-1500">
+    <img src="img/wicket_intro.png" alt="" style="min-width: 100%; width: 100%;">
+</div>
+<div id="webde" class="step slide" data-x="-1000" data-y="-2500">
+    <img src="img/webde.png" alt="" style="min-width: 100%; width: 100%;">
+    <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">WEB.DE Mailer</p>
+</div>
+
+<div id="webde-fotomanager" class="step slide" data-x="200" data-y="-2500">
+    <img src="img/fotomanager.png" alt="" style="min-width: 100%; width: 100%;">
+</div>
+
+<div id="webde-ums" class="step slide" data-x="1400" data-y="-2500">
+    <img src="img/ums-webde.png" alt="" style="min-width: 100%; width: 100%;">
+    <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">UMS WEB.DE</p>
+</div>
+
+<div id="nice" class="step slide" data-x="2000" data-y="-200" data-scale="2" data-rotate="90">
+    <div style="position: relative; background-image: url('img/tiny2.png');  background-size: 800px; background-repeat:  no-repeat; width: 100%; height: 100%;">
+        <!--<img src="img/tiny.png" alt="" style="min-width: 100%; width: 100%;">-->
+        <ul class="text-aladin" style="position: absolute; top: 50px; left: 100px; color: red; font-size: 36px;list-style: disc;">
+            <li>Clean separation Layout vs Logic</li>
+            <li>Nice OO design</li>
+            <li>Reusable components</li>
+            <li>You are in control</li>
+            <li>Own Testing API</li>
+        </ul>
+        <span style="position: absolute; top: 80px; left:450px;font-size: 40px; color: #ff4500;" class="text-aladin">Beautiful Code</span>
     </div>
-    <div id="webde" class="step slide" data-x="0" data-y="-1500">
-        <img src="img/webde.png" alt="" style="min-width: 100%; width: 100%;">
-        <p style="font-size: 1.5em; color: #b6d3e4; margin-top: 40px;">WEB.DE Mailer</p>
-    </div>
-    <div id="nice" class="step slide" data-x="0" data-y="-200">
-        <div style="position: relative; background-image: url('img/tiny2.png');  background-size: 800px; background-repeat:  no-repeat; width: 100%; height: 100%;">
-            <!--<img src="img/tiny.png" alt="" style="min-width: 100%; width: 100%;">-->
-            <ul class="text-aladin" style="position: absolute; top: 50px; left: 100px; color: red; font-size: 36px;list-style: disc;">
-                <li>Clean separation</li>
-                <li>Nice Object Oriented design</li>
-                <li>Reusable components</li>
-                <li>You are in control</li>
-                <li>Testable code</li>
-            </ul>
-            <span style="position: absolute; top: 80px; left:450px;font-size: 40px; color: #ff4500;" class="text-aladin">Beautiful Code</span>
+</div>
+
+<div id="login" class="step slide" data-x="-1000" data-y="1500">
+    <div class="login-box">
+
+        <div class="wrapper">
+            <h3><img src="//img.web.de/v/hp10/hd-logo.png" style="padding-bottom: 30px;"/></h3>
+            <form>
+                <input type="email" value="" placeholder="E-Mail-Address" name="user-name" id="user-name">
+
+                <input type="password" value="" placeholder="Password" name="password" id="password">
+
+                <input type="submit" value="Login" name="login" class="but lvl-1">
+            </form>
         </div>
     </div>
+</div>
 
-    <div id="login" class="step slide" data-x="-1000" data-y="1500">
-        <div class="login-box">
-            <div class="wrapper">
-                <form>
-                    <input type="email" value="" placeholder="E-Mail-Address" name="user-name" id="user-name">
-
-                    <input type="password" value="" placeholder="Password" name="password" id="password">
-
-                    <input type="submit" value="Login" name="login" class="but lvl-1">
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id="clean-html" class="step slide" data-x="0" data-y="1500">
-        <h3>LogingPage.html near LoginPage.java</h3>
+<div id="clean-html" class="step slide" data-x="0" data-y="1500">
+    <h3><b style="color: blue">LogingPage.html</b>, <b style="color: green;">LoginPage.properties</b> near <b>LoginPage.java</b></h3>
         <pre class="code-text github">
             <code class="html" style="background-color: #f5deb3; border-radius: 10px;">
                 &lt;!DOCTYPE html&gt;
@@ -82,140 +109,281 @@
                 xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd/"&gt;
 
                 &lt;head&gt;
-                    &lt;title&gt;Demo Login Page&lt;/title&gt;
-                    &lt;link rel="SHORTCUT ICON" href="favicon.png"/&gt;
+                &lt;title&gt;Demo Login Page&lt;/title&gt;
+                &lt;link rel="SHORTCUT ICON" href="favicon.png"/&gt;
 
-                    &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
-                    &lt;script src="js/libs/modernizr-2.5.3.min.js"&gt;&lt;/script&gt;
+                &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
+                &lt;script src="js/libs/modernizr-2.5.3.min.js"&gt;&lt;/script&gt;
                 &lt;/head&gt;
 
                 &lt;body&gt;
-                    &lt;div wicket:id="feedback"&gt;&lt;/div&gt;
+                &lt;div wicket:id="feedback"&gt;&lt;/div&gt;
 
-                    &lt;form wicket:id="login-form" id="login"&gt;
-                        &lt;fieldset&gt;
-                            &lt;div class="inputs"&gt;
-                                &lt;label for="username"&gt;User&lt;/label&gt;
-                                &lt;input type="email" wicket:id="username" id="username" placeholder="E-Mail-Address"/&gt;
+                &lt;form wicket:id="login-form" id="login"&gt;
+                &lt;fieldset&gt;
+                &lt;div class="inputs"&gt;
+                &lt;input type="email" wicket:id="username" id="username" placeholder="E-Mail-Address"/&gt;
 
-                                &lt;input type="password" id="password" wicket:id="password" placeholder="Password"/&gt;
-                            &lt;/div&gt;
+                &lt;input type="password" id="password" wicket:id="password" placeholder="Password"/&gt;
+                &lt;/div&gt;
 
-                            &lt;div class="actions"&gt;
-                                &lt;input class="btn btn-primary btn-large" type="submit" value="Login"/&gt;
-                            &lt;/div&gt;
-                        &lt;/fieldset&gt;
-                    &lt;/form&gt;
+                &lt;div class="actions"&gt;
+                &lt;input class="btn btn-primary btn-large" type="submit" value="Login"/&gt;
+                &lt;/div&gt;
+                &lt;/fieldset&gt;
+                &lt;/form&gt;
 
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code>
         </pre>
-        <ul class="footnote">
-            <li>Can load different markup LogingPage_webde.html for same component - FTW, different brands WEB.DE and GMX</li>
-        </ul>
-    </div>
+    <ul class="footnote">
+        <li>Can load different markup LogingPage_webde.html for same component - FTW, different brands WEB.DE and GMX</li>
+    </ul>
+</div>
 
-    <div id="clean-java" class="step slide" data-x="0" data-y="2200">
-        <h3>LoginPage.java</h3>
+<div id="clean-java" class="step slide" data-x="0" data-y="2200">
+    <h3>LoginPage.java</h3>
             <pre class="code-text"><code class="java">
-            public class LoginPage extends WebPage {
+                public class LoginPage extends WebPage {
 
                 private TextField&lt;String&gt; emailAddress;
                 private TextField&lt;String&gt; password;
 
                 public LoginPage(PageParameters pageParameters) {
-                    super(pageParameters);
+                super(pageParameters);
 
-                    add(new FeedbackPanel("feedback"));
+                add(new FeedbackPanel("feedback"));
 
-                    Form loginForm = new Form&lt;Void&gt;("login-form") {
-                        @Override
-                        protected void onSubmit() {
-                            if ( ! continueToOriginalDestination()) {
-                                setResponsePage(HomePage.class);
-                            }
-                        }
-                    };
-                    loginForm.add(new LoginValidator(emailAddress, password));
-
-                    add(loginForm);
-
-
-                    emailAddress = new EmailTextField("username", new Model&lt;String&gt;());
-                    emailAddress.add(EmailAddressValidator.getInstance());
-                    emailAddress.setRequired(true);
-                    loginForm.add(emailAddress);
-
-
-                    password = new PasswordTextField("password", new Model&lt;String&gt;());
-                    loginForm.add(password);
-
+                Form loginForm = new Form&lt;Void&gt;("login-form") {
+                @Override
+                protected void onSubmit() {
+                setResponsePage(HomePage.class);
                 }
-            }
-        </code></pre>
-        <ul class="footnote">
-            <li>Separate login in Validators</li>
-            <li>We don't </li>
-        </ul>
-    </div>
-    <div id="inheritance" class="step slide" data-x="0" data-y="3000">
+                };
+                loginForm.add(new LoginValidator(emailAddress, password));
 
-        <div class="content-main wrap">
+                add(loginForm);
+
+
+                emailAddress = new EmailTextField("username", new Model&lt;String&gt;());
+                emailAddress.add(EmailAddressValidator.getInstance());
+                emailAddress.setRequired(true);
+                loginForm.add(emailAddress);
+
+
+                password = new PasswordTextField("password", new Model&lt;String&gt;());
+                loginForm.add(password);
+                }
+                }
+            </code></pre>
+    <ul class="footnote">
+        <li>Separate Login logic in Validators</li>
+        <li>We don't work with URLs and parameters</li>
+        <li>Easy refactoring and tracking where a component is used</li>
+    </ul>
+</div>
+<div id="inheritance" class="step slide" data-x="-1000" data-y="3000" style="padding: 0 10px;" data-rotate="90">
+    <div class="header" style="background-color: #fff;height: 70px;">
+        <img src="//img.web.de/v/hp10/hd-logo.png" alt="" width="70" height="70"/>
+        <div style="float: right">
+            <input type="text" size="15" placeholder="Search">
+        </div>
+    </div>
+    <div class="content-main wrap">
         <ul class="clearfix" id="list-actions" style="font-size: 16px;">
             <li><a class="but" href="./">Home</a></li>
 
 
             <li class="dropdown">
-                <a class="but" href="./products">Projects</a>
+                <a class="but" href="">Projects</a>
                 <ul>
-                    <li><a href="./">WEB.DE Mail</a></li>
-                    <li><a href="./categories">Foto Manager</a></li>
-                    <li><a href="./pachete">Pachete</a></li>
-                    <li><a href="./cadouri">Cadouri</a></li>
+                    <li><a href="#webde">WEB.DE Mail</a></li>
+                    <li><a href="#webde-fotomanager">Foto Manager</a></li>
+                    <li><a href="#webde-ums">WEB.DE/GMX UMS</a></li>
+                    <li><a href="">WEB.DE MillionenKlick</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
-                <a class="but" href="./tiles">Clean Code</a>
+                <a class="but" href="#clean-html">Clean Code</a>
                 <ul>
-                    <li><a href="./banners">Separate LF from logic</a></li>
-                    <li><a href="../infos">Separate .java files</a></li>
+                    <li><a href="#clean-html">Separate LF from logic</a></li>
+                    <li><a href="#clean-java">Validators</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
                 <a class="but" href="./tiles">Good OOP Design</a>
                 <ul>
-                    <li><a href="./banners">Separate Html</a></li>
-                    <li><a href="../infos"></a></li>
+                    <li><a href="">Extending Components</a></li>
+                    <li><a href="">Reusing Components</a></li>
+                    <li><a href="#models">Separate Model from Component</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
-                <a class="but" href="./tiles">Testable</a>
+                <a class="but" href="#tester">Testable</a>
                 <ul>
-                    <li><a href="./banners">Separate Html</a></li>
-                    <li><a href="../infos"></a></li>
-                </ul>
-            </li>
-
-            <li class="aside dropdown">
-                <a class="but" href="#">Administrare</a>
-                <ul>
-                    <li><a href="./settings">Setari</a></li>
-                    <li></li>
-                    <li><a href="./template">Design</a></li>
-                    <li><a href="./notifications">Notificari</a></li>
-                    <li><a href="./users">Utilizatori</a></li>
+                    <li><a href="#tester">Own Test API</a></li>
                 </ul>
             </li>
         </ul>
-            </div>
-        <div class="content-footer">
-
-        </div>
     </div>
+    <div style="background-color: #FAFFBD; height: 300px; position: relative;text-align: center">
+        <h1 style="margin: auto;max-width: 300px;font-size: 18px;padding-top: 100px;">
+            Child Markup provided by extending page class
+        </h1>
+    </div>
+
+    <div class="content-footer" style="background-color: blue;">
+    </div>
+    <ul class="footnote">
+        <li></li>
+    </ul>
+
+</div>
+
+<div id="basetemplate-html" class="step slide" data-x="-2000" data-y="3000" data-rotate="90" style="padding: 0 10px;">
+    <h3><b style="color: green;">BaseTemplatePage.html</b></h3>
+        <pre class="code-text github">
+            <code class="html" style="background-color: #f5deb3; border-radius: 10px;">
+                &lt;!DOCTYPE html&gt;
+                &lt;html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd/"&gt;
+
+                &lt;head&gt;
+                &lt;title wicket:id="pageTitle"&gt;&lt;/title&gt;
+
+                &lt;link rel="stylesheet" media="screen" href="css/style.css"&gt;
+                &lt;/head&gt;
+
+                &lt;body&gt;
+                &lt;header&gt;
+                &lt;img src="webde-logo.png"/&gt;
+                &lt;div wicket:id="search-panel"&gt;&lt;/div&gt;
+
+                &lt;div wicket:id="nav-menu-panel"&gt;&lt;/div&gt;
+                &lt;/header&gt;
+
+                &lt;wicket:child/&gt;
+                &lt;/body&gt;
+                &lt;/html&gt;
+            </code>
+        </pre>
+    <h3><b style="color: blue;">BaseTemplatePage.java</b></h3>
+        <pre class="code-text">
+                <code class="java">
+                    public abstract class BaseTemplatePage extends WebPage {
+
+                    public BaseTemplatePage(PageParameters parameters) {
+                    super(parameters);
+
+                    Label lblPageTitle = new Label("pageTitle", getPageTitle());
+
+                    SearchPanel searchPanel = new SearchPanel("search-panel");
+                    add(searchPanel);
+
+                    NavMenuPanel navMenuPanel = new NavMenuPanel("nav-menu-panel");
+                    add(navMenuPanel);
+                    }
+
+                    public abstract String getPageTitle();
+                    }
+                </code>
+        </pre>
+</div>
+
+<div id="mock" class="step slide" data-x="-3000" data-y="3000" data-rotate="180" style="padding: 0 10px;">
+    <img src="img/mock.png" alt="" width="700" height="550"/>
+    <ul class="footnote">
+        <li>CheckoutPage inherits BaseTemplatePage</li>
+        <li>Security  </li>
+        <li></li>
+    </ul>
+</div>
+
+<div id="models" class="step slide" data-x="-5000" data-y="3000" data-scale="1" data-z="-3000" data-rotate="270">
+    <div style="float: left;">
+        <img src="img/models-3.jpg" alt="" width="420" height="620"/>
+    </div>
+    <div style="float: left; font-size: 18px; width: 300px;padding-left: 10px;">
+        <h2 style="color: #ff4500;">Wicket Models</h2>
+        <ol class="models" style="padding-top: 20px;">
+            <li>What is a model?</li>
+            <li>Same component <b>AddressPanel</b> - different models Customer, Shipping</li>
+            <li><b>EntityModel</b> - same model reused to different components</li>
+        </ol>
+    </div>
+</div>
+
+<div id="other" class="step slide" data-x="3000" data-y="2000" data-rotate="90" data-scale="2">
+    <div>
+        <h3 style="font-size: 22px; font-weight: bold;">Other good things</h3>
+        <ol class="topics" style="font-size: 20px;list-style: disc;">
+            <li>POJO Style Session Object</li>
+            <li>Inter-Components Events - Decoupling</li>
+            <li>Visitors</li>
+            <li>Listeners - RequestListeners, Component Listener</li>
+            <li>Integrates nicely with the Spring Framework @SpringBean</li>
+        </ol>
+    </div>
+
+    <div style="padding-top: 50px;">
+        <h3 style="font-size: 22px; font-weight: bold;">Some bad(not so good) things</h3>
+        <ol class="topics" style="font-size: 20px;list-style: disc;">
+            <li>Stateful component framework - state is kept in session. LB or session replication required</li>
+        </ol>
+    </div>
+</div>
+<div id="tester" class="step slide">
+    <h3>Wicket Tester - A helper class to ease unit testing of Wicket applications without the need for a servlet container.</h3>
+            <pre class="code-text"><code class="java">
+                @RunWith(SpringJUnit4ClassRunner.class)
+                @ContextConfiguration(locations = { "/applicationContext-test.xml" })
+                public class TestHomePage {
+                private WicketTester tester;
+
+                @Before
+                public void beforeTest() {
+                final ApplicationContextMock mockContext = new ApplicationContextMock();
+
+                addSpringBeans(mockContext);
+                UmsApplication webApplication = new UmsApplication() {
+                @Override
+                protected SpringComponentInjector createSpringComponentInjector() {
+                return  new SpringComponentInjector(this, mockContext, true);
+                }
+                };
+
+                tester = new WicketTester(webApplication);
+                }
+
+
+                @Test
+                public void testSendMMS() {
+                tester.startPage(HomePage.class);
+
+                FormTester formTester = tester.newFormTester(CONTENT_PANEL + ":form");
+                Form form = formTester.getForm();
+
+                TextArea txtMessageContent = (TextArea) form.get("textMessage");
+                formTester.setValue(txtMessageContent, "Wicket is nice I tell you.");
+
+                TextField txtFrom = (TextField) form.get("from");
+                formTester.setValue(txtFrom, "+40722533281");
+
+                AjaxButton btnSendMessage = (AjaxButton) form.get("submit");
+                tester.executeAjaxEvent(btnSendMessage, "onclick");
+
+                tester.assertNoErrorMessage();
+
+                tester.assertComponent(CONTENT_PANEL, ConfirmationPanel.class);
+                }
+                }
+            </code></pre>
+
+</div>
 </div>
 
 <script src="http://bartaz.github.com/impress.js/js/impress.js"></script>

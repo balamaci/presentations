@@ -103,7 +103,7 @@ i, em { font-style: italic }
 /*
     ... and give links a nice look.
 */
-a {
+a.special {
     color: inherit;
     text-decoration: none;
     padding: 0 0.1em;
