@@ -21,10 +21,10 @@ Contents
     - supported distributed workflows
     - safeguard against data corruption either accidental or malicious.
     - had high performance(was very fast)
-
   - Nothing that he looked at satisfied him at that time, so he came up with Git because "his brain was not rotten away by CVS way of thinking".
   - development started 3 April 2005
   - on 26 June 2005 they were using Git to manage the release for the Linux kernel.
+
 
 ### Git is distributed while SVN is not
   - Distributed means
@@ -46,45 +46,56 @@ Contents
   - Cloning an entire git repository can be quite as fast as checking out from SVN the latest version.
   - Having the whole repository on your computer would make you think it will take a lot of space. This is not true.
 
-### Can have it locally, you
+### Can have it locally, you don't need a server to have version control for a project
   - $sudo apt-get install
   -
+
 ### Git inner workings
-  - Git is "
-  -
+  - Git is "content-addressable filesystem" which basically translates as being a key-value storage.
+  - The key being the checksum of the content that you commited. The checksum is actually a SHA1 hash digest.
+  - The content being an object containing the tree structure with the files that you commited
+  - When you commit , Git spits back this SHA1 key by which the ob commit will be referenced.
+
 
 ### Branching is 'cheap' with Git.
   - 40 bytes cheap. A branch is just a pointer(bookmark) of the last commit in the branch.
+![Branch is a bookmark to a last commmit in the branch](http://www.gitguys.com/gitguys/branches/images/img4.png)
   - With SVN you see branching as something "big" to be done when releasing a new version of the project or for a different brand/customer because others will see the branches you create and may not have meaning for them.
   - in SVN branching means make another directory with a full copy of the source that you branched from so it's space consuming.
   - Many developers when working with svn branches keep local directories with the checked out branches .
      - /trunk,  /2.10, /2.11
   - With Git you can work in the same directory when switching to another branch.
-    - Switching to another branch a bringing is a local operation and the .
-    -
-  - Git encourages "Topic branches" or "Feature Branches" - a branch for every new issue/feature you are working on.
-  - With Git if your experiment a feature on a branch and feel that it's crap you can always choose to delete or not to push it and nobody else ever seeing it.
+     - Switching to another branch a bringing is a local operation and the .
 
-### Merging
-  -
+  - Git encourages you to create "Topic branches" or "Feature Branches" - a branch for every new issue/feature you are working on.
+  - With Git if you experiment a feature on a branch and feel that it's crap you can always choose to delete or not to push it further and nobody else would ever see/know about it.
+
+
+### Merging with Git
+  - A merge commit has two parents so it keeps reference to the commits that led to it.
+![Merge commit has two parents](http://www.gitguys.com/gitguys/merging/images/img1.png)
+
+  - This allows to distinguish about who actually made the changes from which merged them.
 
 ### Multiple Remotes
-
+  - You don't have to collaborate only with the repository from which you cloned.
+  However at cloning time you get an easy reference to it by the name **origin**.
+  -
 
 
 ### Workflows
   - Moving away from giving "commiter" status to a developer to a more pull changes that add value to a project.
   - Github way of working. Suppose you have a simple/great idea/fix for a project that you want to share:
-        - Fork the repository - a clone of the original project owner repository
-        - Make your changes.
-        - Pull in additional changes of the original and merge them
-        - If you want to share the work send him a **Pull request**: "Hey I've just made a change to your project that I think fixes issue3. Why don't you have a look at what I've done and pull from my repository
+        1. Fork the repository - a clone of the original project owner repository
+        2. Make your changes.
+        3. Pull in additional changes of the original and merge them
+        4. If you want to share the work send him a **Pull request**: "Hey I've just made a change to your project that I think fixes issue3. Why don't you have a look at what I've done and pull from my repository"
   -
 
 ### Multiple Backups
   - Since you clone other repositories it means that there are multiple backups even if one of the machine fails.
   - Tampering foolproof.
-       - Since every commit is stored and adressable by the checksum(SHA1 hash) of the content and other metadata like the commiter and commit message.
+       - Since every commit is stored and addressable by the checksum(SHA1 hash) of the content and other metadata like the commiter and commit message.
        - Change even a single bit an the resulting checksum will differ.
        - Commit are chained together as every commit has a reference to the previous one(or two if it was the result of a merge of branches) so any change in the "links" would break the chain.
 
@@ -94,8 +105,8 @@ Contents
 ![Multiple .svn directories vs single top .git directory](http://cl.ly/462l3n1g2e1l3B3n450X/Untitled-2.png)
 
 ### Git Hooks
-  - Deploy in Heroku can be done by pushing to the repository.
-  - Same for Github pages.
+  - Deploy in Heroku can be done just by pushing the changes to repository.
+  - Same for [Github pages](http://pages.github.com/).
 
 
 ### Disadvantages to GIT over SVN
@@ -110,6 +121,7 @@ Sources of info
   - Interactive and Fun way to learn it http://try.github.com/
   - Video presentation of what commits and branches mean http://blip.tv/open-source-developers-conference/git-for-ages-4-and-up-4460524
   - Free book on Git: http://git-scm.com/book
+  - Good tutorials http://www.gitguys.com/topics/
   - http://thinkvitamin.com/code/why-you-should-switch-from-subversion-to-git/
   - http://www.slideshare.net/emilerl/git-presentation-purple-scout-ab-malm
   - http://think-like-a-git.net/sections/graphs-and-git/references.html
