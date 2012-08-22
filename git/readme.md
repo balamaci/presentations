@@ -44,7 +44,7 @@ Contents
     - Obtain any revision of a file.
   - You can browse through the file history and file revisions without having network access. You can work offline.
   - Cloning an entire git repository can be quite as fast as checking out from SVN the latest version.
-  - Having the whole repository on your computer would make you think it will take a lot of space. This is not true.
+  - Having the whole repository on your computer would make you think it will take a lot of space. This is not true(see below)
 
 ### Can have it locally, you don't need a server to have version control for a project
   - $sudo apt-get install
@@ -52,9 +52,14 @@ Contents
 
 ### Git inner workings
   - Git is "content-addressable filesystem" which basically translates as being a key-value storage.
-  - The key being the checksum of the content that you commited. The checksum is actually a SHA1 hash digest.
+  - The **key** being the checksum of the content that you commited.(So retrieval is done by content's value rather by filename hence the "content-addressable" name)
+  - The checksum is actually a **SHA1** hash digest of the content.
+
   - The content being an object containing the tree structure with the files that you commited
-  - When you commit , Git spits back this SHA1 key by which the ob commit will be referenced.
+  - When you commit, Git spits back this SHA1 key by which the commit will be referenced.
+  - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept.
+
+  - That means that even if there are many revisions of the files disksize will not grow much.
 
 
 ### Branching is 'cheap' with Git.
@@ -88,8 +93,8 @@ Contents
   - Github way of working. Suppose you have a simple/great idea/fix for a project that you want to share:
         1. Fork the repository - a clone of the original project owner repository
         2. Make your changes.
-        3. Pull in additional changes of the original and merge them
-        4. If you want to share the work send him a **Pull request**: "Hey I've just made a change to your project that I think fixes issue3. Why don't you have a look at what I've done and pull from my repository"
+        3. Pull in additional changes of the original and merge them into yours.
+        4. If you want to share the work send him a **Pull request**: "Hey I've just made a change to your project that I think fixes issue3. Why don't you have a look at what I've done and if you like it you can pull the changes from my repository to yours"
   -
 
 ### Multiple Backups
