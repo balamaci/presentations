@@ -51,20 +51,21 @@ Contents
   - The **key** being the checksum of the content that you commited.(So retrieval is done by content's value rather by filename hence the "content-addressable" name)
     - The checksum is actually a **SHA1** hash digest of the content of the commited files. When you commit, Git spits back this SHA1 key by which the commit will be referenced. This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
 
-  - The **content** being an object containing the tree structure with the files that you commited.
-  - The commit content also contains reference to the one before it.
+  - The **content** being an object containing the tree structure with the files that you commited. Git stores the full commited files not only the deltas.
+  - The commit content also contains reference to the one before it. This leads to having a graph representations of the commits
+![Graph ](http://training-course-material.com/images/thumb/b/b6/Git-rebasing1.png/260px-Git-rebasing1.png)
   - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept. That means that even if there are many revisions of the files disk size will not grow much.
 
 ### Can have it locally, you don't need a remote server to have version control for a project
-  '''
+
     $sudo apt-get install git-core
     $git init
     $git add .
-    $git commit -m "initial commit" '''
+    $git commit -m "initial commit"
 
 
 ### Branching is 'cheap' with Git.
-  - 40 bytes cheap. A branch is just a pointer(bookmark) of the last commit in the branch.
+  - 40 bytes cheap, because a branch is just a pointer(bookmark) of the last commit in the branch(the SHA1 key).
 ![Branch is a bookmark to a last commmit in the branch](http://www.gitguys.com/gitguys/branches/images/img4.png)
   - With SVN you see branching as something "big" to be done when releasing a new version of the project or for a different brand/customer because others will see the branches you create and may not have meaning for them.
   - in SVN branching means make another directory with a full copy of the source that you branched from so it's space consuming.

@@ -14,10 +14,15 @@ Talk Time
 Contents
 --------
 
-  ## Anatomy of a web request
+  ## Anatomy of a web request and response
       ### The tools explained.
-            - Looking at the web request through
+            - Looking at the web request through.
 
   ## Session attacks
-      ### What is the web session.
+      ### The web session explained.
+        - Why it is used?
+        - How is it created?
+        - Cookie vs URL parameter
+
+      ###
 
