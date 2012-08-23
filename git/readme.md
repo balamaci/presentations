@@ -43,23 +43,23 @@ Contents
     - View file history.
     - Obtain any revision of a file.
   - You can browse through the file history and file revisions without having network access. You can work offline.
-  - Cloning an entire git repository can be quite as fast as checking out from SVN the latest version.
   - Having the whole repository on your computer would make you think it will take a lot of space. This is not true(see below)
-
-### Can have it locally, you don't need a server to have version control for a project
-  - $sudo apt-get install
-  -
+  - Cloning an entire git repository can be quite as fast as checking out from SVN the latest version.
 
 ### Git inner workings
-  - Git is "content-addressable filesystem" which basically translates as being a key-value storage.
+  - Git is "content-addressable filesystem  with a VCS user interface written on top of it" which basically translates as being a key-value storage to which you can write using VCS commands.
   - The **key** being the checksum of the content that you commited.(So retrieval is done by content's value rather by filename hence the "content-addressable" name)
-  - The checksum is actually a **SHA1** hash digest of the content.
+  - The checksum is actually a **SHA1** hash digest of the content of the commited files. When you commit, Git spits back this SHA1 key by which the commit will be referenced. This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
 
-  - The content being an object containing the tree structure with the files that you commited
-  - When you commit, Git spits back this SHA1 key by which the commit will be referenced.
-  - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept.
+  - The **content** being an object containing the tree structure with the files that you commited.
+  - The commit content also contains reference to the
+  - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept. That means that even if there are many revisions of the files disk size will not grow much.
 
-  - That means that even if there are many revisions of the files disksize will not grow much.
+### Can have it locally, you don't need a remote server to have version control for a project
+  - $sudo apt-get install git-core
+  - $git init
+  - $git add .
+  - $git commit -m "initial commit"
 
 
 ### Branching is 'cheap' with Git.
@@ -67,13 +67,15 @@ Contents
 ![Branch is a bookmark to a last commmit in the branch](http://www.gitguys.com/gitguys/branches/images/img4.png)
   - With SVN you see branching as something "big" to be done when releasing a new version of the project or for a different brand/customer because others will see the branches you create and may not have meaning for them.
   - in SVN branching means make another directory with a full copy of the source that you branched from so it's space consuming.
-  - Many developers when working with svn branches keep local directories with the checked out branches .
+  - Many developers when working with svn branches keep local directories with the checked out branches and *cd* through them and make commit to a specific branch.
      - /trunk,  /2.10, /2.11
-  - With Git you can work in the same directory when switching to another branch.
-     - Switching to another branch a bringing is a local operation and the .
-
+  - With Git you can keep work in the same directory when switching to another branch.
+     - We create a new branch and switch to it: git checkout -b release2.10 Now every commit goes into that branch.
+     - Case 1: No modified files exists: Switching to another branch is a local operation and the existing files in the working directory get replaced with the one in the branch.
+     - Case 2: There are file modified and uncommited. Switching to another branch attempts to merge the files in working dir into the ones in the branch.
+     - Working on some feature while some issue on production appears? Git has a simple "stash" concept in which you push you current work in progress, then switch branch afterwards unstash your files and continue working.
   - Git encourages you to create "Topic branches" or "Feature Branches" - a branch for every new issue/feature you are working on.
-  - With Git if you experiment a feature on a branch and feel that it's crap you can always choose to delete or not to push it further and nobody else would ever see/know about it.
+  - With Git if you experiment a feature on a branch and feel that it's a dead end you can always choose to delete or not to push it further and nobody else would ever see/know about it.
 
 
 ### Merging with Git
@@ -83,19 +85,20 @@ Contents
   - This allows to distinguish about who actually made the changes from which merged them.
 
 ### Multiple Remotes
-  - You don't have to collaborate only with the repository from which you cloned.
-  However at cloning time you get an easy reference to it by the name **origin**.
-  -
+  - You don't have to collaborate only with the repository from which you cloned. However at cloning time you get an easy reference to the repository you clone from by the name *origin*.
+  - You can other remotes.
+  - This leads to the possibility of having very diverse workflows:
 
 
 ### Workflows
   - Moving away from giving "commiter" status to a developer to a more pull changes that add value to a project.
   - Github way of working. Suppose you have a simple/great idea/fix for a project that you want to share:
         1. Fork the repository - a clone of the original project owner repository
-        2. Make your changes.
-        3. Pull in additional changes of the original and merge them into yours.
-        4. If you want to share the work send him a **Pull request**: "Hey I've just made a change to your project that I think fixes issue3. Why don't you have a look at what I've done and if you like it you can pull the changes from my repository to yours"
-  -
+        2. Create a branch and make your changes.
+        3. Pull in periodically commits by others developers to the original and merge them into yours.
+        4. To share the work send the owner a **Pull request**: "Hey I've just fixed your mispelled words. Why don't you review what I've done and if you like it you can pull the changes from my repository to yours. You're awesome!"
+  - Other ex: Linus for Linux kernel has his "lieutenants" that are in charge of different kernel modules. They pull in the contributors changes and in turn Linus picks from their what gets pulled into his repository
+![Dictator workflow](http://git-scm.com/figures/18333fig0503-tn.png)
 
 ### Multiple Backups
   - Since you clone other repositories it means that there are multiple backups even if one of the machine fails.
@@ -116,9 +119,8 @@ Contents
 
 ### Disadvantages to GIT over SVN
   - No fine control of user rights readonly for some users. You can have clone of repository to be readonly from which you only push to.
-  - No way to checkout just a specific branch of a project.
+  - No way to checkout just a specific branch of a project. (You can however make a "shallow" clone by specifying how much steps back you want the history, however you'd not be able to push the changes to that repository).
   - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning.
-  -
 
 Sources of info
 ----------------

@@ -1,7 +1,10 @@
 practical-web-security-presentation
 ===
-This is a technical lecture about .
+This is a technical lecture about practical . This is addressed mostly to the web developers . We're not going to talk about the well known obvious
+checking for leaving passwords. Since neither is Java we're going to assume our . (Don't worry I'm still going to ask if you
+This is
 
+**NOT
 
 Talk Time
 ---------
@@ -10,4 +13,11 @@ Talk Time
 
 Contents
 --------
+
+  ## Anatomy of a web request
+      ### The tools explained.
+            - Looking at the web request through
+
+  ## Session attacks
+      ### What is the web session.
 
