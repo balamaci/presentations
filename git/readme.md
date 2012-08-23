@@ -49,9 +49,8 @@ Contents
 ### Git inner workings
   - Git is "content-addressable filesystem  with a VCS user interface written on top of it" which basically translates as being a key-value storage to which you can write using VCS commands.
   - The **key** being the checksum of the content that you commited.(So retrieval is done by content's value rather by filename hence the "content-addressable" name)
-    - The checksum is actually a **SHA1** hash digest of the content of the commited files. When you commit, Git spits back this SHA1 key by which the commit will be referenced. This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
-
-  - The **content** being an object containing the tree structure with the files that you commited. Git stores the full commited files not only the deltas.
+    - The checksum is actually a **SHA1** hash digest of the content of the commited files. When you commit, Git spits back this 40 characters SHA1 key by which the commit will be referenced(for ex: "16fece9f2bdab6965071fdbab3ccc63f117d64a8"). This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
+  - The **content** being an object containing the tree structure with the files that you commited. Git stores the full content of the commited files(not only the deltas between versions).
   - The commit content also contains reference to the one before it. This leads to having a graph representations of the commits
 ![Graph ](http://training-course-material.com/images/thumb/b/b6/Git-rebasing1.png/260px-Git-rebasing1.png)
   - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept. That means that even if there are many revisions of the files disk size will not grow much.
@@ -122,7 +121,7 @@ Contents
 ### Disadvantages to GIT over SVN
   - No fine control of user rights readonly for some users. You can have clone of repository to be readonly from which you only push to.
   - No way to checkout just a specific branch of a project. (You can however make a "shallow" clone by specifying how much steps back you want the history, however you'd not be able to push the changes to that repository).
-  - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning.
+  - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning. Same goes for sentive data(like passwords) that may have been commited by mistake. (See)[https://help.github.com/articles/remove-sensitive-data]
 
 Sources of info
 ----------------
