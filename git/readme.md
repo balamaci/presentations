@@ -52,14 +52,14 @@ Contents
   - The checksum is actually a **SHA1** hash digest of the content of the commited files. When you commit, Git spits back this SHA1 key by which the commit will be referenced. This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
 
   - The **content** being an object containing the tree structure with the files that you commited.
-  - The commit content also contains reference to the
+  - The commit content also contains reference to the one before it.
   - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept. That means that even if there are many revisions of the files disk size will not grow much.
 
 ### Can have it locally, you don't need a remote server to have version control for a project
   - $sudo apt-get install git-core
-  - $git init
-  - $git add .
-  - $git commit -m "initial commit"
+  '''$git init
+     $git add .
+     $git commit -m "initial commit"'''
 
 
 ### Branching is 'cheap' with Git.
@@ -86,7 +86,7 @@ Contents
 
 ### Multiple Remotes
   - You don't have to collaborate only with the repository from which you cloned. However at cloning time you get an easy reference to the repository you clone from by the name *origin*.
-  - You can other remotes.
+  - You can always add other remote repositories and pull from different remotes to yours.
   - This leads to the possibility of having very diverse workflows:
 
 
