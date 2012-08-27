@@ -3,16 +3,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>Git presentation</title>
+    <title>Git vs SVN</title>
 
     <meta name="description" content=""/>
     <meta name="author" content="Serban Balamaci" />
 
-    <link rel="stylesheet" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/git.css">
 
     <link href='http://git-scm.com/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?famly=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
 </head>
 <body class="impress-not-supported">
 <div class="fallback-message">
@@ -22,12 +24,68 @@
 
 <div id="impress">
     <div id="git" class="step slide" data-x="-1000" data-y="-1500" scale="5">
-        <img src="img/logo.png"/>
-        <h2>Git vs SVN</h2>
+        <img src="img/logo.png" width="700" height="300"/>
+        <br/>
+        <h2 style="color: #555;">vs</h2>
+        <br/>
+        <h1 style="color: #CC4037;font-size: 110px;">SVN</h1>
+    </div>
+    <div id="history" class="step slide" data-x="0" data-y="-1500" scale="5">
+        <div style="float: left">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Linus_Torvalds.jpeg/220px-Linus_Torvalds.jpeg"/>
+        </div>
+        <div style="float: right; width:500px;">
+            <h3 style="margin-top: 0;">Little History</h3>
+            <p>Designed it as a replacement for BitKeeper</p>
+            <p>Linus hates CSV and SVN with passion</p>
+            <p>Did research looking for a solution that :</p>
+        </div>
+        <div class="group" style="float: left;margin-top: 10px;">
+            <ul class="topics">
+                <li>Supported distributed workflows</li>
+                <li>Safeguard against data corruption either accidental or malicious</li>
+                <li>Had high performance(was very fast)</li>
+            </ul>
+        </div>
+        <div style="float: left; font-size: 0.8em;">
+            <p >Development started and on 3 Apr 2005 and in 26 June 2005 they were using Git to manage the release for the Linux kernel</p>
+        </div>
+        <div style="float: left; font-size: 0.5em;">
+            <p>Insert joke about name</p>
+        </div>
+    </div>
+    <div id="clone" class="step slide" data-x="1100" data-y="-1500" scale="5">
+        <div style="float: left">
+            <img src="img/clone.jpg" alt="Clone" height="200" width="300"/>
+        </div>
+        <div style="float: right; width:450px;">
+            <h2>Distributed</h2>
+            <p>With Git you <span style="color:#7d1f19">clone</span> the whole history of the project from inception to current state</p>
+        </div>
+        <div style="float: left;">
+            <code style="font-size: 0.8em;">git clone username@host:/path/to/repository</code>
+        </div>
+        <div>
+            <p>After the cloning there is basically no information the server you cloned from has that you do not have</p>
+        </div>
+        <!--
+                <div style="float: left">
+                    <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="550" height="370"/>
+                </div>
+                <div style="float: right; width:200px;">
+                    <p style="font-size: 0.6em;">With SVN you typically only receive a specific snapshot from the project central repository by doing a checkout</p>
+                </div>
+        -->
+    </div>
+    <div id="distributed" class="step slide" data-x="2000" data-y="-1500" scale="5">
+        <div style="float: left">
+            <img src="http://img696.imageshack.us/img696/8615/centralized.png" width="450" height="280"/>
+        </div>
+        <div style="float: left; clear: left;">
+            <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="450" height="400"/>
+        </div>
     </div>
 </div>
-
-
 
 <script src="http://bartaz.github.com/impress.js/js/impress.js"></script>
 <script>impress().init();</script>
