@@ -71,7 +71,12 @@ Contents
   - Many developers when working with svn branches keep local directories with the checked out branches and *cd* through them and make commit to a specific branch.
      - /trunk,  /2.10, /2.11
   - With Git you can keep work in the same directory when switching to another branch.
-     - We create a new branch and switch to it: git checkout -b release2.10 Now every commit goes into that branch.
+     - We create a new branch and switch to it:
+
+    $git checkout -b release2.10
+
+     Now every commit goes into that branch.
+
      - Case 1: No modified files exists: Switching to another branch is a local operation and the existing files in the working directory get replaced with the one in the branch.
      - Case 2: There are file modified and uncommited. Switching to another branch attempts to merge the files in working dir into the ones in the branch.
      - Working on some feature while some issue on production appears? Git has a simple "stash" concept in which you push you current work in progress, then switch branch afterwards unstash your files and continue working.
