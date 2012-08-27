@@ -57,10 +57,10 @@ Contents
 
 ### Can have it locally, you don't need a remote server to have version control for a project
 
-    $sudo apt-get install git-core
-    $git init
-    $git add .
-    $git commit -m "initial commit"
+    $ sudo apt-get install git-core
+    $ git init
+    $ git add .
+    $ git commit -m "initial commit"
 
 
 ### Branching is 'cheap' with Git.
@@ -71,12 +71,7 @@ Contents
   - Many developers when working with svn branches keep local directories with the checked out branches and *cd* through them and make commit to a specific branch.
      - /trunk,  /2.10, /2.11
   - With Git you can keep work in the same directory when switching to another branch.
-     - We create a new branch and switch to it:
-
-    `$git checkout -b release2.10`
-
-
-     Now every commit goes into that branch.
+     - We create a new branch and switch to it: `$ git checkout -b release2.10` . Now every commit goes into that branch.
 
      - Case 1: No modified files exists: Switching to another branch is a local operation and the existing files in the working directory get replaced with the one in the branch.
      - Case 2: There are file modified and uncommited. Switching to another branch attempts to merge the files in working dir into the ones in the branch.
@@ -125,7 +120,7 @@ Contents
 
 
 ### Disadvantages to GIT over SVN
-  - No fine control of user rights readonly for some users. You can have clone of repository to be readonly from which you only push to.
+  - No fine control of user rights readonly for some users. You can implement rights through hooks. You can have clone of repository to be readonly from which you only push to.
   - No way to checkout just a specific branch of a project. (You can however make a "shallow" clone by specifying how much steps back you want the history, however you'd not be able to push the changes to that repository).
   - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning. Same goes for sentive data(like passwords) that may have been commited by mistake. (See)[https://help.github.com/articles/remove-sensitive-data]
 
