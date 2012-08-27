@@ -65,7 +65,7 @@ Contents
 
 ### Branching is 'cheap' with Git.
   - 40 bytes cheap, because a branch is just a pointer(bookmark) of the last commit in the branch(the SHA1 key).
-![Branch is a bookmark to a last commmit in the branch](http://www.gitguys.com/gitguys/branches/images/img4.png)
+![Branch is a bookmark to a last commit in the branch](http://www.gitguys.com/gitguys/branches/images/img4.png)
   - With SVN you see branching as something "big" to be done when releasing a new version of the project or for a different brand/customer because others will see the branches you create and may not have meaning for them.
   - in SVN branching means make another directory with a full copy of the source that you branched from so it's space consuming.
   - Many developers when working with svn branches keep local directories with the checked out branches and *cd* through them and make commit to a specific branch.
@@ -126,7 +126,9 @@ Contents
 Sources of info
 ----------------
   - Linus Torvalds on git http://www.youtube.com/watch?v=4XpnKHJAok8[p is what made it popular. Explains in Linus own words the reasoning behind it.
+  - Best video presentation: "Introduction to Git with Scott Chacon of GitHub" - http://www.youtube.com/watch?v=ZDR433b0HJY
   - Interactive and Fun way to learn it http://try.github.com/
+  - Video tutorials http://gitcasts.com/
   - Video presentation of what commits and branches mean http://blip.tv/open-source-developers-conference/git-for-ages-4-and-up-4460524
   - Free book on Git: http://git-scm.com/book
   - Good tutorials http://www.gitguys.com/topics/
