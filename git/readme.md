@@ -75,6 +75,7 @@ Contents
 
     $git checkout -b release2.10
 
+
      Now every commit goes into that branch.
 
      - Case 1: No modified files exists: Switching to another branch is a local operation and the existing files in the working directory get replaced with the one in the branch.
