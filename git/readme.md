@@ -73,7 +73,7 @@ Contents
   - With Git you can keep work in the same directory when switching to another branch.
      - We create a new branch and switch to it:
 
-    $git checkout -b release2.10
+    `$git checkout -b release2.10`
 
 
      Now every commit goes into that branch.
