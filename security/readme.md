@@ -30,7 +30,7 @@ Contents
 
 - URLs with their parameters are recorded in various log files(ISPs, proxy-s).
 
-- Url session parameter in the simplest case can be copy pasted by mistake by the users thus.
+- The simplest case of session disclosure can be the user copy-pasting the url and sharing it by posting to a site(say Facebook) or by submitting .
 
 - Servlet3 session specifications let us specify some
 
