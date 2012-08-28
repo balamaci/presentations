@@ -48,9 +48,13 @@ Contents
 
 ### Git inner workings
   - Git is "content-addressable filesystem  with a VCS user interface written on top of it" which basically translates as being a key-value storage to which you can write using VCS commands.
-  - The **key** being the checksum of the content that you commited.(So retrieval is done by content's value rather by filename hence the "content-addressable" name)
-    - The checksum is actually a **SHA1** hash digest of the content of the commited files. When you commit, Git spits back this 40 characters SHA1 key by which the commit will be referenced(for ex: "16fece9f2bdab6965071fdbab3ccc63f117d64a8"). This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
-  - The **content** being an object containing the tree structure with the files that you commited. Git stores the full content of the commited files(not only the deltas between versions).
+  - The **key** being the checksum of the content that you committed.(So retrieval is done by content's value rather by filename hence the "content-addressable" name)
+    - The checksum is actually a **SHA1** hash digest of the content of the committed files. When you commit, Git spits back this 40 characters SHA1 key by which the commit will be referenced(for ex: "16fece9f2bdab6965071fdbab3ccc63f117d64a8"). This can be thought as like SVN "revision nr"(which always increase by 1) equivalent. You can always tag your commit for more humanly readable
+  - The **content** being an object containing the tree structure with the files that you committed.
+  - Git stores the full content of the committed files(with references to unchanged files between versions).
+![Full snapshots](http://git-scm.com/figures/18333fig0105-tn.png)
+  - It does not store just the deltas like SVN. This means some speed coming from the fact that when you pull out a version it's fast since it does not have to build up the files processing all the deltas.
+![SVN Deltas](http://git-scm.com/figures/18333fig0104-tn.png)
   - The commit content also contains reference to the one before it. This leads to having a graph representations of the commits
 ![Graph ](http://training-course-material.com/images/thumb/b/b6/Git-rebasing1.png/260px-Git-rebasing1.png)
   - Git compresses up the files(uses zlib compression) and packs up the files to be space efficient. "Packing up" means that a small change to a large file in a different version, packed together will compress greatly since they are very similar and not need two versions of the file being kept. That means that even if there are many revisions of the files disk size will not grow much.
@@ -74,7 +78,7 @@ Contents
      - We create a new branch and switch to it: `$ git checkout -b release2.10` . Now every commit goes into that branch.
 
      - Case 1: No modified files exists: Switching to another branch is a local operation and the existing files in the working directory get replaced with the one in the branch.
-     - Case 2: There are file modified and uncommited. Switching to another branch attempts to merge the files in working dir into the ones in the branch.
+     - Case 2: There are file modified and uncommitted. Switching to another branch attempts to merge the files in working dir into the ones in the branch. If a merge is not possible, git will let you know to commit your changes because otherwise they'll be overwritten by the ones in the other branch.
      - Working on some feature while some issue on production appears? Git has a simple "stash" concept in which you push you current work in progress, then switch branch afterwards unstash your files and continue working.
   - Git encourages you to create "Topic branches" or "Feature Branches" - a branch for every new issue/feature you are working on.
   - With Git if you experiment a feature on a branch and feel that it's a dead end you can always choose to delete or not to push it further and nobody else would ever see/know about it.
@@ -93,8 +97,9 @@ Contents
 
 
 ### Workflows
-  - Moving away from giving "commiter" status to a developer to a more pull changes that add value to a project.
-  - Github way of working. Suppose you have a simple/great idea/fix for a project that you want to share:
+  - Moving away from giving "committer" status to a developer to a more pull changes that add value to a project.
+  - Traditional way of pushing to a central repository still exists.
+  - Github way of working. Suppose you have a simple/great feature/fix for a open source project that you want to share with the owners:
         1. Fork the repository - a clone of the original project owner repository
         2. Create a branch and make your changes.
         3. Pull in periodically commits by others developers to the original and merge them into yours.
