@@ -35,7 +35,7 @@ Contents
 - Servlet3 session specifications let us specify some
 
 ## Session stealing
-
+- The idea of using an additional attribute for checking the fact that is the same user. User-Agent
 
 ### HttpOnly cookies
 - Explain added benefit of using HttpOnly cookies.
