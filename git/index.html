@@ -15,6 +15,14 @@
     <link href='http://git-scm.com/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 
     <link href="http://fonts.googleapis.com/css?famly=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <style type="text/css">
+        .git {
+            color: #f05033;
+        }
+        .svn {
+            color: #CC4037;
+        }
+    </style>
 </head>
 <body class="impress-not-supported">
 <div class="fallback-message">
@@ -55,36 +63,55 @@
         </div>
     </div>
     <div id="clone" class="step slide" data-x="1100" data-y="-1500" scale="5">
-        <div style="float: left">
-            <img src="img/clone.jpg" alt="Clone" height="200" width="300"/>
+        <div class="left">
+            <div style="float: left">
+                <img src="img/clone.jpg" alt="Clone" height="200" width="300"/>
+            </div>
+            <div style="float: right; width:450px;">
+                <h2>Distributed</h2>
+                <p>With <b class="git">Git</b> you <b style="color:#f05033">clone</b> the <b>whole history</b> of the project from inception to current state</p>
+            </div>
         </div>
-        <div style="float: right; width:450px;">
-            <h2>Distributed</h2>
-            <p>With Git you <span style="color:#7d1f19">clone</span> the whole history of the project from inception to current state</p>
-        </div>
-        <div style="float: left;">
+        <div class="fcleft" style="margin: 30px;">
             <code style="font-size: 0.8em;">git clone username@host:/path/to/repository</code>
         </div>
+        <div class="fcleft">
+            <p>After the cloning there is basically no information that you do not have compared to the server you cloned from</p>
+        </div>
+    </div>
+    <div id="checkout" class="step slide" data-x="2200" data-y="-1500" scale="5">
+        <p>With <b class="svn">SVN</b> you <b class="svn">checkout</b> only a specific snapshot of the project</p>
+        <div style="margin: 20px;">
+            <code style="font-size: 0.8em;">svn checkout https://path/to/repository</code>
+        </div>
         <div>
-            <p>After the cloning there is basically no information the server you cloned from has that you do not have</p>
+            <img src="img/svn-evolution.jpg" alt=""/>
         </div>
-        <!--
-                <div style="float: left">
-                    <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="550" height="370"/>
-                </div>
-                <div style="float: right; width:200px;">
-                    <p style="font-size: 0.6em;">With SVN you typically only receive a specific snapshot from the project central repository by doing a checkout</p>
-                </div>
-        -->
-    </div>
-    <div id="distributed" class="step slide" data-x="2000" data-y="-1500" scale="5">
-        <div style="float: left">
-            <img src="http://img696.imageshack.us/img696/8615/centralized.png" width="450" height="280"/>
-        </div>
-        <div style="float: left; clear: left;">
-            <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="450" height="400"/>
+        <div>
+            <p>With <b class="git">Git</b> you have the whole history locally</p>
         </div>
     </div>
+    <!--
+            <div style="float: left">
+                <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="550" height="370"/>
+            </div>
+            <div style="float: right; width:200px;">
+                <p style="font-size: 0.6em;">With SVN you typically only receive a specific snapshot from the project central repository by doing a checkout</p>
+            </div>
+    -->
+    <div id="central-rep" class="step slide" data-x="3400" data-y="-1500" scale="5">
+        <h2>Non Distributed</h2>
+        <p>Single central repository from where you checkout and commit</p>
+        <img src="http://img696.imageshack.us/img696/8615/centralized.png"/>
+    </div>
+
+    <div id="distributed-rep" class="step slide" data-x="4500" data-y="-1500" scale="5">
+        <h2>Distributed</h2>
+        <p>Central repository can still exist but whole new <b>workflows</b> can appear</p>
+        <img src="http://img815.imageshack.us/img815/3559/distributedfull.png"/>
+    </div>
+
+
 </div>
 
 <script src="http://bartaz.github.com/impress.js/js/impress.js"></script>
