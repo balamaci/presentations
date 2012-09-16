@@ -71,7 +71,6 @@ Contents
   - 40 bytes cheap, because a branch is just a pointer(bookmark) of the last commit in the branch(the SHA1 key).
 ![Branch is a bookmark to a last commit in the branch](http://www.gitguys.com/gitguys/branches/images/img4.png)
   - With SVN you see branching as something "big" to be done when releasing a new version of the project or for a different brand/customer because others will see the branches you create and may not have meaning for them.
-  - in SVN branching means make another directory with a full copy of the source that you branched from so it's space consuming.
   - Many developers when working with svn branches keep local directories with the checked out branches and *cd* through them and make commit to a specific branch.
      - /trunk,  /2.10, /2.11
   - With Git you can keep work in the same directory when switching to another branch.
