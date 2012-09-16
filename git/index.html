@@ -91,14 +91,14 @@
             <p>With <b class="git">Git</b> you have the whole history locally</p>
         </div>
     </div>
-    <!--
-            <div style="float: left">
-                <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="550" height="370"/>
-            </div>
-            <div style="float: right; width:200px;">
-                <p style="font-size: 0.6em;">With SVN you typically only receive a specific snapshot from the project central repository by doing a checkout</p>
-            </div>
-    -->
+<!--
+        <div style="float: left">
+            <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="550" height="370"/>
+        </div>
+        <div style="float: right; width:200px;">
+            <p style="font-size: 0.6em;">With SVN you typically only receive a specific snapshot from the project central repository by doing a checkout</p>
+        </div>
+-->
     <div id="central-rep" class="step slide" data-x="3400" data-y="-1500" scale="5">
         <h2>Non Distributed</h2>
         <p>Single central repository from where you checkout and commit</p>
@@ -142,7 +142,7 @@
 
     </div>
     <div id="code-intro" class="step slide" data-x="7600" data-y="-1500" scale="15" style="padding-top: 0px;">
-        <p style="margin-bottom: 0;">Can even have it locally no remote server required</p>
+            <p style="margin-bottom: 0;">Can even have it locally no remote server required</p>
         <div class="left">
             <pre class="code">
                 $ <b>sudo apt-get install git-core</b>
@@ -177,7 +177,7 @@
         <p>Git is "content-addressable filesystem  with a VCS user interface written on top of it"</p>
         <p class="left" style="text-align: left;">- The <b>key</b> being the checksum of the content that you committed.</p>
         <p style="margin-left: 30px;text-align: left; line-height: 100%; font-size: 0.8em;margin-top: 5px;">This checksum is actually a <b>SHA1</b> hash digest of the content of the committed files with metadata(message, author, etc) and
-            reference to the commit key before it.</p>
+        reference to the commit key before it.</p>
         <p class="left" style="text-align: left;">- The <b>content</b> being an object containing the tree structure with a <b>snapshot</b> of the files that you committed.</p>
         <p><b>key:</b> 78c61dcff33b0cea7755eb71c8b188af37c97b48</p>
         <p><b>content:</b> index.html, css/style.css, js/site.js</p>
@@ -194,6 +194,10 @@
             <img src="http://git-scm.com/figures/18333fig0105-tn.png" alt="Full snapshots" width="370" height="200"/>
         </div>
         <p style="font-size: 0.7em; margin-top: 20px;" class="left">Git compresses up the files(uses zlib compression) and packs up the files to be space efficient.</p>
+    </div>
+    <div id="branching" class="step slide" data-x="9700" data-y="-1500" scale="5" style="padding-top: 0">
+        <h2>Branching is <b>'cheap'</b> with Git</h2>
+        <p>Remember a git commit has a reference back to it's parent</p>
     </div>
 </div>
 
