@@ -88,6 +88,7 @@ Contents
 ![Merge commit has two parents](http://www.gitguys.com/gitguys/merging/images/img1.png)
 
   - This allows to distinguish about who actually made the changes from which merged them.
+  - More important is that after the **merge** there is a merging of the commit messages from the commits that were in the two branches(ordered by time of the commits).
 
 ### Multiple Remotes
   - You don't have to collaborate only with the repository from which you cloned. However at cloning time you get an easy reference to the repository you clone from by the name *origin*.
