@@ -675,6 +675,11 @@ a.special:focus {
     clear: left;
 }
 
+.cleft {
+    float: left;
+    clear: left;
+}
+
 /*
     There is one funny thing I just realized.
 
