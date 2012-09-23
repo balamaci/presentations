@@ -38,6 +38,7 @@
         <br/>
         <h1 style="color: #CC4037;font-size: 110px;">SVN</h1>
     </div>
+
     <div id="history" class="step slide" data-x="0" data-y="-1500" scale="5">
         <div style="float: left">
             <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Linus_Torvalds.jpeg/220px-Linus_Torvalds.jpeg"/>
@@ -62,12 +63,14 @@
             <p >Development started and on 3 Apr 2005 and in 26 June 2005 they were using Git to manage the release for the Linux kernel</p>
         </div>
     </div>
+
+
     <div id="clone" class="step slide" data-x="1100" data-y="-1500" scale="5">
         <div class="left">
-            <div class="left" style="margin-right: 20px">
+            <div class="left">
                 <img src="https://a248.e.akamai.net/assets.github.com/images/modules/dashboard/bootcamp/octocat_fork.png?b55b0082" alt="Clone" />
             </div>
-            <div style="float: right; width:450px;">
+            <div style="float: right; width:500px;">
                 <h2>Distributed</h2>
                 <p>With <b class="git">Git</b> you <b style="color:#f05033">clone</b> the <b>whole history</b> of the project from inception to current state</p>
             </div>
@@ -79,6 +82,8 @@
             <p>After the cloning there is basically no information that you do not have compared to the server you cloned from</p>
         </div>
     </div>
+
+
     <div id="checkout" class="step slide" data-x="2200" data-y="-1500" scale="5">
         <p>With <b class="svn">SVN</b> you <b class="svn">checkout</b> only a specific snapshot of the project</p>
         <div style="margin: 20px;">
@@ -91,25 +96,22 @@
             <p>With <b class="git">Git</b> you have the whole history locally</p>
         </div>
     </div>
-<!--
-        <div style="float: left">
-            <img src="http://img815.imageshack.us/img815/3559/distributedfull.png" width="550" height="370"/>
-        </div>
-        <div style="float: right; width:200px;">
-            <p style="font-size: 0.6em;">With SVN you typically only receive a specific snapshot from the project central repository by doing a checkout</p>
-        </div>
--->
+
     <div id="central-rep" class="step slide" data-x="3400" data-y="-1500" scale="5">
         <h2>Non Distributed</h2>
         <p>Single central repository from where you checkout and commit</p>
         <img src="http://img696.imageshack.us/img696/8615/centralized.png"/>
     </div>
 
+
+
     <div id="distributed-rep" class="step slide" data-x="4500" data-y="-1500" scale="5">
         <h2>Distributed</h2>
         <p>Central repository can still exist but whole new <b>workflows</b> can appear</p>
         <img src="http://img815.imageshack.us/img815/3559/distributedfull.png"/>
     </div>
+
+
 
     <div id="speed" class="step slide" data-x="5600" data-y="-1500" scale="5">
         <div class="left">
@@ -141,12 +143,17 @@
         </div>
     </div>
 
+
+
     <div id="clean" class="step slide" data-x="6600" data-y="-1500" scale="5" style="padding-top: 0">
         <h2>Git is clean</h2>
         <p>SVN infects all your sub directories with a hidden <i>.svn</i> directory.</p>
         <p>With GIT you only have <b>.git</b> at the top of your directory and that is ALL the repository data is being held.</p>
         <img src="http://cl.ly/462l3n1g2e1l3B3n450X/Untitled-2.png"/>
     </div>
+
+
+
 
     <div id="code-intro" class="step slide" data-x="7600" data-y="-1500" scale="15" style="padding-top: 0px;">
             <p style="margin-bottom: 0;">Can even have it locally no remote server required</p>
@@ -179,6 +186,9 @@
         <img src="http://rogerdudler.github.com/git-guide/img/trees.png" width="500" height="200"/>
         <p>With Git you add files to the so called <b>'index'</b> which is basically a staging area.</p>
     </div>
+
+
+
     <div id="internals" class="step slide" data-x="8700" data-y="-1500" scale="5" style="padding-top: 0">
         <h2>Git internals</h2>
         <p>Git is "content-addressable filesystem  with a VCS user interface written on top of it"</p>
@@ -189,6 +199,9 @@
         <p><b>key:</b> 78c61dcff33b0cea7755eb71c8b188af37c97b48</p>
         <p><b>content:</b> index.html, css/style.css, js/site.js</p>
     </div>
+
+
+
     <div id="internals2" class="step slide" data-x="9900" data-y="-1500" scale="5" style="padding-top: 0">
         <p>Git stores the full content of the committed files(with references to unchanged files between versions).</p>
         <p>It does not store just the deltas like SVN. This means some speed coming from the fact that when you pull out a version it's fast since it does not have to build up the files processing all the deltas.</p>
@@ -202,19 +215,29 @@
         </div>
         <p style="font-size: 0.7em; margin-top: 20px;" class="left">Git compresses up the files(uses zlib compression) and packs up the files to be space efficient.</p>
     </div>
+
+
+
+
     <div id="branching" class="step slide" data-x="9900" data-y="-600" scale="5" style="padding-top: 0">
         <h2>Branching is <b>'cheap'</b> with Git</h2>
         <p>40 bytes cheap, because a branch is just a pointer(bookmark) of the last commit in the branch(the SHA1 key)</p>
         <p style="margin-bottom: 0">Remember a git commit has a reference back to it's parent. This makes branching look like</p>
         <img src="http://www.gitguys.com/gitguys/branches/images/img4.png"/>
+	<p>also makes tampering impossible</p>
     </div>
+
+
+
+
     <div id="branching2" class="step slide" data-x="8700" data-y="-600" scale="5" style="padding-top: 0">
-        <p>With SVN you see branching as something <span style="font-size: 1.3em;font-weight: bold">"big"</span> to be done when releasing a new version of the project or for a different
-            brand/customer because others will see the branches you create and may not have meaning for them.</p>
+        <p>With SVN you see branching as something <span style="font-size: 1.3em;font-weight: bold">"big"</span> to be done when releasing a new version of the project or for a different brand/customer because others will see the branches you create and may not have meaning for them.</p>
         <img height="250" src="http://www.today.ucla.edu/portal/ut/artwork/8/3/0/2/7/83027/courtesy_Warner_Bros._-_Characters_Penny_and_Sheldon_in_front_of_Saltzberg_s_first_white_board_about_quark_decay.jpg" alt="">
         <p>With Git since you have your own repository you can create whatever branches you want and you choose if to share it with others.</p>
         <p>Git encourages you to create so called <b>Topic branches</b></p>
     </div>
+
+
     <div id="wizardry" class="step slide" data-x="7600" data-y="-600" scale="5" style="padding-top: 0">
         <h2>Branch wizardry</h2>
         <div>
@@ -229,7 +252,11 @@
               master
             * <span style="color:green">blue</span>
         </pre>
-        <img src="http://cdn.memegenerator.net/instances/250x250/23215689.jpg" height="180" style="float: left;margin-left: 50px;"/>
+        <img src="http://cdn.memegenerator.net/instances/250x250/23215689.jpg" height="200" style="float: left;margin-left: 40px;"/>
+        <pre class="code left" style="margin-left:20px;">
+                $ git stash
+                $ git stash apply
+	</pre>
         </div>
         <div class="left">
         <p>Many developers when working with SVN branches keep local directories mirroring the branches</p>
@@ -242,25 +269,53 @@
         </pre>
         <p>In the same directory with git you magically morph from the latest release to the development version</p>
             <p>Having some issue in production while working on something incomplete?</p>
-            <pre class="code left">
-                $ git stash
-                $ git stash apply
-            </pre>
-
         </div>
     </div>
 
+
+
     <div id="merge" class="step slide" data-x="6600" data-y="-600" scale="5" style="padding-top: 0">
-        <p>A "merge commit" has two parents so it keeps reference to the commits that led to it.</p>
+        <p style="margin-bottom:0">A "merge commit" has two parents so it keeps reference to the commits that led to it.</p>
         <img src="http://www.gitguys.com/gitguys/merging/images/img1.png"/>
-        <p>After the <b>merge</b> you will get also the commit messages from the commits that were in the two branches(ordered by time of the commits)</p>
-        <p>This allows to distinguish about who actually made the changes from which merged them.</p>
+        <p style="margin:0">After the <b>merge</b> you will get also the commit messages from the commits that were in the two branches(ordered by time of the commits)</p>
+	<div class="left">
+	 <img src="http://www.jagregory.com/images/GitGuts2_Figure1.png"/>
+	</div>
+	<div style="float:right">
+	 <img src="http://www.jagregory.com/images/GitGuts2_Figure2.png" height="200"/>
+	</div>
+        <p class="left">This allows to distinguish about who actually made the changes from which merged them.</p>
     </div>
 
+
+
     <div id="workflows" class="step slide" data-x="5600" data-y="-600" scale="5" style="padding-top: 0">
+	<h2>Remote repositories</h2>
         <p>You don't have to collaborate only with the repository from which you cloned.</p>
         <p>At cloning time you get an easy reference to the repository you clone from by the name <b>origin</b>.</p>
-        <p>Moving away from giving "committer" status to a developer to a more pull changes that add value to a project.</p>
+
+            <code class="left" style="font-size: 0.7em;">git remote add balamaci_rep git@github.com:balamaci/simple-git-test.git</code>
+        
+
+	<pre class="left code" style="width:350px">
+		<b>$ git remote show</b>
+		   origin
+		   balamaci_rep
+		<b>$ git remote show balamaci_rep</b>
+		* remote balamaci_rep
+  		Fetch URL: git@github.com:balamaci/simple-git-test.git
+  		HEAD branch: master
+		Remote branches:
+    			master   tracked
+    			red-text tracked
+		<b>$ git branch -a</b>	
+		* blue
+  		master
+  		remotes/balamaci_rep/master
+  		remotes/balamaci_rep/red-text
+	</pre>	
+	<img src="http://git-scm.com/figures/18333fig0503-tn.png" class="left" width="350"/>
+        <p class="left">Moving away from giving "committer" status to a developer to a more pull changes that add value to a project.</p>	
     </div>
 
     <div id="hooks" class="step slide" data-x="3400" data-y="-600" scale="5" style="padding-top: 0">
@@ -277,13 +332,15 @@
     </div>
 
     <div id="cons" class="step slide" data-x="3400" data-y="300" scale="5" style="padding-top: 0">
-        <p>Fixed by <b>gitosis</b> or <b>gitolite</b>: no easy way to provide user access</p>
-        <p>Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning. Same goes for sensitive data(like passwords) that may have been commited by mistake. (See)[https://help.github.com/articles/remove-sensitive-data]</p>
-
+	<h2>Git cons</h2>
+        <p class="left" style="text-align:left">Fixed by <b>gitosis</b> or <b>gitolite</b>: no easy way to provide user access</p>
+        <p class="left" style="text-align:left">Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning. Same goes for sensitive data(like passwords) that may have been commited by mistake. <a href="https://help.github.com/articles/remove-sensitive-data">Github help removing sensitive data</a></p>
+	<p>no way to checkout just a specific branch. <b>shallow copy</b>, yes but does not permit to push back changes.</p>	
     </div>
 
-    <div id="sumup" class="step slide" data-x="8700" data-y="300" scale="5" style="padding-top: 0">
-        <ol>
+    <div id="sumup" class="step slide" data-x="5600" data-y="300" scale="5" style="padding-top: 0">
+	<h3 class="left">Sumup</h3>
+        <ul class="topics cleft">
             <li>Speed</li>
             <li>Work offline</li>
             <li>Great branching</li>
@@ -291,7 +348,16 @@
             <li>Cleaner</li>
             <li>Different workflows</li>
             <li>Hooks</li>
-        </ol>
+            <li>Github</li>
+	    <li>Speed</li>
+        </ul>
+	<div class="cleft" style="width:100%">
+	<h1 style="color:blue">Thanks!</h1>
+	</div>
+	<div class="cleft">
+	<h3>Tutorials and refcards<h3>
+	<p style="font-size:15px;">https://github.com/balamaci/presentations/tree/master/git</p>
+	</div>
     </div>
 
 </div>

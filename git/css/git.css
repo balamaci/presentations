@@ -1,10 +1,10 @@
 body {
 	background: #FFF;
 	font-family: 'Chelsea Market', Georgia, Times New Roman, Times, serif;
-	font-size: 28px;
-    color: #000;
+	font-size: 24px;
+    	color: #000;
 	text-align: center;
-    margin: 0;
+	margin: 0;
     padding: 0;
 }
 
@@ -18,7 +18,7 @@ h1 {
 }
 
 h2 {
-	font-size: 70px;
+	font-size: 50px;
 	font-weight: normal;
 	margin: 0;
 	color: #FFB000;
@@ -38,12 +38,12 @@ p {
     font-family: 'Chelsea Market', Georgia, serif;
     margin: 20px auto;
 	color: #000;
-    line-height: 120%;
+    line-height: 110%;
 }
 
 a, a:visited {
-	color: #000;
-    font-size: 12px;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 20px;
     text-decoration: none;
 }
 
