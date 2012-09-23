@@ -5,7 +5,7 @@ This is a technical lecture about why you could consider switching from **SVN** 
 
 Talk Time
 ---------
-  about 1 hour.
+  about 1 hour and half.
 
 
 Contents
@@ -120,14 +120,16 @@ Contents
 ![Multiple .svn directories vs single top .git directory](http://cl.ly/462l3n1g2e1l3B3n450X/Untitled-2.png)
 
 ### Git Hooks
+  - Reject commits that don't conform to some standard.
   - Deploy in Heroku can be done just by pushing the changes to repository.
   - Same for [Github pages](http://pages.github.com/).
 
+### Tools
+  - Gitosis or gitolite[https://github.com/sitaramc/gitolite]
 
 ### Disadvantages to GIT over SVN
-  - No fine control of user rights readonly for some users. You can implement rights through hooks. You can have clone of repository to be readonly from which you only push to.
   - No way to checkout just a specific branch of a project. (You can however make a "shallow" clone by specifying how much steps back you want the history, however you'd not be able to push the changes to that repository).
-  - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning. Same goes for sentive data(like passwords) that may have been commited by mistake. (See)[https://help.github.com/articles/remove-sensitive-data]
+  - Binary files used in the project at some time(that may be of no use in the latest development) will be downloaded with the cloning. Same goes for sensitive data(like passwords) that may have been commited by mistake. (See)[https://help.github.com/articles/remove-sensitive-data]
 
 Sources of info
 ----------------
