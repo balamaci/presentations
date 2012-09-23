@@ -666,6 +666,15 @@ a.special:focus {
 .impress-enabled          { pointer-events: none }
 .impress-enabled #impress { pointer-events: auto }
 
+.left {
+    float: left;
+}
+
+.fcleft {
+    float: left;
+    clear: left;
+}
+
 /*
     There is one funny thing I just realized.
 
