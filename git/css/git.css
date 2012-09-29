@@ -1,10 +1,10 @@
 body {
 	background: #FFF;
 	font-family: 'Chelsea Market', Georgia, Times New Roman, Times, serif;
-	font-size: 28px;
-    color: #000;
+	font-size: 24px;
+    	color: #000;
 	text-align: center;
-    margin: 0;
+	margin: 0;
     padding: 0;
 }
 
@@ -42,8 +42,8 @@ p {
 }
 
 a, a:visited {
-	color: #000;
-    font-size: 12px;
+    font-family:"Courier New", Courier, monospace;
+    font-size: 20px;
     text-decoration: none;
 }
 
@@ -195,7 +195,7 @@ ul.topics li {
 .slide div {
     font-family: 'Chelsea Market', Georgia, serif;
     color: #000;
-    font-size: 26px;
+    font-size: 30px;
     line-height: 36px;
     letter-spacing: -1px;
 }
