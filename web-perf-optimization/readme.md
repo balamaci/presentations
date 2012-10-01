@@ -55,18 +55,22 @@ Contents
 
    - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
 
-    [CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
+    ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
    -
 
 ### Using multiple CDNs
-   - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 .
+   - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 on Chrome.
 But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de.
-   - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css referencing  .
-   - Downside that needs additional DNS lookups that might outweight the benefit of
+   - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css
+referencing a relative image 'background-image:url('../img/paper.gif');'. Could be solved using placeholders like which get replaced
+   - Downside that needs additional DNS lookup to resolve more hosts might outweigh the benefit of parallelization.
 
-### Downsides
-   -
-   - Do not try and use Github references to and hoping for caching. Most of the .
+### Using famouse
+   - Most "famous" libraries already have their files on "famous" CDN locations.
+   By using those you also have the benefit that the user when arriving on your site he probably already has visited other sites that included the libraries so they are served actually from the cache.
+   - On the same line of thinking you might think that using Github references for those and hoping for caching. Github doesn't set the cache headers when serving files.
+   - Look for . Some CDNs offered space on hosting
+
 
 ## Merging JS files and CSS files.
    - Reason behind merging of JS and CSS resources is related to making fewer requests.
