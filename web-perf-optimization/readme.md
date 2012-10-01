@@ -1,0 +1,75 @@
+web-performance-optimization
+===
+This is a technical lecture about discussing best practices for web site speed optimizations such as:
+  - Tools for gathering the metrics about performance and suggesting improvements.
+  -
+  - Using CDNs. How they work.
+  - Http Caching. Apache settings for triggering browser caching by looking at content type.GZipping responses.
+  - JS and CSS merging and minify. Tools for merge&minify.
+  - Javascript tricks.
+    - Async javascript.
+    - Deferred image loading.
+    - JQuery, CSS selectors optimizations.
+    - WebWorkers.
+  - SPDY protocol
+
+
+Due to the different topics reached this lecture may be split into two parts.
+
+
+Talk Time
+---------
+  about 2 hours.
+
+
+Contents
+--------
+
+## Generic rules about improving performance.
+    - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
+    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
+    - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connection that is "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
+    - Try not block use the
+    - Caching of course is great.
+
+## Tools for measuring the performance and suggesting improvements.
+    - Google Chrome network timeline. Reading response headers for the caching info.
+    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
+    - [[Web Page Test][http://www.webpagetest.org/]] or [[Gomez][]]
+        Metrics shown: - DNS lookup time(time
+
+## Using CDNs.
+    - Theory behind is that you should serve the resources need by the users from servers that are "close" to them.
+
+
+### How CDNs work:
+    - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server.
+    - A DNS setup may look like:
+
+    js.web.de.        CNAME  js.web.de.edgekey.net.
+    bar.example.com.        A      192.0.2.23
+
+    That CNAME(Canonical name) acts like an alias and triggers another another lookup .
+    - Most common is Akamai
+    Problem with
+
+    - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
+
+    [CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
+    -
+
+### Using multiple CDNs
+    - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 .
+But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de.
+    - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css referencing  .
+    - Downside that needs additional DNS lookups that might outweight the benefit of
+
+### Downsides
+    -
+    - Do not try and use Github references to and hoping for caching. Most of the .
+
+## Merging JS files and CSS files.
+    - Reason behind merging of JS and CSS resources is related to making fewer requests.
+    - In development it makes sense to have the JS logic distributed into separate files according to the .
+    -
+    - wro4j invokes the through java.
