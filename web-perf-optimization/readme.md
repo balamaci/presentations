@@ -36,7 +36,7 @@ Contents
 ## Tools for measuring the performance and suggesting improvements.
    - Google Chrome network timeline. Reading response headers for the caching info.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
-   - [[Web Page Test][http://www.webpagetest.org/]], [[Monotis][http://pageload.monitis.com/]] or [[Gomez][http://www.gomeznetworks.com/custom/instant_test.html]]
+   - [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/) or [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
         Metrics shown:
             - DNS lookup time(time to lookup the host name and match it to an IP)
             - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
@@ -51,9 +51,14 @@ Contents
 ### How CDNs work:
    - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server.
    - A DNS setup may look like:
+    js.web.de.              CNAME   js.web.de.edgekey.net.
+    js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
+    e5416.g.akamaiedge.net. A       2.16.109.234
 
-     js.web.de.        CNAME  js.web.de.edgekey.net.
-     bar.example.com.        A      192.0.2.23
+   - Check it out using the "dig" command:
+
+    $ dig js.web.de
+
 
     That CNAME(Canonical name) acts like an alias and triggers another another lookup .
    - Most common is Akamai
