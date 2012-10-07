@@ -29,20 +29,21 @@ Contents
 ## Generic rules about improving performance.
    - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
-   - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connection that is "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
+   - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
 
-   - Try not block use the
+   - Try not block use the.
+   - Try to set a that would
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
 
 ## Tools for measuring the performance and suggesting improvements.
    - Google Chrome network timeline. Reading response headers for the caching info.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
    - [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/) or [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
-        Metrics shown:
-            - DNS lookup time(time to lookup the host name and match it to an IP)
-            - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
-            - Time to First Byte(the time it takes to receive a first byte of data as a response)
-            - Content download.(time it takes for the resource to download).
+       Metrics shown:
+         - DNS lookup time(time to lookup the host name and match it to an IP)
+         - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
+         - Time to First Byte(the time it takes to receive a first byte of data as a response)
+         - Content download.(time it takes for the resource to download).
 
 
 ## Using CDNs.
@@ -58,7 +59,7 @@ Contents
       js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
       e5416.g.akamaiedge.net. A       2.16.109.234
 
-  - Check it out using the "dig" command:
+  Check it out using the "dig" command:
 
       $ dig js.web.de
 
@@ -98,10 +99,11 @@ Image from Firefox 3.0.
    ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
 Note that this is no longer true, even for browser like IE8 according to Browserscope, JS resources are downloaded in parallel, but still remains the RTT as overhead.
 
-   - But in development it makes sense to have the JS logic distributed into separate files according to the function they serve.
+   - In development it makes sense to have the JS logic distributed into separate files according to the function they serve, while in production we'd want
 
-   - Minimization of
-   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
+   - Minimization of JS files: removes spaces and comments, renames function and variable names.
+        - You'd think that enabling gzip compression would have the same effect: statistics have shown still an aditional 5% of the size in improvement and since it's an easy way to do it, why not?
+   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc. However **wro4j** has them all.
 
 ### Wro4j
   - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
@@ -139,11 +141,12 @@ Note that this is no longer true, even for browser like IE8 according to Browser
        </body>
       </html>
 
-  - Concept of Pre/Post "Processors": a series of "plugins" that alter the file at the time of before or after the merging.
-  - Good maven integration
-  - Additional "processors" can .
+  - Concept of Pre/Post "Processors": a series of useful "plugins" that alter the file at the time of before or after the merging.
 
-   - More features offered : looks at and
+#### Good Maven integration
+  - There is a maven plugin that allows to run wro4j and create the groups and apply the processors at build time.
+  - More features offered : looks at and
 
-   - wro4j invokes the through java.
+#### Useful wro4j processors
+  - wro4j invokes the through java.
 
