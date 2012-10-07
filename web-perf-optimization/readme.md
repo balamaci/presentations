@@ -64,18 +64,17 @@ Contents
       $ dig js.web.de
 
 
-  - That CNAME(Canonical name) acts like an alias and triggers another lookup which queries the DNS of the CDN and it
+  That **CNAME**(Canonical name) acts like an alias and triggers another lookup which queries the DNS of the CDN and it
 responds by looking up the closest CDN to the requester.
 
-    Problem with using Google Public DNS is that the CDN will see the request coming from Google DNS and suggest edge servers close to it instead of you.
+  - Problem with using Google Public DNS is that the CDN will see the request coming from Google DNS and suggest edge servers close to it instead of you.
     So you should at least choose one of the [closest servers](https://developers.google.com/speed/public-dns/docs/using).
     By using your ISP's DNS which probably is geographically close to you you'll also get directed to close CDNs.
-   - Most common is Akamai
+  - Most common is Akamai
 
-   - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
+  - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
 
     ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
-   -
 
 ### Using multiple CDNs
    - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 on Chrome.
@@ -103,10 +102,10 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
    - Minimization of JS files: removes spaces and comments, renames function and variable names.
         - You'd think that enabling gzip compression would have the same effect: statistics have shown still an aditional 5% of the size in improvement and since it's an easy way to do it, why not?
-   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc. However **wro4j** has them all.
+   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
 
 ### Wro4j
-  - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
+  - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/) has all the tools mentioned above and more.
   - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
@@ -143,10 +142,12 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - Concept of Pre/Post "Processors": a series of useful "plugins" that alter the file at the time of before or after the merging.
 
+#### Useful Wro4j Processors
+    - LESS Processor: You can also include .less files as group resources and by running this processor it will trigger **less.js** to parse those files into .css.
+    - JS and CSS Lint:
+
 #### Good Maven integration
   - There is a maven plugin that allows to run wro4j and create the groups and apply the processors at build time.
   - More features offered : looks at and
 
-#### Useful wro4j processors
-  - wro4j invokes the through java.
 
