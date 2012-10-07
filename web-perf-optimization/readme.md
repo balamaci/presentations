@@ -98,7 +98,7 @@ Image from Firefox 3.0.
 Note that this is no longer true, even for browser like IE8 according to Browserscope js resources are downloaded in parallel, but still remains the RTT as overhead.
 
    - But in development it makes sense to have the JS logic distributed into separate files according to the function they serve.
-   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, google closure compiler, jawr for css.
+   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
 
 ### wro4j
   - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
@@ -124,7 +124,6 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     </groups>
 
   - and
-
     <html>
       <head>
         <title>Wro Test</title>
