@@ -96,9 +96,11 @@ Older browsers used to serialize requests and parsing of JS resources to in orde
 Image from Firefox 3.0.
    ![Serial requests JS](https://developers.google.com/speed/docs/insights/images/externaljs1.png)
    ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
-Note that this is no longer true, even for browser like IE8 according to Browserscope js resources are downloaded in parallel, but still remains the RTT as overhead.
+Note that this is no longer true, even for browser like IE8 according to Browserscope, JS resources are downloaded in parallel, but still remains the RTT as overhead.
 
    - But in development it makes sense to have the JS logic distributed into separate files according to the function they serve.
+
+   - Minimization of
    - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
 
 ### Wro4j
@@ -125,6 +127,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
       </groups>
 
   and we are using the above created groups:
+
       <html>
        <head>
         <title>Wro Test</title>
