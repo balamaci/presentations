@@ -106,9 +106,8 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
   - groups can be defined
-
     <groups xmlns="http://www.isdc.ro/wro">
-      <group name="core">
+    <group name="core">
         <js>/js/views/app-view.js</js>
         <js>/js/views/file-browser-view.js</js>
         <js>/js/models/*.js</js>
@@ -117,10 +116,10 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         <group-ref>plugins</group-ref>
       </group>
 
-      <group name="plugins">
+    <group name="plugins">
         <js>/js/plugins/jquery.modal.js</js>
         <js>/js/plugins/jquery.progressbar.js</js>
-      </group>
+    </group>
     </groups>
 
   - and
