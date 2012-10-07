@@ -95,15 +95,47 @@ Older browsers used to serialize requests and parsing of JS resources to in orde
 Image from Firefox 3.0.
    ![Serial requests JS](https://developers.google.com/speed/docs/insights/images/externaljs1.png)
    ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
-   - Note that this is no longer true, even for browser like IE8 according to Browserscope but still remains the RTT as overhead.
+Note that this is no longer true, even for browser like IE8 according to Browserscope js resources are downloaded in parallel, but still remains the RTT as overhead.
 
    - But in development it makes sense to have the JS logic distributed into separate files according to the function they serve.
    - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, google closure compiler, jawr for css.
 
 ### wro4j
-   - [Web Resource Optimizer for Java]().
+   - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
    - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
+   - groups can be defined
+    <groups xmlns="http://www.isdc.ro/wro">
+      <group name="core">
+        <js>/js/views/app-view.js</js>
+        <js>/js/views/file-browser-view.js</js>
+        <js>/js/models/*.js</js>
+        <js>classpath:com/mysite/resource/js/1.js</js>
+        <css>classpath:com/mysite/resource/css/1.css</css>
+        <group-ref>plugins</group-ref>
+      </group>
+
+      <group name="plugins">
+        <js>/js/plugins/jquery.modal.js</js>
+        <js>/js/plugins/jquery.progressbar.js</js>
+      </group>
+    </groups>
+
+    - and
+
+    <html>
+      <head>
+        <title>Wro Test</title>
+        <link rel="stylesheet" type="text/css" href="/wro/core.css" />
+        <script type="text/javascript" src="/wro/core.js"></script>
+      </head>
+      <body>
+        //Body
+      </body>
+    </html>
+
+   - Additional "processors" can
+   - More features offered : looks at and
    - wro4j invokes the through java.
 
