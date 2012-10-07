@@ -4,7 +4,8 @@ This is a technical lecture about discussing best practices for web site speed o
   - Tools for gathering the metrics about performance and suggesting improvements.
   -
   - Using CDNs. How they work.
-  - Http Caching. Apache settings for triggering browser caching by looking at content type.GZipping responses.
+  - Http Caching. Apache settings for triggering browser caching by looking at content type.
+  - Sending less bytes on the wire: GZipping responses.
   - JS and CSS merging and minify. Tools for merge&minify.
   - Javascript tricks.
     - Async javascript.
@@ -49,21 +50,25 @@ Contents
    ![Edge Servers](../img/cdn.png)
 
 ### How CDNs work:
-   - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server.
+   - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server that may know the entry or .
    - A DNS setup may look like:
-'''bash
+
     js.web.de.              CNAME   js.web.de.edgekey.net.
     js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
     e5416.g.akamaiedge.net. A       2.16.109.234
-'''
+
+
    - Check it out using the "dig" command:
 
     $ dig js.web.de
 
 
-    That CNAME(Canonical name) acts like an alias and triggers another another lookup .
+
+    - That CNAME(Canonical name) acts like an alias and triggers another lookup which queries the DNS of the CDN and it
+responds by looking up the closest CDN to the requester.
+
+       - Problem with using Google Public DNS is that you should at least choose one of the [closest servers](https://developers.google.com/speed/public-dns/docs/using) and the CDNs will suggest edge servers closer . It works better when we are using our ISP's DNS.
    - Most common is Akamai
-    Problem with
 
    - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
 
@@ -85,8 +90,20 @@ referencing a relative image 'background-image:url('../img/paper.gif');'. Could 
 
 
 ## Merging JS files and CSS files.
-   - Reason behind merging of JS and CSS resources is related to making fewer requests.
-   - In development it makes sense to have the JS logic distributed into separate files according to the .
-   -
+   - Reason behind merging of JS and CSS resources is related to making fewer requests and minimize the RTT.
+Older browsers used to serialize requests and parsing of JS resources to in order to prevent dependent scripts of one another having problems.
+Image from Firefox 3.0.
+   ![Serial requests JS](https://developers.google.com/speed/docs/insights/images/externaljs1.png)
+   ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
+   - Note that this is no longer true, even for browser like IE8 according to Browserscope but still remains the RTT as overhead.
+
+   - But in development it makes sense to have the JS logic distributed into separate files according to the function they serve.
+   - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, google closure compiler, jawr for css.
+
+### wro4j
+   - [Web Resource Optimizer for Java]().
+   - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
+   ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
+
    - wro4j invokes the through java.
 
