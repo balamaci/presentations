@@ -58,8 +58,9 @@ Contents
 
 
   - Check it out using the "dig" command:
-
     $ dig js.web.de
+  $ dig2 js.web.de
+      $ dig3 js.web.de
 
 
 
