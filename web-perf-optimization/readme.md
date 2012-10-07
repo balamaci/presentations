@@ -59,13 +59,16 @@ Contents
       e5416.g.akamaiedge.net. A       2.16.109.234
 
   - Check it out using the "dig" command:
+
       $ dig js.web.de
 
 
-    - That CNAME(Canonical name) acts like an alias and triggers another lookup which queries the DNS of the CDN and it
+  - That CNAME(Canonical name) acts like an alias and triggers another lookup which queries the DNS of the CDN and it
 responds by looking up the closest CDN to the requester.
 
-       - Problem with using Google Public DNS is that you should at least choose one of the [closest servers](https://developers.google.com/speed/public-dns/docs/using) and the CDNs will suggest edge servers closer . It works better when we are using our ISP's DNS.
+    Problem with using Google Public DNS is that the CDN will see the request coming from Google DNS and suggest edge servers close to it instead of you.
+    So you should at least choose one of the [closest servers](https://developers.google.com/speed/public-dns/docs/using).
+    By using your ISP's DNS which probably is geographically close to you you'll also get directed to close CDNs.
    - Most common is Akamai
 
    - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
@@ -123,7 +126,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - and
 
-      <html>
+     <html>
        <head>
         <title>Wro Test</title>
         <link rel="stylesheet" type="text/css" href="/wro/core.css" />
@@ -132,7 +135,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
        <body>
          //Body
        </body>
-      </html>
+     </html>
 
    - Additional "processors" can
    - More features offered : looks at and
