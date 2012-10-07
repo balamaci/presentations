@@ -106,7 +106,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
-  groups can be defined
+  groups can be defined in a **wro4j.xml** file
 
      <groups xmlns="http://www.isdc.ro/wro">
         <group name="core">
@@ -124,8 +124,9 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         </group>
      </groups>
 
-  - and
-     <html>
+  - and we are using the above created groups:
+
+      <html>
        <head>
         <title>Wro Test</title>
         <link rel="stylesheet" type="text/css" href="/wro/core.css" />
@@ -134,9 +135,10 @@ Note that this is no longer true, even for browser like IE8 according to Browser
        <body>
          //Body
        </body>
-     </html>
+      </html>
 
-   - Concept of "Processors": a series of "plugins" that alter the file at the time of "pre"
+   - Concept of Pre/Post "Processors": a series of "plugins" that alter the file at the time of before or after the merging.
+   -
    - Good maven integration
    - Additional "processors" can .
 
