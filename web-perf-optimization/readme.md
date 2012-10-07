@@ -50,15 +50,15 @@ Contents
    ![Edge Servers](../img/cdn.png)
 
 ### How CDNs work:
-   - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server that may know the entry or .
-   - A DNS setup may look like:
+  - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server that may know the entry or .
+  - A DNS setup may look like:
 
     js.web.de.              CNAME   js.web.de.edgekey.net.
     js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
     e5416.g.akamaiedge.net. A       2.16.109.234
 
 
-   - Check it out using the "dig" command:
+  - Check it out using the "dig" command:
 
     $ dig js.web.de
 
@@ -101,11 +101,11 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, google closure compiler, jawr for css.
 
 ### wro4j
-   - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
-   - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
+  - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
+  - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
-   groups can be defined
+  - groups can be defined
 
     <groups xmlns="http://www.isdc.ro/wro">
       <group name="core">
@@ -123,7 +123,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
       </group>
     </groups>
 
-    - and
+  - and
 
     <html>
       <head>
