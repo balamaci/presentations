@@ -105,7 +105,8 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
-   - groups can be defined
+   groups can be defined
+
     <groups xmlns="http://www.isdc.ro/wro">
       <group name="core">
         <js>/js/views/app-view.js</js>
