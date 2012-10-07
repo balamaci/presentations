@@ -122,7 +122,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     </group>
     </groups>
 
-  - and
+    - and
     <html>
       <head>
         <title>Wro Test</title>
