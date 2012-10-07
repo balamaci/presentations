@@ -53,9 +53,9 @@ Contents
   - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server that may know the entry or .
   - A DNS setup may look like:
 
-    js.web.de.              CNAME   js.web.de.edgekey.net.
-    js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
-    e5416.g.akamaiedge.net. A       2.16.109.234
+      js.web.de.              CNAME   js.web.de.edgekey.net.
+      js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
+      e5416.g.akamaiedge.net. A       2.16.109.234
 
 
   - Check it out using the "dig" command:
