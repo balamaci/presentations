@@ -125,8 +125,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     </groups>
 
   - and we are using the above created groups:
-
-      <html>
+    <html>
        <head>
         <title>Wro Test</title>
         <link rel="stylesheet" type="text/css" href="/wro/core.css" />
@@ -135,7 +134,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
        <body>
          //Body
        </body>
-      </html>
+    </html>
 
    - Concept of Pre/Post "Processors": a series of "plugins" that alter the file at the time of before or after the merging.
    -
