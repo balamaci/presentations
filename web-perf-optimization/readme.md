@@ -5,8 +5,8 @@ This is a technical lecture about discussing best practices for web site speed o
   -
   - Using CDNs. How they work.
   - Http Caching. Apache settings for triggering browser caching by looking at content type.
-  - Sending less bytes on the wire: GZipping responses.
   - JS and CSS merging and minify. Tools for merge&minify.
+  - Sending less bytes on the wire: GZipping responses.
   - Javascript tricks.
     - Async javascript.
     - Deferred image loading.
@@ -90,7 +90,7 @@ referencing a relative image 'background-image:url('../img/paper.gif');'. Could 
    - Look for . Some CDNs offered space on hosting
 
 
-## Merging JS files and CSS files.
+## Merging and minify JS files and CSS files.
    - Reason behind merging of JS and CSS resources is related to making fewer requests and minimize the RTT.
 Older browsers used to serialize requests and parsing of JS resources to in order to prevent dependent scripts of one another having problems.
 Image from Firefox 3.0.
@@ -101,13 +101,14 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    - But in development it makes sense to have the JS logic distributed into separate files according to the function they serve.
    - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
 
-### wro4j
+### Wro4j
   - [Web Resource Optimizer for Java](http://code.google.com/p/wro4j/).
   - Provides the concept of "groups" of resources. Can combine several js/css files into one entity.
    ![Wro4j groups](http://wro4j.googlecode.com/svn/wiki/img/resourceMerging.png)
 
-  - groups can be defined
-      <groups xmlns="http://www.isdc.ro/wro">
+  groups can be defined
+
+     <groups xmlns="http://www.isdc.ro/wro">
         <group name="core">
          <js>/js/views/app-view.js</js>
          <js>/js/views/file-browser-view.js</js>
@@ -121,7 +122,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
           <js>/js/plugins/jquery.modal.js</js>
           <js>/js/plugins/jquery.progressbar.js</js>
         </group>
-      </groups>
+     </groups>
 
   - and
      <html>
@@ -135,7 +136,11 @@ Note that this is no longer true, even for browser like IE8 according to Browser
        </body>
      </html>
 
-   - Additional "processors" can
+   - Concept of "Processors": a series of "plugins" that alter the file at the time of "pre"
+   - Good maven integration
+   - Additional "processors" can .
+
    - More features offered : looks at and
+
    - wro4j invokes the through java.
 
