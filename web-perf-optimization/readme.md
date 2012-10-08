@@ -4,13 +4,13 @@ This is a technical lecture about discussing best practices for web site speed o
   - Tools for gathering the metrics about performance and suggesting improvements.
   -
   - Using CDNs. How they work.
-  - Http Caching. Apache settings for triggering browser caching by looking at content type.
+  - Http Caching. Apache settings for triggering browser caching for different served resources. HTML5 LocalStorage.
   - JS and CSS merging and minify. Tools for merge&minify.
-  - Sending less bytes on the wire: GZipping responses.
+  - Sending less bytes on the wire: GZipping server response.
   - Javascript tricks.
+    - JQuery, CSS selectors optimizations.
     - Async javascript.
     - Deferred image loading.
-    - JQuery, CSS selectors optimizations.
     - WebWorkers.
   - SPDY protocol
 
@@ -30,9 +30,8 @@ Contents
    - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
    - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
-
    - Try not block use the.
-   - Try to set a that would
+   - Try to set a "critical " that would. After the user will
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
 
 ## Tools for measuring the performance and suggesting improvements.
@@ -73,8 +72,9 @@ responds by looking up the closest CDN to the requester.
   - Most common is Akamai
 
   - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
-
     ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
+    If the resource is not found on the edge server, that server requests it from the 'home server' and caches it locally.
+    Next request that comes for that resource will get served from the edge server's cache.
 
 ### Using multiple CDNs
    - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 on Chrome.
@@ -141,13 +141,63 @@ Note that this is no longer true, even for browser like IE8 according to Browser
       </html>
 
   - Concept of Pre/Post "Processors": a series of useful "plugins" that alter the file at the time of before or after the merging.
+  - Library has a web filter that you can add to **web.xml** and can group and process the resource files on the fly with the request.
+  This is good for development.
 
+    - Can also be invoked on the command line with a 'java -jar '.
 #### Useful Wro4j Processors
     - LESS Processor: You can also include .less files as group resources and by running this processor it will trigger **less.js** to parse those files into .css.
-    - JS and CSS Lint:
+    - **Base64DataUriSupport**:
+        - Using DataURI is another performance trick to use to save on making another request to the server.
+        By using it you can embed the contents of an image inside css file and thus save the trip to request a small red_dot.png for example.
+
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+    9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
+
+    - JS and CSS Lint: Checkstyle for JS and CSS.
 
 #### Good Maven integration
-  - There is a maven plugin that allows to run wro4j and create the groups and apply the processors at build time.
-  - More features offered : looks at and
+  - There is a Maven plugin that allows to run wro4j as a build step and create the groups and apply the processors at **build time**.
 
+
+### Other useful performance tips
+  - Check the application to not request resources that are no longer available and return 404 status code responses.
+  It takes up a slot in the max parallel requests to a host. This is bad especially for not found JS files since it may block the flow until the 404 response comes back.
+
+  -
+
+## Browser Caching
+  - There are several http headers that control what resources get cached and for how long.
+
+## Compressing text on the wire:
+    -
+    - Checking that you succesfully implemented this is to look for .
+
+
+
+## JS Optimizations
+
+### JQuery optimizations
+    - Know selector rules: ID&Element selector are fastest: $('#id, form, input') because backed up by native js , $('#id'). See it here:
+    - Chaining:
+    DO NOT:
+        $("#cart").addClass("active");
+        $("#cart").css("color","#f20");
+        $("#cart").height(300);
+    Instead DO:
+        $("#cart").addClass("active").css("color","#f0f").height(300);
+
+    -
+
+    - Cache reference to
+
+### Deferred image loading:
+    -
+
+
+Sources of info
+----------------
+    The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished
+    JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
 
