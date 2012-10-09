@@ -30,8 +30,7 @@ Contents
    - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
    - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
-   - Try not block use the.
-   - Try to set a "critical " that would. After the user will
+   - Try to set a "critical path" that would render the page in an . Deffer the rest of the 3rd party scripts and images after
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
 
 ## Tools for measuring the performance and suggesting improvements.
@@ -101,7 +100,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    - In development it makes sense to have the JS logic distributed into separate files according to the function they serve, while in production we'd want
 
    - Minimization of JS files: removes spaces and comments, renames function and variable names.
-        - You'd think that enabling gzip compression would have the same effect: statistics have shown still an aditional 5% of the size in improvement and since it's an easy way to do it, why not?
+        - You'd think that enabling gzip compression would have the same effect: statistics have shown still an additional 5% of the size in improvement and since it's an easy way to do it, why not?
    - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
 
 ### Wro4j
@@ -142,7 +141,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - Concept of Pre/Post "Processors": a series of useful "plugins" that alter the file at the time of before or after the merging.
   - Library has a web filter that you can add to **web.xml** and can group and process the resource files on the fly with the request.
-  This is good for development.
+  This is useful in development.
 
     - Can also be invoked on the command line with a 'java -jar '.
 #### Useful Wro4j Processors
@@ -154,7 +153,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
     AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
     9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
-
+        - This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
     - JS and CSS Lint: Checkstyle for JS and CSS.
 
 #### Good Maven integration
@@ -165,21 +164,30 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Check the application to not request resources that are no longer available and return 404 status code responses.
   It takes up a slot in the max parallel requests to a host. This is bad especially for not found JS files since it may block the flow until the 404 response comes back.
 
-  -
+  - 204 Status code - No Content - the world's smallest component with a body of 0 bytes can be used for logging and other purposes for which developers usually use a 1x1 GIF tracking pixel.
 
 ## Browser Caching
-  - There are several http headers that control what resources get cached and for how long.
+  - There are several http headers that control what resources get cached and for how long they are cached.
 
 ## Compressing text on the wire:
     -
-    - Checking that you succesfully implemented this is to look for .
+    - Checking that you succesfully implemented this is to look for response header .
+    Browser negotiate the possible communication by sending an Accept-Encoding header in the request. This way the browser communicates to the server
+    what "languages"(encodings) it speaks so that the server knows to respond according:
+        Accept-Encoding: gzip, deflate
+    and receiving back:
+        Content-Encoding: gzip
+    if the content was served up in a gziped form.
 
 
 
 ## JS Optimizations
 
 ### JQuery optimizations
-    - Know selector rules: ID&Element selector are fastest: $('#id, form, input') because backed up by native js , $('#id'). See it here:
+    - Know selector rules:
+        - ID&Element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
+        - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
+
     - Chaining:
     DO NOT:
         $("#cart").addClass("active");
@@ -188,16 +196,23 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     Instead DO:
         $("#cart").addClass("active").css("color","#f0f").height(300);
 
-    -
+    - Event delegation: Event listeners cost memory and processing power. Imagine the case where you want to add events to all the buttons in a tables's row:
+        $('table').find('td').click(function() {
+            $(this).toggleClass('active');
+        });
+     That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
+         $('table').on('click','td',function() {
+             $(this).toggleClass('active');
+         });
 
     - Cache reference to
 
 ### Deferred image loading:
-    -
+    - Since images take longer to load and are not really essential to
 
 
 Sources of info
 ----------------
-    The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished
+    The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
     JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
 
