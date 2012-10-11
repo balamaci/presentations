@@ -30,13 +30,16 @@ Contents
    - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
    - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
-   - Try to set a "critical path" that would render the page in an . Deffer the rest of the 3rd party scripts and images after
+   - Try to set a "critical path" that would render the page in a seaming usable state for the user.
+   Deffer the rest of the 3rd party scripts and images after this is finished and while the user is probably reading .
+   (Putting only core js files that are at the page bottom
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
 
 ## Tools for measuring the performance and suggesting improvements.
    - Google Chrome network timeline. Reading response headers for the caching info.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
-   - [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/) or [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
+   - [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/),
+    [Pingdom](http://tools.pingdom.com/) or [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
        Metrics shown:
          - DNS lookup time(time to lookup the host name and match it to an IP)
          - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
@@ -167,14 +170,28 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - 204 Status code - No Content - the world's smallest component with a body of 0 bytes can be used for logging and other purposes for which developers usually use a 1x1 GIF tracking pixel.
 
 ## Browser Caching
-  - There are several http headers that control what resources get cached and for how long they are cached.
+  - There are several Http Headers that control what resources get cached, for how long and cache revalidation:
+  - **Expires** with a date value, and **Cache-Control: max-age=** nr of seconds, when the browser encounters one of
+  those headers it will cache the resource and for the time specified will consider it fresh and will not try to revalidate
+  and download by issuing other GET request to the server.
+    - It's redundant to set both **Expires** and **Cache-Control** because the last one takes precedence over the other.
+
+  - **Last-Modified** with date as value  and **ETag** header, are used for validation because the browser may issue GET requests
+  to the server to check if the resource has been modified on the server.
+    - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
+    had expired then the browser will not issue a GET request but with an added header **"If-Modified-Since"** for the resource and the server might just say the resource
+    the browser has is still valid since it didn't change on the server and just return an empty response content body but with **304 Not Modified** status
+    and thus save on the download time.
+    ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
+
+  - You topically would want to use long future expiration times, but to also let the users know when  the benefit of is to reference a new version of the resource.
 
 ## Compressing text on the wire:
     -
     - Checking that you succesfully implemented this is to look for response header .
     Browser negotiate the possible communication by sending an Accept-Encoding header in the request. This way the browser communicates to the server
     what "languages"(encodings) it speaks so that the server knows to respond according:
-        Accept-Encoding: gzip, deflate
+        Accept-Encoding: gzip, deflate, sdch
     and receiving back:
         Content-Encoding: gzip
     if the content was served up in a gziped form.
@@ -208,11 +225,12 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     - Cache reference to
 
 ### Deferred image loading:
-    - Since images take longer to load and are not really essential to
+    - Since images take longer to load and some may not really be essential to .(Some images might be visible only after scrolling
+    or maybe in an image carousel when a timer triggers
 
 
 Sources of info
 ----------------
     The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
     JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
-
+    Caching headers explained http://www.symkat.com/understanding-http-caching
