@@ -38,7 +38,8 @@ Contents
 ## Tools for measuring the performance and suggesting improvements.
    - Google Chrome network timeline. Reading response headers for the caching info.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
-   - [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/),
+   - Sites for
+   [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/),
     [Pingdom](http://tools.pingdom.com/) or [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
        Metrics shown:
          - DNS lookup time(time to lookup the host name and match it to an IP)
@@ -171,18 +172,23 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ## Browser Caching
   - There are several Http Headers that control what resources get cached, for how long and cache revalidation:
-  - **Expires** with a date value, and **Cache-Control: max-age=** nr of seconds, when the browser encounters one of
+  ### **Expires** with a date value, and **Cache-Control: max-age=** nr of seconds, when the browser encounters one of
   those headers it will cache the resource and for the time specified will consider it fresh and will not try to revalidate
   and download by issuing other GET request to the server.
     - It's redundant to set both **Expires** and **Cache-Control** because the last one takes precedence over the other.
 
-  - **Last-Modified** with date as value  and **ETag** header, are used for validation because the browser may issue GET requests
+  ### **Last-Modified** with date as value  and **ETag** header, are used for validation because the browser may issue GET requests
   to the server to check if the resource has been modified on the server.
-    - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
+       - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
     had expired then the browser will not issue a GET request but with an added header **"If-Modified-Since"** for the resource and the server might just say the resource
     the browser has is still valid since it didn't change on the server and just return an empty response content body but with **304 Not Modified** status
     and thus save on the download time.
-    ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
+     ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
+       - **ETag** is a programatically generated to mean an unique identifier for a resource, a fingerprint or version.
+       So to check the validity of the resource on the browser the server has to respond if there is a new version of the resource.
+       There is the same logic behind as in **Last-Modified** case only that now the browser issues an
+     ![ETag](http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png)
+
 
   - You topically would want to use long future expiration times, but to also let the users know when  the benefit of is to reference a new version of the resource.
 
@@ -231,6 +237,6 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 Sources of info
 ----------------
-    The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
-    JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
-    Caching headers explained http://www.symkat.com/understanding-http-caching
+   The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
+   JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
+   Caching headers explained http://www.symkat.com/understanding-http-caching
