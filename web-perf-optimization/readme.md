@@ -280,12 +280,12 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Instead of having `<img src="tiger.png"/>` why not have `<img later-src="tiger.png"/>` for the non-critical images.
 
   - At the page bottom have a js script that replaces the "later-src" attribute to "src" something like:
-    ```
+    `
     function deferredImageLoading() {
         $('img[later-src]').each(function() {
              $(this).attr('src', $(this).attr('later-src'));
         });
-    }```
+    }`
 
 
 Sources of info
