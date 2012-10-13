@@ -91,7 +91,8 @@ responds by looking up the closest CDN to the requester.
 But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de.
 
    - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css
-referencing a relative image `background-image:url('../img/paper.gif');`. Could be solved using placeholders like `background-image:url('${img_cdn}/paper.gif');` which get replaced at build time according to different profiles.
+referencing a relative image `background-image:url('../img/paper.gif');` will not work.
+    Could be solved using placeholders like `background-image:url('${img_cdn}/paper.gif');` which get replaced at build time according to different profiles.
 
    - Downside that needs additional DNS lookup to resolve more hosts might outweigh the benefit of parallelization.
 
@@ -166,6 +167,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         - Using DataURI is another performance trick to use to save on making another request to the server.
         By using it you can embed the contents of an image inside css file and thus save the trip to request a small red_dot.png for example.
 
+    ```
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
     AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
     9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
@@ -190,8 +192,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 #### "Expires Sun, 14 Jan 2014 08:23:12 GMT"         /   "Cache-Control: max-age=3600"
   When the browser encounters one of those headers it will cache the resource and for the time specified will
-  consider it fresh and will not try to revalidate
-  and download by issuing other GET request to the server.
+  consider it fresh and will not try to revalidate and download by issuing other GET request to the server.
 
   -It's redundant to set both **Expires** and **Cache-Control**, because **Cache-Control** always takes precedence over the other.
 
@@ -265,10 +266,12 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         $("#cart").addClass("active").css("color","#f0f").height(300);
 
     - Event delegation: Event listeners cost memory and processing power. Imagine the case where you want to add events to all the buttons in a table's row:
+
         ```
         $('table').find('td').click(function() {
             $(this).toggleClass('active');
         });
+
      That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
          ```
          $('table').on('click','td',function() {
