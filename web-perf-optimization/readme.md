@@ -172,18 +172,20 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ## Browser Caching
   - There are several Http Headers that control what resources get cached, for how long and cache revalidation:
-  ### **Expires** with a date value, and **Cache-Control: max-age=** nr of seconds, when the browser encounters one of
+
+### **Expires** with a date value, and **Cache-Control: max-age=** nr of seconds, when the browser encounters one of
   those headers it will cache the resource and for the time specified will consider it fresh and will not try to revalidate
   and download by issuing other GET request to the server.
     - It's redundant to set both **Expires** and **Cache-Control** because the last one takes precedence over the other.
 
-  ### **Last-Modified** with date as value  and **ETag** header, are used for validation because the browser may issue GET requests
+### **Last-Modified** with date as value  and **ETag** header, are used for validation because the browser may issue GET requests
   to the server to check if the resource has been modified on the server.
        - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
     had expired then the browser will not issue a GET request but with an added header **"If-Modified-Since"** for the resource and the server might just say the resource
     the browser has is still valid since it didn't change on the server and just return an empty response content body but with **304 Not Modified** status
     and thus save on the download time.
      ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
+
        - **ETag** is a programatically generated to mean an unique identifier for a resource, a fingerprint or version.
        So to check the validity of the resource on the browser the server has to respond if there is a new version of the resource.
        There is the same logic behind as in **Last-Modified** case only that now the browser issues an
