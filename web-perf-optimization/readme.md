@@ -256,6 +256,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
 
   - Chaining:
+
     DONT:
         ```
         $("#cart").addClass("active");
