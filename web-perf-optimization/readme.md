@@ -165,55 +165,62 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 
 ### Other useful performance tips
-  - Check the application to not request resources that are no longer available and return 404 status code responses.
+  - **No 404s** Check the application to not request resources that are no longer available and return 404 status code responses.
   It takes up a slot in the max parallel requests to a host. This is bad especially for not found JS files since it may block the flow until the 404 response comes back.
 
-  - 204 Status code - No Content - the world's smallest component with a body of 0 bytes can be used for logging and other purposes for which developers usually use a 1x1 GIF tracking pixel.
+  - **204 Status code - No Content** - the world's smallest component with a body of 0 bytes can be used for logging and other purposes for which developers usually use a 1x1 GIF tracking pixel.
 
 ## Browser Caching
   - There are several Http Headers that control what resources get cached, for how long and cache revalidation:
 
-### **Expires** with a date value, and **Cache-Control: max-age=** nr of seconds, when the browser encounters one of
-  those headers it will cache the resource and for the time specified will consider it fresh and will not try to revalidate
+#### Expires Sun, 14 Jan 2014 08:23:12 GMT / Cache-Control: max-age=3600,
+  When the browser encounters one of those headers it will cache the resource and for the time specified will
+  consider it fresh and will not try to revalidate
   and download by issuing other GET request to the server.
+
     - It's redundant to set both **Expires** and **Cache-Control** because the last one takes precedence over the other.
 
-### **Last-Modified** with date as value  and **ETag** header, are used for validation because the browser may issue GET requests
-  to the server to check if the resource has been modified on the server.
-       - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
+#### Last-Modified:Sun, 19 Jun 2011 06:59:22 GMT  / **ETag**
+  This headers, are used for validation because the browser may issue GET requests to the server to check if the resource
+  has been modified on the server.
+     - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
     had expired then the browser will not issue a GET request but with an added header **"If-Modified-Since"** for the resource and the server might just say the resource
     the browser has is still valid since it didn't change on the server and just return an empty response content body but with **304 Not Modified** status
     and thus save on the download time.
      ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
 
-       - **ETag** is a programatically generated to mean an unique identifier for a resource, a fingerprint or version.
-       So to check the validity of the resource on the browser the server has to respond if there is a new version of the resource.
-       There is the same logic behind as in **Last-Modified** case only that now the browser issues an
+     - **ETag** is a programatically generated value to mean an unique identifier for a resource, a fingerprint or version.
+    So to check the validity of the resource on the browser, the server has to respond to a check request if there is a new version of the resource.
+    There is the same logic behind as in **Last-Modified** case only that now the browser issues an
      ![ETag](http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png)
 
 
-  - You topically would want to use long future expiration times, but to also let the users know when  the benefit of is to reference a new version of the resource.
+#### How to use caching
+  - You topically would want to use long future expiration times so you eliminate even the checking expiration , but to also let the users know when  the benefit of is to reference a new version of the resource.
 
-## Compressing text on the wire:
-    -
-    - Checking that you succesfully implemented this is to look for response header .
-    Browser negotiate the possible communication by sending an Accept-Encoding header in the request. This way the browser communicates to the server
-    what "languages"(encodings) it speaks so that the server knows to respond according:
-        Accept-Encoding: gzip, deflate, sdch
-    and receiving back:
-        Content-Encoding: gzip
-    if the content was served up in a gziped form.
+#### How to enable caching
+
+
+## Compressing text on the wire
+
+  - Checking that you succesfully implemented this is to look for response header .
+   Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser communicates to the server
+   what "languages"(encodings) it speaks so that the server knows to respond according:
+       Accept-Encoding: gzip, deflate, sdch
+   and receiving back:
+       Content-Encoding: gzip
+   if the content was served up in a gziped form.
 
 
 
 ## JS Optimizations
 
 ### JQuery optimizations
-    - Know selector rules:
-        - ID&Element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
-        - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
+  - Know selector rules:
+   - ID&Element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
+   - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
 
-    - Chaining:
+  - Chaining:
     DO NOT:
         $("#cart").addClass("active");
         $("#cart").css("color","#f20");
@@ -233,7 +240,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     - Cache reference to
 
 ### Deferred image loading:
-    - Since images take longer to load and some may not really be essential to .(Some images might be visible only after scrolling
+  - Since images take longer to load and some may not really be essential to .(Some images might be visible only after scrolling
     or maybe in an image carousel when a timer triggers
 
 
