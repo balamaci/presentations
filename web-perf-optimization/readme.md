@@ -76,21 +76,22 @@ responds by looking up the closest CDN to the requester.
   - Problem with using Google Public DNS is that the CDN will see the request coming from Google DNS and suggest edge servers close to it instead of you.
     So you should at least choose one of the [closest servers](https://developers.google.com/speed/public-dns/docs/using).
     By using your ISP's DNS which probably is geographically close to you you'll also get directed to close CDNs.
-  - Most common is Akamai
+  - Some CDN providers: Akamai, Amazon Cloudfront
 
   - Common misconception is that they only can act like some mirroring FTP servers where content gets refreshed periodically from the origin server.
 
   In fact they act more like reverse proxy servers http://aws.typepad.com/aws/2010/11/amazon-cloudfront-support-for-custom-origins.html
     ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
-    If the resource is not found on the edge server, that server requests it from the 'home server' and caches it locally.
+
+    If the resource is not found on the edge server, that server requests it from the 'origin server' and caches it locally.
     Next request that comes for that resource will get served from the edge server's cache.
 
 ### Using multiple CDNs
-   - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 on Chrome.
+   - Remember that a browser simultaneous max connections to the same host is limited so for ex. there can only be 6 on Chrome.
 But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de.
 
    - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css
-referencing a relative image 'background-image:url('../img/paper.gif');'. Could be solved using placeholders like ''background-image:url('${img_cdn}/paper.gif');' which get replaced at build time according to different profiles.
+referencing a relative image `background-image:url('../img/paper.gif');`. Could be solved using placeholders like `background-image:url('${img_cdn}/paper.gif');` which get replaced at build time according to different profiles.
 
    - Downside that needs additional DNS lookup to resolve more hosts might outweigh the benefit of parallelization.
 
@@ -212,17 +213,19 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - **ETag** also can be used for REST entities caching to verify that another client application has the latest version of the entity.
 
+### Enabling caching on the Apache server
+
+
 ### How to use caching
   - You typically would want to use long future expiration times(weeks, months) so you eliminate even the checking validity round trips to the server.
 
   - On the other hand you also let the users know when there is a new version of the css, so they don't have to wait a month to see the nice
 
-  - **Solution**: Reference the cached resource along with some kind of version token in a file that is not served cached(most common the .html files).
-
-
-
-#### Enabling caching on the Apache server
-
+  - **Solution**: Reference the cacheable resource along with some kind of version token in a file that is not cached
+  (most common the .html files). One could use for ex:
+   - the file timestamp on disk `<script type="text/javascript" src="/js/site-B0439F858745C84EA46792F9AC42B6CF.js"></script>` or
+   - a specific file version `<link rel="stylesheet" type="text/css" href="/css/site.css?ver=1.23" />` (hint )or the
+   - application version `<link rel="stylesheet" type="text/css" href="/2.14/css/site.css" />`
 
 
 ## Compressing text on the wire
@@ -248,22 +251,26 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ### JQuery optimizations
   - Know selector rules:
-   - ID&Element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
+   - ID & tag element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
    - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
 
   - Chaining:
-    DO NOT:
+    DONT:
+        ```
         $("#cart").addClass("active");
         $("#cart").css("color","#f20");
         $("#cart").height(300);
-    Instead DO:
+    DO:
+        ```
         $("#cart").addClass("active").css("color","#f0f").height(300);
 
-    - Event delegation: Event listeners cost memory and processing power. Imagine the case where you want to add events to all the buttons in a tables's row:
+    - Event delegation: Event listeners cost memory and processing power. Imagine the case where you want to add events to all the buttons in a table's row:
+        ```
         $('table').find('td').click(function() {
             $(this).toggleClass('active');
         });
      That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
+         ```
          $('table').on('click','td',function() {
              $(this).toggleClass('active');
          });
