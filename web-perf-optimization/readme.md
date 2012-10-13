@@ -38,9 +38,13 @@ Contents
 ## Tools for measuring the performance and suggesting improvements.
    - Google Chrome network timeline. Reading response headers for the caching info.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
-   - Sites for
-   [Web Page Test](http://www.webpagetest.org/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/),
-    [Pingdom](http://tools.pingdom.com/) or [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
+   - Sites for checking page loading time:
+     -[Web Page Test](http://www.webpagetest.org/)
+     -[Monotis](http://pageload.monitis.com/)
+     -[SitePerf](http://site-perf.com/)
+     -[Pingdom](http://tools.pingdom.com/)
+     -[Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
+
        Metrics shown:
          - DNS lookup time(time to lookup the host name and match it to an IP)
          - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
@@ -74,7 +78,9 @@ responds by looking up the closest CDN to the requester.
     By using your ISP's DNS which probably is geographically close to you you'll also get directed to close CDNs.
   - Most common is Akamai
 
-  - Common misconception is that they only can act like FTP servers where content gets uploaded when in fact they act more like proxy servers.
+  - Common misconception is that they only can act like some mirroring FTP servers where content gets refreshed periodically from the origin server.
+
+  In fact they act more like reverse proxy servers http://aws.typepad.com/aws/2010/11/amazon-cloudfront-support-for-custom-origins.html
     ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
     If the resource is not found on the edge server, that server requests it from the 'home server' and caches it locally.
     Next request that comes for that resource will get served from the edge server's cache.
@@ -82,8 +88,10 @@ responds by looking up the closest CDN to the requester.
 ### Using multiple CDNs
    - Remember that a browser simultaneous connections to the same host is limited so for ex. there can only be 6 on Chrome.
 But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de.
+
    - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css
 referencing a relative image 'background-image:url('../img/paper.gif');'. Could be solved using placeholders like ''background-image:url('${img_cdn}/paper.gif');' which get replaced at build time according to different profiles.
+
    - Downside that needs additional DNS lookup to resolve more hosts might outweigh the benefit of parallelization.
 
 ### Using most common used libraries with a CDN
@@ -147,7 +155,9 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Library has a web filter that you can add to **web.xml** and can group and process the resource files on the fly with the request.
   This is useful in development to check on the fly when you change something and you want to refresh the page.
 
-    - Can also be invoked on the command line with a 'java -jar '.
+  - Can also be invoked on the command line with a 'java -jar '.
+
+
 #### Useful Wro4j Processors
   - **LESS Processor**: You can also include **".less"** files as group resources and by running this processor it will trigger **less.js** to parse those files into .css.
 
@@ -155,10 +165,11 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         - Using DataURI is another performance trick to use to save on making another request to the server.
         By using it you can embed the contents of an image inside css file and thus save the trip to request a small red_dot.png for example.
 
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
     AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
     9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
-    - This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
+
+     - This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
 
   - **JS** and **CSS Lint**: "Findbugs" for JS and CSS.
 
@@ -172,15 +183,17 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - **204 Status code - No Content** - the world's smallest component with a body of 0 bytes can be used for logging and other purposes for which developers usually use a 1x1 GIF tracking pixel.
 
+
 ## Browser Caching
-  - There are several Http Headers that control what resources get cached, for how long and cache revalidation:
+  - There are several Http Headers that control what resources get cached, for how long and trigger cache revalidation:
 
 #### "Expires Sun, 14 Jan 2014 08:23:12 GMT"         /   "Cache-Control: max-age=3600"
   When the browser encounters one of those headers it will cache the resource and for the time specified will
   consider it fresh and will not try to revalidate
   and download by issuing other GET request to the server.
 
-  - It's redundant to set both **Expires** and **Cache-Control**, because **Cache-Control** always takes precedence over the other.
+  -It's redundant to set both **Expires** and **Cache-Control**, because **Cache-Control** always takes precedence over the other.
+
 
 #### "Last-Modified:Sun, 19 Jun 2011 06:59:22 GMT"   /   "ETag:103212179"
   This headers, are used for validation because the browser may issue GET requests to the server to check if the resource
@@ -204,7 +217,8 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - On the other hand you also let the users know when there is a new version of the css, so they don't have to wait a month to see the nice
 
-  - **Solution**: Reference also some kind of version in a file that is not cacheable with the caching .
+  - **Solution**: Reference the cached resource along with some kind of version token in a file that is not served cached(most common the .html files).
+
 
 
 #### Enabling caching on the Apache server
@@ -213,16 +227,21 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ## Compressing text on the wire
 
+
    Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser communicates to the server
    what "languages"(encodings) it speaks so that the server knows to respond according:
+
        Accept-Encoding: gzip, deflate, sdch
+
    and receiving back:
+
        Content-Encoding: gzip
+
    if the content was served up in a gziped form.
   - Checking that you succesfully implemented this is to look for response header **Content-Encoding**.
 
 ### What to compress
-  -
+  - Some resources are already compressed(.png, .jpeg) and retrying to compress them would only be a waste of time and resources.
 
 
 ## JS Optimizations
@@ -252,12 +271,24 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     - Cache reference to
 
 ### Deferred image loading:
-  - Since images take longer to load and some may not really be essential to .(Some images might be visible only after scrolling
-    or maybe in an image carousel when a timer triggers
+  - Images take longer to download and some may not really be essential to the first page impression so it would make
+  sense to load them at a more appropriate time after other more important resources have loaded.
+  For ex. some images might be visible only after scrolling down the page, or in an image carousel when a timer triggers the next slide.
+  The browser will not know those images are not even visible on the page, it only know that while parsing the DOM and encountering <img src=""> it will request
+  the images from the server.
+
+  - Instead of having <img src="tiger.png"/> why not have <img later-src="tiger.png"/> for the non-critical images.
+
+  - At the page bottom have a js script that replaces the "later-src" attribute to "src" something like:
+    function deferredImageLoading() {
+        $('img[later-src]').each(function() {
+             $(this).attr('src', $(this).attr('later-src'));
+        });
+    }
 
 
 Sources of info
 ----------------
-   The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
-   JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
-   Caching headers explained http://www.symkat.com/understanding-http-caching
+   - The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
+   - JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
+   - Caching headers explained http://www.symkat.com/understanding-http-caching
