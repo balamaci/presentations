@@ -145,20 +145,22 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - Concept of Pre/Post "Processors": a series of useful "plugins" that alter the file at the time of before or after the merging.
   - Library has a web filter that you can add to **web.xml** and can group and process the resource files on the fly with the request.
-  This is useful in development.
+  This is useful in development to check on the fly when you change something and you want to refresh the page.
 
     - Can also be invoked on the command line with a 'java -jar '.
 #### Useful Wro4j Processors
-    - LESS Processor: You can also include .less files as group resources and by running this processor it will trigger **less.js** to parse those files into .css.
-    - **Base64DataUriSupport**:
+  - **LESS Processor**: You can also include **".less"** files as group resources and by running this processor it will trigger **less.js** to parse those files into .css.
+
+  - **Base64DataUriSupport**:
         - Using DataURI is another performance trick to use to save on making another request to the server.
         By using it you can embed the contents of an image inside css file and thus save the trip to request a small red_dot.png for example.
 
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
     AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
     9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
-        - This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
-    - JS and CSS Lint: Checkstyle for JS and CSS.
+    - This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
+
+  - **JS** and **CSS Lint**: "Findbugs" for JS and CSS.
 
 #### Good Maven integration
   - There is a Maven plugin that allows to run wro4j as a build step and create the groups and apply the processors at **build time**.
@@ -173,44 +175,54 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 ## Browser Caching
   - There are several Http Headers that control what resources get cached, for how long and cache revalidation:
 
-#### Expires Sun, 14 Jan 2014 08:23:12 GMT / Cache-Control: max-age=3600,
+#### "Expires Sun, 14 Jan 2014 08:23:12 GMT"         /   "Cache-Control: max-age=3600"
   When the browser encounters one of those headers it will cache the resource and for the time specified will
   consider it fresh and will not try to revalidate
   and download by issuing other GET request to the server.
 
-    - It's redundant to set both **Expires** and **Cache-Control** because the last one takes precedence over the other.
+  - It's redundant to set both **Expires** and **Cache-Control**, because **Cache-Control** always takes precedence over the other.
 
-#### Last-Modified:Sun, 19 Jun 2011 06:59:22 GMT  / **ETag**
+#### "Last-Modified:Sun, 19 Jun 2011 06:59:22 GMT"   /   "ETag:103212179"
   This headers, are used for validation because the browser may issue GET requests to the server to check if the resource
   has been modified on the server.
-     - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
+
+  - **Last-Modified** it returns in response the last date when the resource was modified on the server. If the resource's valid period
     had expired then the browser will not issue a GET request but with an added header **"If-Modified-Since"** for the resource and the server might just say the resource
     the browser has is still valid since it didn't change on the server and just return an empty response content body but with **304 Not Modified** status
     and thus save on the download time.
-     ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
+      ![LastModified](http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png)
 
-     - **ETag** is a programatically generated value to mean an unique identifier for a resource, a fingerprint or version.
-    So to check the validity of the resource on the browser, the server has to respond to a check request if there is a new version of the resource.
-    There is the same logic behind as in **Last-Modified** case only that now the browser issues an
-     ![ETag](http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png)
+  - **ETag** is a programatically generated value to mean an unique identifier for a resource, a fingerprint or version.
+  So to check the validity of the resource on the browser, the server has to respond to a check request if there is a new version of the resource.
+  There is the same logic behind as in **Last-Modified** case only that now the browser issues an **"If-None-Match"** header.
+      ![ETag](http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png)
+
+  - **ETag** also can be used for REST entities caching to verify that another client application has the latest version of the entity.
+
+### How to use caching
+  - You typically would want to use long future expiration times(weeks, months) so you eliminate even the checking validity round trips to the server.
+
+  - On the other hand you also let the users know when there is a new version of the css, so they don't have to wait a month to see the nice
+
+  - **Solution**: Reference also some kind of version in a file that is not cacheable with the caching .
 
 
-#### How to use caching
-  - You topically would want to use long future expiration times so you eliminate even the checking expiration , but to also let the users know when  the benefit of is to reference a new version of the resource.
+#### Enabling caching on the Apache server
 
-#### How to enable caching
 
 
 ## Compressing text on the wire
 
-  - Checking that you succesfully implemented this is to look for response header .
    Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser communicates to the server
    what "languages"(encodings) it speaks so that the server knows to respond according:
        Accept-Encoding: gzip, deflate, sdch
    and receiving back:
        Content-Encoding: gzip
    if the content was served up in a gziped form.
+  - Checking that you succesfully implemented this is to look for response header **Content-Encoding**.
 
+### What to compress
+  -
 
 
 ## JS Optimizations
