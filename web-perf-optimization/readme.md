@@ -277,7 +277,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   The browser will not know those images are not even visible on the page, it only know that while parsing the DOM and encountering <img src=""> it will request
   the images from the server.
 
-  - Instead of having &ltimg src="tiger.png"/&gt why not have <img later-src="tiger.png"/> for the non-critical images.
+  - Instead of having <![CDATA[<img src="tiger.png"/>]]> why not have <img later-src="tiger.png"/> for the non-critical images.
 
   - At the page bottom have a js script that replaces the "later-src" attribute to "src" something like:
     function deferredImageLoading() {
