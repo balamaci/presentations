@@ -40,6 +40,7 @@ Contents
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
    - Sites for checking page loading time:
      -[Web Page Test](http://www.webpagetest.org/)
+     -[GMetrix](http://gtmetrix.com/)
      -[Monotis](http://pageload.monitis.com/)
      -[SitePerf](http://site-perf.com/)
      -[Pingdom](http://tools.pingdom.com/)
@@ -94,7 +95,7 @@ But we can further split the resources from cnd.web.de to js.web.de, img.web.de,
 referencing a relative image `background-image:url('../img/paper.gif');` will not work.
     Could be solved using placeholders like `background-image:url('${img_cdn}/paper.gif');` which get replaced at build time according to different profiles.
 
-   - Downside that needs additional DNS lookup to resolve more hosts might outweigh the benefit of parallelization.
+   - Downside that additional hosts need additional DNS lookup to resolve more hosts might outweigh the benefit of parallelization.
 
 ### Using most common used libraries with a CDN
    - Most "famous" libraries already have their files on "famous" CDN locations.
@@ -214,6 +215,9 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - **ETag** also can be used for REST entities caching to verify that another client application has the latest version of the entity.
 
+### Using an Apache http server as frontend for reverse proxy
+
+
 ### Enabling caching on the Apache server
 
 
@@ -247,8 +251,15 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 ### What to compress
   - Some resources are already compressed(.png, .jpeg) and retrying to compress them would only be a waste of time and resources.
 
+###
 
 ## JS Optimizations
+
+### Putting JS at the bottom
+  - DOM parsing used to be blocked when an external JS reference was found, so placing the JS scripts ahead in the document
+  meant a big stop both in further HTML parsing and in parallel downloads.
+  This has changed for some time, with browser doing "speculative parsing".
+
 
 ### JQuery optimizations
   - Know selector rules:
@@ -273,7 +284,9 @@ Note that this is no longer true, even for browser like IE8 according to Browser
             $(this).toggleClass('active');
         });
 
-     That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
+
+    That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
+
          ```
          $('table').on('click','td',function() {
              $(this).toggleClass('active');
