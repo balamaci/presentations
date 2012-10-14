@@ -291,6 +291,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
          $('table').on('click','td',function() {
              $(this).toggleClass('active');
          });
+         ```
 
     - Cache reference to
 
