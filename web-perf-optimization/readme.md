@@ -270,11 +270,11 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
     DONT:
 
-        ```
-        $("#cart").addClass("active");
-        $("#cart").css("color","#f20");
-        $("#cart").height(300);
-        ```
+      ```
+      $("#cart").addClass("active");
+      $("#cart").css("color","#f20");
+      $("#cart").height(300);
+      ```
     DO:
         ```
         $("#cart").addClass("active").css("color","#f0f").height(300);
