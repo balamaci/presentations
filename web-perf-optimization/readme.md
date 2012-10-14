@@ -168,10 +168,10 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         - Using DataURI is another performance trick to use to save on making another request to the server.
         By using it you can embed the contents of an image inside css file and thus save the trip to request a small red_dot.png for example.
 
-    ```
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
-    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
-    9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
+      ```
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+      AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+      9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
 
     -This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
 
