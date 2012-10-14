@@ -269,13 +269,16 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Chaining:
 
     DONT:
+
         ```
         $("#cart").addClass("active");
         $("#cart").css("color","#f20");
         $("#cart").height(300);
+        ```
     DO:
         ```
         $("#cart").addClass("active").css("color","#f0f").height(300);
+        ```
 
     - Event delegation: Event listeners cost memory and processing power. Imagine the case where you want to add events to all the buttons in a table's row:
 
