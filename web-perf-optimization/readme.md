@@ -171,7 +171,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         ```
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
           AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
-          9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">`
+          9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
 
     -This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
 
