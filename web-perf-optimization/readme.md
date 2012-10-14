@@ -168,7 +168,6 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         - Using DataURI is another performance trick to use to save on making another request to the server.
         By using it you can embed the contents of an image inside css file and thus save the trip to request a small red_dot.png for example.
 
-        ```
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
           AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
           9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
@@ -249,7 +248,8 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Checking that you succesfully implemented this is to look for response header **Content-Encoding**.
 
 ### What to compress
-  - Some resources are already compressed(.png, .jpeg) and retrying to compress them would only be a waste of time and resources.
+  - Some resources are already compressed(.png, .jpeg, .pdf) and retrying to compress them would only be a waste of time and CPU resources.
+  - As a general rule text compresses best so ideal candidates for gzipping are(html, css, js, xml).
 
 ###
 
