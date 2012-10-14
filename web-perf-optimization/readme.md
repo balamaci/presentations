@@ -283,7 +283,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
         $('table').find('td').click(function() {
             $(this).toggleClass('active');
         });
-
+        `
 
       That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
 
