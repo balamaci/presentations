@@ -266,16 +266,15 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    - ID & tag element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
    - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
 
-  - Chaining:
+    - Chaining:
 
-    DONT:
-
-      ```
-      $("#cart").addClass("active");
-      $("#cart").css("color","#f20");
-      $("#cart").height(300);
-      ```
-    DO:
+     DONT:
+        ```
+        $("#cart").addClass("active");
+        $("#cart").css("color","#f20");
+        $("#cart").height(300);
+        ```
+     DO:
         ```
         $("#cart").addClass("active").css("color","#f0f").height(300);
         ```
