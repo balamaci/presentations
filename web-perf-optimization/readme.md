@@ -81,7 +81,7 @@ responds by looking up the closest CDN to the requester.
 
   - Common misconception is that they only can act like some mirroring FTP servers where content gets refreshed periodically from the origin server.
 
-  In fact they act more like reverse proxy servers http://aws.typepad.com/aws/2010/11/amazon-cloudfront-support-for-custom-origins.html
+  In fact they act more like reverse proxy servers something Amazon Cloudfront calls [custom origin](http://aws.typepad.com/aws/2010/11/amazon-cloudfront-support-for-custom-origins.html)
     ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
 
     If the resource is not found on the edge server, that server requests it from the 'origin server' and caches it locally.
@@ -173,7 +173,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
     9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
 
-     - This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
+    -This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
 
   - **JS** and **CSS Lint**: "Findbugs" for JS and CSS.
 
