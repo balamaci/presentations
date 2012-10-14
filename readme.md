@@ -9,7 +9,7 @@ so I apologise to people that the slides hold minimum amount of info.
 
 ### Wicket introduction - held
 
-### [Git](balamaci.github.com/presentations/git/index.html) - held
+### [Git](http://balamaci.github.com/presentations/git/index.html) - held
 
 ### Web Performance optimizations - coming
 
