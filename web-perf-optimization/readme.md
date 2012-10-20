@@ -30,7 +30,7 @@ Contents
    - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
    - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
-   - Try to set a "critical path" that would render the page in a seaming usable state for the user.
+   - "Progressive enhancement" - Try to set a "critical path" that would render the page in a seaming usable state for the user.
    Deffer the rest of the 3rd party scripts and images after this is finished and while the user is probably reading .
    (Putting only core js files that are at the page bottom
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
@@ -40,10 +40,15 @@ Contents
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
    - Sites for checking page loading time:
      -[Web Page Test](http://www.webpagetest.org/)
+
      -[GMetrix](http://gtmetrix.com/)
+
      -[Monotis](http://pageload.monitis.com/)
+
      -[SitePerf](http://site-perf.com/)
+
      -[Pingdom](http://tools.pingdom.com/)
+
      -[Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
 
        Metrics shown:
@@ -89,7 +94,7 @@ responds by looking up the closest CDN to the requester.
 
 ### Using multiple CDNs
    - Remember that a browser simultaneous max connections to the same host is limited so for ex. there can only be 6 on Chrome.
-But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de.
+But we can further split the resources from cnd.web.de to js.web.de, img.web.de, css.web.de or even more with having img1.web.de imgX.web.de.
 
    - Problem with this can be that relative reference will no longer work for ex: from http://css.web.de/style.css
 referencing a relative image `background-image:url('../img/paper.gif');` will not work.
@@ -101,12 +106,11 @@ referencing a relative image `background-image:url('../img/paper.gif');` will no
    - Most "famous" libraries already have their files on "famous" CDN locations.
    By using those you also have the benefit that the user when arriving on your site he probably already has visited other sites that included the libraries so they are served actually from the cache.
    - On the same line of thinking, you might think that using Github references for those and hoping for caching. Github is great, but it was not meant for this and but doesn't set the cache headers when serving files.
-   - Look for . Some CDNs offered space on hosting
-
+   - Checkout http://cdnjs.com/index.html and see how you can propose to add what you need.
 
 ## Merging and minify JS files and CSS files.
    - Reason behind merging of JS and CSS resources is related to making fewer requests and minimize the RTT.
-Older browsers used to serialize requests and parsing of JS resources to in order to prevent dependent scripts of one another having problems.
+Older browsers used to serialize requests of JS resources to in order to prevent dependent scripts of one another having problems.
 Image from Firefox 3.0.
    ![Serial requests JS](https://developers.google.com/speed/docs/insights/images/externaljs1.png)
    ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
@@ -213,6 +217,8 @@ Note that this is no longer true, even for browser like IE8 according to Browser
       ![ETag](http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png)
 
   - **ETag** also can be used for REST entities caching to verify that another client application has the latest version of the entity.
+
+  - Setting Last-Modified with no Expires or Cache-Control triggers an heuristic setting of max-age which for IE9 is max-age = (DownloadTime - LastModified) * 0.1
 
 ### Using an Apache http server as frontend for reverse proxy
 
