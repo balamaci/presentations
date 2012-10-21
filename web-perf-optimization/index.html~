@@ -273,7 +273,7 @@ postProcessors=jsMin,cssMinJawr
 
 </div>
 
-<script src="http://bartaz.github.com/impress.js/js/impress.js"></script>
+<script src="js/impress.js"></script>
 <script>impress().init();</script>
 
 </body>

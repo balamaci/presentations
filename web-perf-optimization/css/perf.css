@@ -1,16 +1,25 @@
 body {
     background: #fff;
     font-family: 'Corben', Helvetica, "Helvetica Neue", Arial, sans-serif;
-    font-size: 24px;
-    font-size: 2.4rem;
+    font-size: 18px;
+    font-size: 1.8rem;
     color: #000;
-    line-height: 1.4;
+    line-height: 1.2;
     text-align: center;
 }
 
+.background {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: -moz-radial-gradient(50% 50%, farthest-side, #fff, #efefef);
+    background: -webkit-gradient(radial, 50% 50%, 250, 50% 50%, 750, from(#fff), to(#bbb));
+    z-index: 0;
+}
+
 h1 {
-    font-size: 48px;
-    font-size: 4.8rem;
+    font-size: 38px;
+    font-size: 3.8rem;
     padding: 0;
     font-weight: bold;
 }
@@ -19,4 +28,78 @@ h2 {
     font-size: 28px;
     font-size: 2.8rem;
     font-weight: bold;
+}
+
+h3 {
+    font-size: 19px;
+    font-size: 1.9rem;
+    font-weight: bold;
+}
+
+ul.topics {
+    float: left;
+    list-style: circle;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+ul.topics-small {
+    float: left;
+    list-style: circle;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+ul.topics-small li {
+    text-align: left;
+    clear: left;
+    padding-left: 2px;
+    margin: 5px 0 5px 35px;
+}
+
+
+ul.topics li {
+    text-align: left;
+    clear: left;
+    padding-left: 5px;
+    margin: 0 0 5px 45px;
+}
+
+ul.topics li .title {
+    display: block;
+}
+
+ul.topics li .desc, ul.topics-small li .desc {
+    font-size: 0.8em;
+    color: #222;
+    clear: left;
+    display: block;
+}
+
+.red-dot {
+    padding-left: 20px;
+    background: white url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC') no-repeat scroll left top;
+}
+
+.code-small {
+    font: normal 14px/19px "Courier New", Courier, monospace;
+    padding: 0px 5px;
+    margin: 5px 0px;
+    font-weight: normal;
+    background: #EFEFEF;
+    display: block;
+    text-align: left;
+}
+
+
+.code {
+    font: normal 14px/19px "Courier New", Courier, monospace;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    background: #000;
+    font-weight: normal;
+    border-left: solid 1px #999;
+    display: block;
+    text-align: left;
+    color: white;
 }
