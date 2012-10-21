@@ -98,6 +98,7 @@
     </div>
 
     <div id="cdn" class="step" data-x="6000" data-y="-5000" data-scale="2">
+        <h3>Use a CDN</h3>
         <img src="img/cdn.png" alt="CDN"/>
         <ul class="topics">
             <li>Faster connections - reduced latency</li>
@@ -125,6 +126,7 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
         <div style="font-size: 0.7em;">They can act as a Reverse Proxy - Custom Origin(CloudFront)</div>
         <img src="http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png" alt="">
     </div>
+
     <div id="benefits" class="step" data-x="15000" data-y="-5000" data-scale="2">
         <ul class="topics">
             <li>
@@ -229,7 +231,7 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
        </li>
         <li>
             <span class="title">At runtime</span>
-            <span class="desc">Servlet filter to add to <b>web.xml</b> that applies per request the grouping and </span>
+            <span class="desc">Servlet filter to add to <b>web.xml</b> that applies per request the grouping and processors</span>
         </li>
        </ul>
     </div>
@@ -240,6 +242,10 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
                 <h3>Pre/Post "Processors"</h3>
                 <span class="desc">Set of plugins that alter the file before or after the merging into groups</span>
                 <span class="desc">Defined in <b>wro.properties</b> </span>
+            <pre class="code-small">
+preProcessors=lessCss,cssDataUri,placeholderProcessor
+postProcessors=jsMin,cssMinJawr
+            </pre>
             </li>
 
             <li>
@@ -249,10 +255,6 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
             <li>
                 <span class="title"><b>LESS Processor</b></span>
                 <span class="desc">You can also include <b>.less</b> files as group resources and it will trigger <b>less.js</b> to parse those files into <b>.css</b></span>
-            <pre class="code-small">
-preProcessors=lessCss,cssDataUri,placeholderProcessor
-postProcessors=jsMin,cssMinJawr
-            </pre>
             </li>
             <li>
                 <span class="title"><b>Base64DataUriSupport</b></span>
@@ -268,12 +270,17 @@ postProcessors=jsMin,cssMinJawr
             </li>
         </ul>
     </div>
+
+    <div>
+
+    </div>
+
 </div>
 
 
 </div>
 
-<script src="http://bartaz.github.com/impress.js/js/impress.js"></script>
+<script src="js/impress.js"></script>
 <script>impress().init();</script>
 
 </body>
