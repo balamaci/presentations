@@ -42,7 +42,9 @@
     <div id="subject" class="step" data-x="-5000" data-y="-1500" data-scale="10">
         <h1>Web Performance</h1>
         <h2 style="margin-top: 10px;">Optimization Tips</h2>
-        <a href="https://github.com/balamaci/presentations/tree/master/web-perf-optimization">See Detailed Summary</a>
+        <div>
+            <a href="https://github.com/balamaci/presentations/tree/master/web-perf-optimization">See Detailed Summary</a>
+        </div>
         <img src="http://25.media.tumblr.com/tumblr_mbqrbbE09s1rb5qwwo1_500.gif"/>
     </div>
 
@@ -117,8 +119,11 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
         </div>
         <div class="right" style="width: 300px;">
             <h3>How do they work?</h3>
-            <div><b>CNAME</b> is an alias</div>
-            <div>Google Public DNS used to make CDNs missperform</div>
+            <ul class="topics-small">
+                <li><b>CNAME</b> is an alias</li>
+                <li>Use GeoIp to check supplied A record</li>
+                <li>Google Public DNS used to make CDNs missperform</li>
+            </ul>
         </div>
     </div>
     <div id="custom_origin" class="step" data-x="12000" data-y="-5000" data-scale="2">
@@ -271,7 +276,22 @@ postProcessors=jsMin,cssMinJawr
         </ul>
     </div>
 
-    <div>
+    <div id="gzip" class="step" data-x="11000" data-y="-3000" data-scale="2" style="padding: 0">
+        <h3>Compressing text on the wire</h3>
+        <ul class="topics-small">
+            <li>
+                Browser and Server negotiate on the compression protocol that will be used to exchange information with each request.
+            </li>
+            <li>
+                <div>Browser negotiate the possible communication by sending a header in the request:</div>
+                <div><b>Accept-Encoding: gzip, deflate, sdch</b></div>
+                <div>Server responds with the compressed content plus the header</div>
+                <div><b>Content-Encoding: gzip</b></div>
+            </li>
+
+            <li>Should not set it on resources that are already compressed like .png or .gif, .jpeg</li>
+            <li>Best use the <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">.htaccess</a> file from the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> project as example</li>
+        </ul>
 
     </div>
 
@@ -280,7 +300,7 @@ postProcessors=jsMin,cssMinJawr
 
 </div>
 
-<script src="js/impress.js"></script>
+<script src="http://bartaz.github.com/impress.js/js/impress.js"></script>
 <script>impress().init();</script>
 
 </body>
