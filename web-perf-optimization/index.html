@@ -39,161 +39,161 @@
 </div>
 
 <div id="impress">
-    <div id="subject" class="step" data-x="-5000" data-y="-1500" data-scale="10">
-        <h1>Web Performance</h1>
-        <h2 style="margin-top: 10px;">Optimization Tips</h2>
-        <div>
-            <a href="https://github.com/balamaci/presentations/tree/master/web-perf-optimization">See Detailed Summary</a>
-        </div>
-        <img src="http://25.media.tumblr.com/tumblr_mbqrbbE09s1rb5qwwo1_500.gif"/>
+<div id="subject" class="step" data-x="-5000" data-y="-1500" data-scale="10">
+    <h1>Web Performance</h1>
+    <h2 style="margin-top: 10px;">Optimization Tips</h2>
+    <div>
+        <a href="https://github.com/balamaci/presentations/tree/master/web-perf-optimization">See Detailed Summary</a>
     </div>
+    <img src="http://25.media.tumblr.com/tumblr_mbqrbbE09s1rb5qwwo1_500.gif"/>
+</div>
 
 
-    <div id="rules" class="step" data-x="500" data-y="-5000" data-scale="2">
-        <h2>Performance golden rules</h2>
-        <ul class="topics">
-            <li>
-                <span class="title">Reduce RTT</span>
-                <span class="desc">-Use Keep-Alive header to reuse connections(default for Http 1.1)</span>
-            </li>
-            <li>
-                <span class="title">Minimize number of requests</span>
-                <span class="desc">Browsers are limited to 6 concurrent connections per host name</span>
-                <span class="desc">-Merge resources - JS, CSS and Sprites for images</span>
-                <span class="desc">-Use Data-URIs</span>
-            </li>
-            <li>
-                <span class="title">Try to make more simultaneous requests</span>
-                <span class="desc">Arrange the request flow so that requests do not block and serialize</span>
-            </li>
-            <li>
-                <span class="title">Progressive enhancement</span>
-                <span class="desc">Determine a set of "critical" resources that are required for rendering the page in a seeming usable state for the user</span>
-                <span class="desc">Improve user experience by downloading in "the background" additional JS, resources for functionality as the user decides what to do next.</span>
-            </li>
-            <li>
-                <span class="title">Cache is king</span>
-            </li>
-        </ul>
-    </div>
+<div id="rules" class="step" data-x="500" data-y="-5000" data-scale="2">
+    <h2>Performance golden rules</h2>
+    <ul class="topics">
+        <li>
+            <span class="title">Reduce RTT</span>
+            <span class="desc">-Use Keep-Alive header to reuse connections(default for Http 1.1)</span>
+        </li>
+        <li>
+            <span class="title">Minimize number of requests</span>
+            <span class="desc">Browsers are limited to 6 concurrent connections per host name</span>
+            <span class="desc">-Merge resources - JS, CSS and Sprites for images</span>
+            <span class="desc">-Use Data-URIs</span>
+        </li>
+        <li>
+            <span class="title">Try to make more simultaneous requests</span>
+            <span class="desc">Arrange the request flow so that requests do not block and serialize</span>
+        </li>
+        <li>
+            <span class="title">Progressive enhancement</span>
+            <span class="desc">Determine a set of "critical" resources that are required for rendering the page in a seeming usable state for the user</span>
+            <span class="desc">Improve user experience by downloading in "the background" additional JS, resources for functionality as the user decides what to do next.</span>
+        </li>
+        <li>
+            <span class="title">Cache is king</span>
+        </li>
+    </ul>
+</div>
 
-    <div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
-        <ul class="topics">
-            <li>
-                <span class="title">YSLow / PageSpeed</span>
-            </li>
-            <li>
-                <span class="title"><a href="">BrowserScope</a></span>
-            </li>
-            <li>
-                <span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span>
-            </li>
-        </ul>
-    </div>
+<div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
+    <ul class="topics">
+        <li>
+            <span class="title">YSLow / PageSpeed</span>
+        </li>
+        <li>
+            <span class="title"><a href="">BrowserScope</a></span>
+        </li>
+        <li>
+            <span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span>
+        </li>
+    </ul>
+</div>
 
 
-    <div id="waterfall" class="step" data-x="3000" data-y="-5000" data-scale="2">
-        <a href="">
-            <img src="http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C&run=1&cached=0" alt="" width="800" height="600"/>
-        </a>
+<div id="waterfall" class="step" data-x="3000" data-y="-5000" data-scale="2">
+    <a href="">
+        <img src="http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C&run=1&cached=0" alt="" width="800" height="600"/>
+    </a>
 
-    </div>
+</div>
 
-    <div id="cdn" class="step" data-x="6000" data-y="-5000" data-scale="2">
-        <h3>Use a CDN</h3>
-        <img src="img/cdn.png" alt="CDN"/>
-        <ul class="topics">
-            <li>Faster connections - reduced latency</li>
-            <li>Domain sharding - more concurrent connections</li>
-        </ul>
-    </div>
+<div id="cdn" class="step" data-x="6000" data-y="-5000" data-scale="2">
+    <h3>Use a CDN</h3>
+    <img src="img/cdn.png" alt="CDN"/>
+    <ul class="topics">
+        <li>Faster connections - reduced latency</li>
+        <li>Domain sharding - more concurrent connections</li>
+    </ul>
+</div>
 
-    <div id="how_cdn_work" class="step" data-x="9000" data-y="-5000" data-scale="2">
+<div id="how_cdn_work" class="step" data-x="9000" data-y="-5000" data-scale="2">
         <pre class="code left" style="width:600px;">
 <b>$ dig js.web.de</b>
 js.web.de.              CNAME   js.web.de.edgekey.net.
 js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
 e5416.g.akamaiedge.net. A       2.16.109.234</pre>
-        <div class="left">
-            <img src="img/dns.png" alt="DNS"/>
-        </div>
-        <div class="right" style="width: 300px;">
-            <h3>How do they work?</h3>
-            <ul class="topics-small">
-                <li><b>CNAME</b> is an alias</li>
-                <li>Use GeoIp to check supplied A record</li>
-                <li>Google Public DNS used to make CDNs missperform</li>
-            </ul>
-        </div>
+    <div class="left">
+        <img src="img/dns.png" alt="DNS"/>
     </div>
-    <div id="custom_origin" class="step" data-x="12000" data-y="-5000" data-scale="2">
-        <div>Common misconception that CDNs only act as a mirroring server</div>
-        <div style="font-size: 0.7em;">They can act as a Reverse Proxy - Custom Origin(CloudFront)</div>
-        <img src="http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png" alt="">
-    </div>
-
-    <div id="benefits" class="step" data-x="15000" data-y="-5000" data-scale="2">
-        <ul class="topics">
-            <li>
-                <span class="title">Domain sharding: Split statics to multiple CDNs</span>
-                <span class="desc"><b>js.web.de</b>, <b>css.web.de</b>, <b>img.web.de</b> - further => <b>img1.web.de</b></span>
-                <span class="desc"> <b>(+)</b> Max concurrent connections for resource retrieval increase</span>
-                <span class="desc"> <b>(-)</b> Relative referencing no longer works : `background-image:url('../img/paper.gif');`</span>
-                <span class="desc"> <span>Solution:</span> Using placeholders that are replaced at build time: `background-image:url('${img_cdn}/paper.gif');` </span>
-                <span class="desc"> <b>(-)</b> Additional DNS lookups to resolve subdomains</span>
-            </li>
-            <li style="margin-top: 10px;">
-                <span class="title">Most famous JS libraries have already known CDN locations to use</span>
-                <span class="desc">Using those may mean that the library it's already in cache when a user comes for the first time</span>
-                <span class="desc">Checkout http://cdnjs.com/index.html to add</span>
-                <span class="desc">DON'T use GitHub references: <i>http://bartaz.github.com/impress.js/js/impress.js</i> They don't set any caching headers.</span>
-            </li>
-        </ul>
-
-    </div>
-
-    <div id="merging" class="step" data-x="500" data-y="-3000" data-scale="2">
-        <h3>JS and CSS merging and minification</h3>
-
+    <div class="right" style="width: 300px;">
+        <h3>How do they work?</h3>
         <ul class="topics-small">
-            <li>Reason behind merging of JS and CSS resources is related to making fewer requests</li>
-            <img src="https://developers.google.com/speed/docs/insights/images/externaljs1.png"/>
-            <li>
-                <span class="title">Older browsers used to serialize downloads of JS resources</span>
-                <span class="desc">They wanted to prevent unnecessary downloading of resources - eventual <i>document.write("&lt!--")</i></span>
-            </li>
-            <li>
-                <span class="title">No longer true for more recent browsers(IE8 was first one)</span>
-            </li>
-        </ul>
-        <img src="img/paralel.png"/>
-    </div>
-
-    <div id="minify" class="step" data-x="3000" data-y="-3000" data-scale="2">
-        <h3>Minification</h3>
-        <ul class="topics-small">
-            <li>
-                <span class="title">Removes spaces and comments, renames function and variable names</span>
-            </li>
-            <li>
-                <span class="title">You'd expect the same result with gzipping the JS/CSS resource - actually it's a 5-10% more decrease in size</span>
-            </li>
-            <li>
-                <span class="title">Wide selection of tools for minification</span>
-                <span class="desc">Uglify.js, Google Closure, YUIMin, Jawr for CSS, etc - check what works for you</span>
-            </li>
-            <li>
-                <span class="title">Use <a href="">wro4j</a></span>
-                <span class="desc">Has all the above mentioned options for minifying and merging plus other usefull plugins</span>
-            </li>
+            <li><b>CNAME</b> is an alias</li>
+            <li>Use GeoIp to check supplied A record</li>
+            <li>Google Public DNS used to make CDNs missperform</li>
         </ul>
     </div>
+</div>
+<div id="custom_origin" class="step" data-x="12000" data-y="-5000" data-scale="2">
+    <div>Common misconception that CDNs only act as a mirroring server</div>
+    <div style="font-size: 0.7em;">They can act as a Reverse Proxy - Custom Origin(CloudFront)</div>
+    <img src="http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png" alt="">
+</div>
 
-    <div id="wro4j" class="step" data-x="5000" data-y="-3000" data-scale="2" style="padding: 0">
-        <h3>wro4j - Web Resource Optimization for Java</h3>
+<div id="benefits" class="step" data-x="15000" data-y="-5000" data-scale="2">
+    <ul class="topics">
+        <li>
+            <span class="title">Domain sharding: Split statics to multiple CDNs</span>
+            <span class="desc"><b>js.web.de</b>, <b>css.web.de</b>, <b>img.web.de</b> - further => <b>img1.web.de</b></span>
+            <span class="desc"> <b>(+)</b> Max concurrent connections for resource retrieval increase</span>
+            <span class="desc"> <b>(-)</b> Relative referencing no longer works : `background-image:url('../img/paper.gif');`</span>
+            <span class="desc"> <span>Solution:</span> Using placeholders that are replaced at build time: `background-image:url('${img_cdn}/paper.gif');` </span>
+            <span class="desc"> <b>(-)</b> Additional DNS lookups to resolve subdomains</span>
+        </li>
+        <li style="margin-top: 10px;">
+            <span class="title">Most famous JS libraries have already known CDN locations to use</span>
+            <span class="desc">Using those may mean that the library it's already in cache when a user comes for the first time</span>
+            <span class="desc">Checkout http://cdnjs.com/index.html to add</span>
+            <span class="desc">DON'T use GitHub references: <i>http://bartaz.github.com/impress.js/js/impress.js</i> They don't set any caching headers.</span>
+        </li>
+    </ul>
 
-        <div>Brings the concept of "groups of resources"</div>
-        <div>Groups can be defined in a <b>wro4j.xml</b> file</div>
+</div>
+
+<div id="merging" class="step" data-x="500" data-y="-3000" data-scale="2">
+    <h3>JS and CSS merging and minification</h3>
+
+    <ul class="topics-small">
+        <li>Reason behind merging of JS and CSS resources is related to making fewer requests</li>
+        <img src="https://developers.google.com/speed/docs/insights/images/externaljs1.png"/>
+        <li>
+            <span class="title">Older browsers used to serialize downloads of JS resources</span>
+            <span class="desc">They wanted to prevent unnecessary downloading of resources - eventual <i>document.write("&lt!--")</i></span>
+        </li>
+        <li>
+            <span class="title">No longer true for more recent browsers(IE8 was first one)</span>
+        </li>
+    </ul>
+    <img src="img/paralel.png"/>
+</div>
+
+<div id="minify" class="step" data-x="3000" data-y="-3000" data-scale="2">
+    <h3>Minification</h3>
+    <ul class="topics-small">
+        <li>
+            <span class="title">Removes spaces and comments, renames function and variable names</span>
+        </li>
+        <li>
+            <span class="title">You'd expect the same result with gzipping the JS/CSS resource - actually it's a 5-10% more decrease in size</span>
+        </li>
+        <li>
+            <span class="title">Wide selection of tools for minification</span>
+            <span class="desc">Uglify.js, Google Closure, YUIMin, Jawr for CSS, etc - check what works for you</span>
+        </li>
+        <li>
+            <span class="title">Use <a href="">wro4j</a></span>
+            <span class="desc">Has all the above mentioned options for minifying and merging plus other usefull plugins</span>
+        </li>
+    </ul>
+</div>
+
+<div id="wro4j" class="step" data-x="5000" data-y="-3000" data-scale="2" style="padding: 0">
+    <h3>wro4j - Web Resource Optimization for Java</h3>
+
+    <div>Brings the concept of "groups of resources"</div>
+    <div>Groups can be defined in a <b>wro4j.xml</b> file</div>
 
         <pre class="code left" style="width:400px;">
 &lt;groups xmlns="http://www.isdc.ro/wro"&gt;
@@ -228,72 +228,126 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
   &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-       <ul class="topics-small">
-       <li>
-           <span class="title">Run at build time</span>
-           <span class="desc">Maven plugin to execute build step</span>
-           <span class="desc">Command line <i>java -jar wro4j-runner-1.4.5-jar-with-dependencies.jar</i></span>
-       </li>
+    <ul class="topics-small">
+        <li>
+            <span class="title">Run at build time</span>
+            <span class="desc">Maven plugin to execute build step</span>
+            <span class="desc">Command line <i>java -jar wro4j-runner-1.4.5-jar-with-dependencies.jar</i></span>
+        </li>
         <li>
             <span class="title">At runtime</span>
             <span class="desc">Servlet filter to add to <b>web.xml</b> that applies per request the grouping and processors</span>
         </li>
-       </ul>
-    </div>
+    </ul>
+</div>
 
-    <div id="wro4j_processors" class="step" data-x="8000" data-y="-3000" data-scale="2" style="padding: 0">
-        <ul class="topics-small">
-            <li>
-                <h3>Pre/Post "Processors"</h3>
-                <span class="desc">Set of plugins that alter the file before or after the merging into groups</span>
-                <span class="desc">Defined in <b>wro.properties</b> </span>
+<div id="wro4j_processors" class="step" data-x="8000" data-y="-3000" data-scale="2" style="padding: 0">
+    <ul class="topics-small">
+        <li>
+            <h3>Pre/Post "Processors"</h3>
+            <span class="desc">Set of plugins that alter the file before or after the merging into groups</span>
+            <span class="desc">Defined in <b>wro.properties</b> </span>
             <pre class="code-small">
 preProcessors=lessCss,cssDataUri,placeholderProcessor
 postProcessors=jsMin,cssMinJawr
             </pre>
-            </li>
+        </li>
 
-            <li>
-                <span class="title"><b>Minifiers</b></span>
-                <span class="desc">JSMin, UglifyJs, yuiJs, yuiCss, JawrCss, etc.</span>
-            </li>
-            <li>
-                <span class="title"><b>LESS Processor</b></span>
-                <span class="desc">You can also include <b>.less</b> files as group resources and it will trigger <b>less.js</b> to parse those files into <b>.css</b></span>
-            </li>
-            <li>
-                <span class="title"><b>Base64DataUriSupport</b></span>
-                <span class="desc">This processor looks for <i>'background-image'</i> and if the referenced image is less than 32KB(IE8 limit for data-uris) transform it do data-uri <div class="red-dot">.</div></span>
-            </li>
-            <li>
-                <span class="title"><b>PlaceholderProcessor</b></span>.
-                <span class="desc">Replace ${var_name} with actual values in the resources</span>
-            </li>
-            <li>
-                <span class="title"><b>JSLint</b> and <b>CSSLint</b></span>.
-                <span class="desc">Static analysis - "Findbugs" for JS and CSS</span>.
-            </li>
-        </ul>
-    </div>
+        <li>
+            <span class="title"><b>Minifiers</b></span>
+            <span class="desc">JSMin, UglifyJs, yuiJs, yuiCss, JawrCss, etc.</span>
+        </li>
+        <li>
+            <span class="title"><b>LESS Processor</b></span>
+            <span class="desc">You can also include <b>.less</b> files as group resources and it will trigger <b>less.js</b> to parse those files into <b>.css</b></span>
+        </li>
+        <li>
+            <span class="title"><b>Base64DataUriSupport</b></span>
+            <span class="desc">This processor looks for <i>'background-image'</i> and if the referenced image is less than 32KB(IE8 limit for data-uris) transform it do data-uri <div class="red-dot">.</div></span>
+        </li>
+        <li>
+            <span class="title"><b>PlaceholderProcessor</b></span>.
+            <span class="desc">Replace ${var_name} with actual values in the resources</span>
+        </li>
+        <li>
+            <span class="title"><b>JSLint</b> and <b>CSSLint</b></span>.
+            <span class="desc">Static analysis - "Findbugs" for JS and CSS</span>.
+        </li>
+    </ul>
+</div>
 
-    <div id="gzip" class="step" data-x="11000" data-y="-3000" data-scale="2" style="padding: 0">
-        <h3>Compressing text on the wire</h3>
-        <ul class="topics-small">
-            <li>
-                Browser and Server negotiate on the compression protocol that will be used to exchange information with each request.
-            </li>
-            <li>
-                <div>Browser negotiate the possible communication by sending a header in the request:</div>
-                <div><b>Accept-Encoding: gzip, deflate, sdch</b></div>
-                <div>Server responds with the compressed content plus the header</div>
-                <div><b>Content-Encoding: gzip</b></div>
-            </li>
+<div id="gzip" class="step" data-x="11000" data-y="-3000" data-scale="2" style="padding: 0">
+    <h3>Compressing text on the wire</h3>
+    <ul class="topics-small">
+        <li>
+            Browser and Server negotiate on the compression protocol that will be used to exchange information with each request.
+        </li>
+        <li>
+            <div>Browser negotiate the possible communication by sending a header in the request:</div>
+            <div><b>Accept-Encoding: gzip, deflate, sdch</b></div>
+            <div>Server responds with the compressed content plus the header</div>
+            <div><b>Content-Encoding: gzip</b></div>
+        </li>
 
-            <li>Should not set it on resources that are already compressed like .png or .gif, .jpeg</li>
-            <li>Best use the <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">.htaccess</a> file from the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> project as example</li>
-        </ul>
+        <li>Should not set it on resources that are already compressed like .png or .gif, .jpeg</li>
+        <li>Best use the <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">.htaccess</a> file from the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> project as example</li>
+    </ul>
 
-    </div>
+</div>
+
+<div id="caching" class="step" data-x="500" data-y="0" data-scale="2">
+    <h3>Browser Caching</h3>
+    <div>There are several headers that specify how the resources get cached</div>
+    <ul class="topics">
+        <li>
+            <span class="title"><b>Expires Sun, 14 Jan 2014 08:23:12 GMT</b> and <b>Cache-Control: max-age=</b>3600 are <b>"hard"</b> cache directives</span>
+                <span class="desc"> - When the browser encounters one of those headers it will cache the resource and for
+                    the time specified will consider it fresh and will not try to revalidate and download by issuing other
+                    GET request to the server.
+                </span>
+            <span class="desc"> - It's redundant to set both <b>Expires</b> and <b>Cache-Control</b>, because <b>Cache-Control</b> always takes precedence over the other</span>
+        </li>
+    </ul>
+    <img src="img/cache_hard.png">
+</div>
+<div id="caching2" class="step" data-x="3500" data-y="0" data-scale="2" style="padding: 0;">
+    <ul class="topics">
+        <li>
+            <span class="title"><b>Last-Modified</b> and <b>ETag</b> are "soft" caching helpers</span>
+            <span class="desc">The browser may issue GET requests to the server to check if the resource has been changed on the server.</span>
+        </li>
+    </ul>
+    <ul class="topics">
+        <li style="width: 400px;" class="left">
+            <span class="title"><b>Last-Modified</b>:Sun, 19 Jun 2011 06:59:22 GMT</span>
+            <span class="desc">1. If the resource's valid period had expired browser may issue GET requests with <b>If-Modified-Since</b> header</span>
+            <span class="desc">2. Server may just return an empty response content body but with <b>304 Not Modified</b> status</span>
+
+            <img src="http://betterexplained.com/wp-content/uploads/compression/HTTP-caching-last-modified_1.png" alt=""/>
+        </li>
+        <li style="width: 350px;clear: none;" class="left">
+            <span class="title"><b>ETag</b>:"bc10321a2179"</span>
+            <span class="desc">Is a programatically generated value to mean an unique identifier for a resource, a fingerprint or version</span>
+            <span class="desc">Same logic, only the server has to respond to a check request header <b>If-None-Match</b>if there is a new version of the resource</span>
+            <img src="http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png" alt=""/>
+        </li>
+        <li>
+            <span class="title">Problem with <b>ETag</b></span>
+            <span class="desc">The value may be different for the same resources if the request lands on different servers</span>
+            <span class="desc">For Apache one can configure <b>FileETag none</b> in the <b>.htaccess</b> file</span>
+        </li>
+        <li>
+            <span class="title">Browser can set both <b>If-Modified-Since</b> and <b>If-None-Match</b> to check validity</span>
+        </li>
+    </ul>
+</div>
+<div id="cache_using" class="step" data-x="6500" data-y="0" data-scale="2" style="padding: 0;">
+    <h3>Apparent conflict</h3>
+    <ul class="topics">
+        <li><span class="title">We are advised to set far future expiration dates for static files like js, css</span></li>
+
+        <li>In Apache we are not enabling caching we are enabling the </li>
+    </ul>
 
 </div>
 
