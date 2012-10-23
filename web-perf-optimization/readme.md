@@ -110,16 +110,17 @@ referencing a relative image `background-image:url('../img/paper.gif');` will no
 
 ## Merging and minify JS files and CSS files.
    - Reason behind merging of JS and CSS resources is related to making fewer requests and minimize the RTT.
-Older browsers used to serialize requests of JS resources to in order to prevent dependent scripts of one another having problems.
+Older browsers used to serialize requests of JS resources to in order to prevent unnecessary downloading of resources if the script being downloaded could have used document.write to comment out '<!--' on the next.
+
 Image from Firefox 3.0.
    ![Serial requests JS](https://developers.google.com/speed/docs/insights/images/externaljs1.png)
    ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
-Note that this is no longer true, even for browser like IE8 according to Browserscope, JS resources are downloaded in parallel, but still remains the RTT as overhead.
+Note that this is no longer true, even for browser like IE8 according to Browserscope, JS resources are downloaded in parallel.
 
    - In development it makes sense to have the JS logic distributed into separate files according to the function they serve, while in production we'd want
 
    - Minimization of JS files: removes spaces and comments, renames function and variable names.
-        - You'd think that enabling gzip compression would have the same effect: statistics have shown still an additional 5% of the size in improvement and since it's an easy way to do it, why not?
+        - You'd think that enabling gzip compression would have the same effect: statistics have shown still an additional 5-10% of the size in improvement and since it's an easy way to do it, why not?
    - There are several tools to minimize the JS and CSS files: YUI Compressor, Dojo compressor, Uglify js, Google Closure compiler, Jawr for css, etc.
 
 ### Wro4j
@@ -162,7 +163,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Library has a web filter that you can add to **web.xml** and can group and process the resource files on the fly with the request.
   This is useful in development to check on the fly when you change something and you want to refresh the page.
 
-  - Can also be invoked on the command line with a 'java -jar '.
+  - Can also be invoked on the command line with a 'java -jar wro4j-runner-1.4.5-jar-with-dependencies.jar'.
 
 
 #### Useful Wro4j Processors
@@ -240,8 +241,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ## Compressing text on the wire
 
-
-   Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser communicates to the server
+   Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser announces to the server
    what "languages"(encodings) it speaks so that the server knows to respond according:
 
        Accept-Encoding: gzip, deflate, sdch
@@ -315,7 +315,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - At the page bottom have a js script that replaces the "later-src" attribute to "src" something like:
     ```
     function deferredImageLoading() {
-        $('img[later-src]').each(function() {
+        $('img[data-src]').each(function() {
              $(this).attr('src', $(this).attr('later-src'));
         });
     }
@@ -324,5 +324,8 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 Sources of info
 ----------------
    - The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
+   - Steve Sounders blog - http://www.stevesouders.com/
+   - https://webforscher.wordpress.com/
+   - Html5 async - http://davidwalsh.name/html5-async
    - JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
    - Caching headers explained http://www.symkat.com/understanding-http-caching
