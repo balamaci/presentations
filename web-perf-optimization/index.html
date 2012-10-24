@@ -53,8 +53,10 @@
     <h2>Performance golden rules</h2>
     <ul class="topics">
         <li>
-            <span class="title">Reduce RTT</span>
+            <span class="title">Reduce RTT and data exchanged on the wire</span>
             <span class="desc">-Use Keep-Alive header to reuse connections(default for Http 1.1)</span>
+            <span class="desc">-Use a CDN</span>
+            <span class="desc">-Minify resources and apply compression</span>
         </li>
         <li>
             <span class="title">Minimize number of requests</span>
@@ -64,6 +66,7 @@
         </li>
         <li>
             <span class="title">Try to make more simultaneous requests</span>
+            <span class="desc">-JS and CSS files at the head block rendering</span>
             <span class="desc">Arrange the request flow so that requests do not block and serialize</span>
         </li>
         <li>
@@ -79,15 +82,11 @@
 
 <div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
     <ul class="topics">
-        <li>
-            <span class="title">YSLow / PageSpeed</span>
-        </li>
-        <li>
-            <span class="title"><a href="">BrowserScope</a></span>
-        </li>
-        <li>
-            <span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span>
-        </li>
+        <li><span class="title">YSLow / PageSpeed</span></li>
+        <li><span class="title"><a href="">BrowserScope</a></span></li>
+        <li><span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span></li>
+        <li><span class="title"><a href="chrome://net-internals">chrome://net-internals</a></span></li>
+        <li><span class="title"><a href="http://yahoo.github.com/boomerang/doc/">boomerang</a></span></li>
     </ul>
 </div>
 
@@ -103,8 +102,9 @@
     <h3>Use a CDN</h3>
     <img src="img/cdn.png" alt="CDN"/>
     <ul class="topics">
-        <li>Faster connections - reduced latency</li>
+        <li>Faster connections and downloads - reduced latency</li>
         <li>Domain sharding - more concurrent connections</li>
+        <li>Reduced load on own servers</li>
     </ul>
 </div>
 
@@ -289,6 +289,7 @@ postProcessors=jsMin,cssMinJawr
             <div><b>Content-Encoding: gzip</b></div>
         </li>
 
+        <li>Not only , .ico and web fonts </li>
         <li>Should not set it on resources that are already compressed like .png or .gif, .jpeg</li>
         <li>Best use the <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">.htaccess</a> file from the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> project as example</li>
     </ul>
@@ -344,7 +345,9 @@ postProcessors=jsMin,cssMinJawr
 <div id="cache_using" class="step" data-x="6500" data-y="0" data-scale="2" style="padding: 0;">
     <h3>Apparent conflict</h3>
     <ul class="topics">
-        <li><span class="title">We are advised to set far future expiration dates for static files like js, css</span></li>
+        <li><span class="title">We are advised to set <b>far future expiration dates</b> like months for static files like js, css</span></li>
+        <li><span class="title">But we want the users to see a new version(fix) of a script / css quickly not wait for a week / month </span></li>
+        <li><span class="title"><b>Solution</b>:  Reference the cacheable resource along with some kind of version token in a file that is not cached (most common the .hmtl) file</span></li>
 
         <li>In Apache we are not enabling caching we are enabling the </li>
     </ul>
