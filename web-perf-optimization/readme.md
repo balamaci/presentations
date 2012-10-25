@@ -31,7 +31,7 @@ Contents
    - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
    - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
    - "Progressive enhancement" - Try to set a "critical path" that would render the page in a seaming usable state for the user.
-   Deffer the rest of the 3rd party scripts and images after this is finished and while the user is probably reading .
+   Deffer the rest of the 3rd party scripts and images after this is finished and while the user is probably looking at the products or figuring out what to do next.
    (Putting only core js files that are at the page bottom
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
 
@@ -39,24 +39,13 @@ Contents
    - Google Chrome network timeline. Reading response headers for the caching info.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
    - Sites for checking page loading time:
-     -[Web Page Test](http://www.webpagetest.org/)
-
-     -[GMetrix](http://gtmetrix.com/)
-
-     -[Monotis](http://pageload.monitis.com/)
-
-     -[SitePerf](http://site-perf.com/)
-
-     -[Pingdom](http://tools.pingdom.com/)
-
-     -[Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
-
+     -[Web Page Test](http://www.webpagetest.org/), [GMetrix](http://gtmetrix.com/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/), [Pingdom](http://tools.pingdom.com/), [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
        Metrics shown:
          - DNS lookup time(time to lookup the host name and match it to an IP)
          - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
          - Time to First Byte(the time it takes to receive a first byte of data as a response)
          - Content download.(time it takes for the resource to download).
-
+   -
 
 ## Using CDNs.
    - Theory behind is that you should distribute and serve the resources need by the users from servers that are "close" to them.
@@ -262,9 +251,18 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 ## JS Optimizations
 
 ### Putting JS at the bottom
-  - DOM parsing used to be blocked when an external JS reference was found, so placing the JS scripts ahead in the document
-  meant a big stop both in further HTML parsing and in parallel downloads.
-  This has changed for some time, with browser doing "speculative parsing".
+  - When browsers encounter a <script> tag they stop what they are doing and begin downloading and aftewards executing the script.
+  This is a 'synchronous blocking' behaviour. All they can do is to begin downloading the next scripts/images in the html.
+
+  - They cannot begin executing the other downloaded scripts below because those scripts might rely on the blocking script. Think of the JQuery dependency of other libraries.
+  In older browser versions(pre IE8) they were not even looking and starting the downloads of other scripts because they were 'afraid' the downloading script might
+  redirect to another page or comment out the following code after the script and so have wasted the time on the downloads.
+
+
+  - But rendering
+
+  - domContentLoaded - fired when the 'document' object has been created, jQuery hooks onto this when you're doing **$.ready()**
+  - onLoad all files have finished loading.
 
 
 ### JQuery optimizations
@@ -310,13 +308,13 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   The browser will not know those images are not even visible on the page, it only know that while parsing the DOM and encountering <img src=""> it will request
   the images from the server.
 
-  - Instead of having `<img src="tiger.png"/>` why not have `<img later-src="tiger.png"/>` for the non-critical images.
+  - Instead of having `<img src="tiger.png"/>` why not have `<img data-src="tiger.png"/>` for the non-critical images.
 
-  - At the page bottom have a js script that replaces the "later-src" attribute to "src" something like:
+  - At the page bottom have a js script that replaces the "data-src" attribute to "src" something like:
     ```
     function deferredImageLoading() {
         $('img[data-src]').each(function() {
-             $(this).attr('src', $(this).attr('later-src'));
+             $(this).attr('src', $(this).attr('data-src'));
         });
     }
 
