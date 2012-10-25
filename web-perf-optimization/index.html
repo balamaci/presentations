@@ -184,7 +184,7 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
         </li>
         <li>
             <span class="title">Use <a href="">wro4j</a></span>
-            <span class="desc">Has all the above mentioned options for minifying and merging plus other usefull plugins</span>
+            <span class="desc">Has all the above mentioned options for minifying and merging plus other useful plugins</span>
         </li>
     </ul>
 </div>
@@ -351,6 +351,48 @@ postProcessors=jsMin,cssMinJawr
 
         <li>In Apache we are not enabling caching we are enabling the </li>
     </ul>
+
+</div>
+
+<div id="javascript" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
+    <ul class="topics">
+        <li>
+            <span class="title">When browsers encounter a &lt;script&gt; tag they block until they finish downloading and execute the script</span>
+            <span class="desc">- The page may seem unresponsive to the user during this time. The rendering process is interrupted</span>
+        </li>
+        <li>
+            <span class="title">Why block and not continue?</span>
+            <span class="desc">Because the bellow scripts might rely on the blocking one being available.</span>
+            <span class="desc">Think of your libraries that are dependent on JQuery</span>
+        </li>
+        <li>
+            <span class="title">What can Browsers do?</span>
+            <span class="title">- Only look ahead and start downloading and NOT executing future scripts.</span>
+        </li>
+
+        <span class="desc">- Browsers cannot begin executing other downloaded scripts below because those scripts might rely on the blocking script.</span>
+
+
+    </ul>
+
+</div>
+
+<div id="spdy" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
+    <h3>SPDY or HTML2.0</h3>
+    <ul class="topics">
+        <li><span class="title">Compressed Headers</span>
+            <span class="desc">Currently -in HTTP- the headers are sent uncompressed</span>
+        </li>
+        <li>
+            <span class="title">Multiplexing resources on a single connection</span>
+            <span class="desc">Single long lasting connection to the server without the need to "warm up" to a high bandwidth</span>
+            <span class="desc">We need to do the opposite of domain sharding</span>
+        </li>
+
+    </ul>
+</div>
+
+<div id="async" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
 
 </div>
 
