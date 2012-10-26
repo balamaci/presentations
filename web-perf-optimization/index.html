@@ -385,7 +385,7 @@ postProcessors=jsMin,cssMinJawr
     </ul>
 </div>
 
-<div id="javascript" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
+<div id="block" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
     <ul class="topics">
         <li>
             <span class="title">When browsers encounter a &lt;script&gt; tag they block until they finish downloading and execute the script</span>
@@ -393,17 +393,34 @@ postProcessors=jsMin,cssMinJawr
         </li>
         <li>
             <span class="title">Why block and not continue?</span>
-            <span class="desc">Because the bellow scripts might rely on the blocking one being available.</span>
+            <span class="desc">Browser cannot begin executing bellow scripts(even if they finished downloading before the blocking one) because they might rely on code being available.</span>
             <span class="desc">Think of your libraries that are dependent on JQuery</span>
         </li>
         <li>
             <span class="title">What can Browsers do?</span>
-            <span class="title">- Only look ahead and start downloading and NOT executing future scripts.</span>
+            <span class="desc">- Only look ahead and start downloading and NOT executing following scripts.</span>
+            <span class="desc">- Older browsers .</span>
         </li>
+</ul>
+</div>
 
-        <span class="desc">- Browsers cannot begin executing other downloaded scripts below because those scripts might rely on the blocking script.</span>
+<div id="asyncscript" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
+    <h3 class="title">What can we do?</h3>
 
-
+    <ul class="topics">
+        <li>
+            <span class="title">- Move scripts to page bottom</span>
+            <span class="desc">Prevent WSD by moving the blocking script as down as we can => bottom script</span>
+        </li>
+        <li>
+            <span class="title">Make the scripts to not block, make them <b>async</b></span>
+            <span class="desc">HTML5 introduced the . See Browserscope for support(IE9 doesn't)</span>
+        </li>
+        <li>
+        </li>
+        <li>
+            <span class="title">Don't have to wait for <b>async</b></span>
+        </li>
     </ul>
 
 </div>
