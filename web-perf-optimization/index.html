@@ -289,8 +289,8 @@ postProcessors=jsMin,cssMinJawr
             <div><b>Content-Encoding: gzip</b></div>
         </li>
 
-        <li>Not only , .ico and web fonts </li>
-        <li>Should not set it on resources that are already compressed like .png or .gif, .jpeg</li>
+        <li>Not only text can be compressed, .ico and web fonts, . Good text candidates .xml, .rss, json content type</li>
+        <li>Should not set it for resources that are already compressed like .png or .gif, .jpeg</li>
         <li>Best use the <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">.htaccess</a> file from the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> project as example</li>
     </ul>
 
@@ -343,15 +343,46 @@ postProcessors=jsMin,cssMinJawr
     </ul>
 </div>
 <div id="cache_using" class="step" data-x="6500" data-y="0" data-scale="2" style="padding: 0;">
-    <h3>Apparent conflict</h3>
+
     <ul class="topics">
-        <li><span class="title">We are advised to set <b>far future expiration dates</b> like months for static files like js, css</span></li>
-        <li><span class="title">But we want the users to see a new version(fix) of a script / css quickly not wait for a week / month </span></li>
-        <li><span class="title"><b>Solution</b>:  Reference the cacheable resource along with some kind of version token in a file that is not cached (most common the .hmtl) file</span></li>
-
-        <li>In Apache we are not enabling caching we are enabling the </li>
+        <li>
+            <span class="title"><b>Apparent conflict</b></span>
+            <span class="title">1. We are advised to set <b>Far Future Expiration dates</b> like months for <b>js</b>, <b>css</b></span>
+            <span class="title">2. We want the users to see immediately a new version(fix) of a script / css quickly not wait for a week / month </span>
+        </li>
+        <li>
+            <span class="title"><b>Solution</b>: Reference the cacheable resource along with some kind of version token in a file that is not cached (the .html) file</span>
+            <ul class="topics-small">
+                <li>
+                    <span class="title">- <b>Timestamp of files</b></span>
+                    <span class="title">&lt;script type="text/javascript" src="/js/site-B0439F858745C84EA46792F9AC42B6CF.js"&gt;&lt;/script&gt;</span>
+                </li>
+                <li>
+                    <span class="title">- <b>Specific file version</b></span>
+                    <span class="title">&lt;script type="text/javascript" src="/js/site.js?ver=1.23"&gt;&lt;/script&gt;</span>
+                </li>
+                <li>
+                    <span class="title">- <b>Application version</b></span>
+                    <span class="title">&lt;script type="text/javascript" src="/2.14/js/site.js"&gt;&lt;/script&gt;</span>
+                </li>
+            </ul>
+        </li>
     </ul>
-
+    <ul class="topics" style="margin-top:20px;">
+        <li><span class="title"><b>Apache config</b></span></li>
+        <li>
+            <span class="title">To enable browser caching we are enabling in Apache the <b>mod_expires</b> module</span>
+            <pre class="code">
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+</IfModule>
+            </pre>
+        </li>
+        <li>This only updates the cache related headers in the browser</li>
+        <li></li>
+    </ul>
 </div>
 
 <div id="javascript" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
