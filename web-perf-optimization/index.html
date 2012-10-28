@@ -81,13 +81,17 @@
 </div>
 
 <div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
-    <ul class="topics">
+    <ul class="topics left" style="width:350px;">
         <li><span class="title">YSLow / PageSpeed</span></li>
         <li><span class="title"><a href="">BrowserScope</a></span></li>
         <li><span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span></li>
         <li><span class="title"><a href="chrome://net-internals">chrome://net-internals</a></span></li>
         <li><span class="title"><a href="http://yahoo.github.com/boomerang/doc/">boomerang</a></span></li>
+        <li><span class="title"><a href="http://zoompf.com/free">ZoomPF Free</a></span></li>
     </ul>
+    <div>
+        <img src="http://img.ehowcdn.com/article-new/ehow/images/a01/ui/kt/increase-download-speed-800x800.jpg" alt="" width="450"/>
+    </div>
 </div>
 
 
@@ -117,7 +121,7 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
     <div class="left">
         <img src="img/dns.png" alt="DNS"/>
     </div>
-    <div class="right" style="width: 300px;">
+    <div class="right" style="width: 250px;">
         <h3>How do they work?</h3>
         <ul class="topics-small">
             <li><b>CNAME</b> is an alias</li>
@@ -374,9 +378,9 @@ postProcessors=jsMin,cssMinJawr
             <span class="title">To enable browser caching we are enabling in Apache the <b>mod_expires</b> module</span>
             <pre class="code">
 <IfModule mod_expires.c>
-  ExpiresActive on
-  ExpiresByType text/css                  "access plus 1 year"
-  ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresActive on
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
 </IfModule>
             </pre>
         </li>
@@ -386,48 +390,112 @@ postProcessors=jsMin,cssMinJawr
 </div>
 
 <div id="block" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
-    <ul class="topics">
-        <li>
-            <span class="title">When browsers encounter a &lt;script&gt; tag they block until they finish downloading and execute the script</span>
-            <span class="desc">- The page may seem unresponsive to the user during this time. The rendering process is interrupted</span>
-        </li>
-        <li>
-            <span class="title">Why block and not continue?</span>
-            <span class="desc">Browser cannot begin executing bellow scripts(even if they finished downloading before the blocking one) because they might rely on code being available.</span>
-            <span class="desc">Think of your libraries that are dependent on JQuery</span>
-        </li>
-        <li>
-            <span class="title">What can Browsers do?</span>
-            <span class="desc">- Only look ahead and start downloading and NOT executing following scripts.</span>
-            <span class="desc">- Older browsers .</span>
-        </li>
-</ul>
+    <h3>JS behaves like a Primadona! When browsers encounter a &lt;script&gt; tag they block until they finish downloading and execute the script</h3>
+    <div style="width: 500px;" class="left">
+        <img src="img/script.png" alt="" style="padding-left: 50px;"/>
+        <ul class="topics left">
+            <li>
+                <span class="title">The page seems unresponsive to the user during this time</span>
+                <span class="desc">If the script is in the <b>&lt;head&gt;</b> section nothing will render</span>
+                <span class="desc">The rendering process is interrupted</span>
+            </li>
+            <li>
+                <span class="title">Why block and not continue?</span>
+                <span class="desc">Browser cannot begin executing bellow scripts(even if they finished downloading before the blocking one) because they might rely on code being available.</span>
+                <span class="desc">Think of your libraries that are dependent on <b>JQuery</b></span>
+            </li>
+            <li>
+                <span class="title">What can Browsers do?</span>
+                <span class="desc">- Only look ahead and start downloading and NOT executing following scripts.</span>
+                <span class="desc">- Older browsers .</span>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <img src="img/tackle.jpg"/>
+    </div>
 </div>
 
-<div id="asyncscript" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
+<div id="break" class="step" data-x="6000" data-y="3000" data-scale="2" style="padding: 0;">
+    <h3>Your script killed my site - Beware of</h3>
+    <img src="img/images.jpg"/>
+    <div>
+        <ul class="topics">
+            <li><b> - SPOFs from 3rd party scripts</b></li>
+            <li><b> - 404s when referencing external JS files</b></li>
+            <li><b> - empty JS files block needlessly until response comes</b></li>
+        </ul>
+    </div>
+</div>
+
+<div id="asyncscript" class="step" data-x="9000" data-y="3000" data-scale="2" style="padding: 0;">
     <h3 class="title">What can we do?</h3>
 
     <ul class="topics">
         <li>
-            <span class="title">- Move scripts to page bottom</span>
-            <span class="desc">Prevent WSD by moving the blocking script as down as we can => bottom script</span>
+            <span class="title">Move scripts to page bottom</span>
+            <span class="desc">Prevent render blocking by moving the script as down in the page as possible => bottom script</span>
+            <span class="desc">(+) User will see the page render</span>
+            <span class="desc">(-) User interactions with "active" components will not work until lo</span>
         </li>
         <li>
-            <span class="title">Make the scripts to not block, make them <b>async</b></span>
-            <span class="desc">HTML5 introduced the . See Browserscope for support(IE9 doesn't)</span>
+            <span class="title">Make the scripts not blocking, make them <b>async</b></span>
+            <span class="desc"><b>HTML5 introduced the &lt;script async="async"&gt;</b> attribute. See Browserscope for support(IE9 doesn't)</span>
+            <span class="desc">When async script is encountered, browser begins downloading and executes it as soon as available</span>
         </li>
         <li>
+            <span class="title">With <b>async</b> you don't get any guarantees about order of execution</span>
+            <span class="desc">Can't assume that one async script will load before another async script.</span>
+            <span class="desc">3rd Party scripts on which you don't depend are ideal candidates:  GA, Facebook, Tweeter, LinkedIn libraries</span>
+            <span class="desc">You fire the requests in parallel.</span>
         </li>
         <li>
-            <span class="title">Don't have to wait for <b>async</b></span>
+            <span class="title">DOMContentLoaded aka $.ready() happens faster</span>
+            <span class="desc">Because it does not wait for JS to download</span>
+        </li>
+        <li>
+            <span class="title">Advantage when keeping the scripts at the &lt;head&gt;</span>
+            <span class="desc">The browser can begin downloading the script early</span>
+            <span class="desc">Tried to put JQuery as async => not good as $.ready() </span>
+        </li>
+        <li>
+            <span class="title">Don't use <b>document.write()</b> in scripts</span>
         </li>
     </ul>
 
 </div>
 
+<div id="dynamic" class="step" data-x="12000" data-y="3000" data-scale="2" style="padding: 0;">
+    <h3>Dynamic Script Tag Injection for</h3>
+
+    <pre class="code">
+var sNew = document.createElement("script");
+sNew.async = true;
+sNew.src = "http:/ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js";
+var s0 = document.getElementsByTagName('script')[0];
+s0.parentNode.insertBefore(sNew, s0);
+    </pre>
+
+    <div>Without <i>async=true</i> in the dynamic scripts <a href="http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBjrq90MDA?v=2&layout=simple&highlight=1">some browsers</a>(FF3.6, Opera12) would wait(block) on other async dynamic scripts</div>
+    <ul class="topics">
+        <div>What about if you'd want to execute a callback when the async script finishes loading?</div>
+        <div>Turns out it's not that easy</div>
+    </ul>
+
+</div>
+
+<div id="deffered" class="step" data-x="15000" data-y="3000" data-scale="2" style="padding: 0;">
+    <h3>Async vs Deffered</h3>
+    <div>IE also permit the <b>&lt;script </b></div>
+</div>
+
 <div id="spdy" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
     <h3>SPDY or HTML2.0</h3>
-    <ul class="topics">
+    <div class="left">
+        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOw5PwszRB_wIkAHR8BMnLlsDAYLBwQ0Pw3WWXb4WKamSZAbgB" width="400"/>
+    </div>
+
+    <ul class="topics right" style="width: 400px;">
         <li><span class="title">Compressed Headers</span>
             <span class="desc">Currently -in HTTP- the headers are sent uncompressed</span>
         </li>
@@ -436,7 +504,12 @@ postProcessors=jsMin,cssMinJawr
             <span class="desc">Single long lasting connection to the server without the need to "warm up" to a high bandwidth</span>
             <span class="desc">We need to do the opposite of domain sharding</span>
         </li>
-
+        <li>
+            <span class="title">Server Push</span>
+        </li>
+        <li>
+            <span class="title">Preemptive resource loading</span>
+        </li>
     </ul>
 </div>
 
