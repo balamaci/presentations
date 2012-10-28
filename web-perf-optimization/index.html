@@ -88,6 +88,7 @@
         <li><span class="title"><a href="chrome://net-internals">chrome://net-internals</a></span></li>
         <li><span class="title"><a href="http://yahoo.github.com/boomerang/doc/">boomerang</a></span></li>
         <li><span class="title"><a href="http://zoompf.com/free">ZoomPF Free</a></span></li>
+        <li><span class="title"><a href="http://caniuse.com/">CanIUse</a></span></li>
     </ul>
     <div>
         <img src="http://img.ehowcdn.com/article-new/ehow/images/a01/ui/kt/increase-download-speed-800x800.jpg" alt="" width="450"/>
@@ -313,7 +314,7 @@ postProcessors=jsMin,cssMinJawr
             <span class="desc"> - It's redundant to set both <b>Expires</b> and <b>Cache-Control</b>, because <b>Cache-Control</b> always takes precedence over the other</span>
         </li>
     </ul>
-    <img src="img/cache_hard.png">
+    <img src="img/king_cache.jpg" width="200">
 </div>
 <div id="caching2" class="step" data-x="3500" data-y="0" data-scale="2" style="padding: 0;">
     <ul class="topics">
@@ -456,7 +457,7 @@ postProcessors=jsMin,cssMinJawr
         <li>
             <span class="title">Advantage when keeping the scripts at the &lt;head&gt;</span>
             <span class="desc">The browser can begin downloading the script early</span>
-            <span class="desc">Tried to put JQuery as async => not good as $.ready() </span>
+            <span class="desc">Tried to put JQuery as async => not good as you can't count on DOMContentLoaded</span>
         </li>
         <li>
             <span class="title">Don't use <b>document.write()</b> in scripts</span>
@@ -476,17 +477,28 @@ var s0 = document.getElementsByTagName('script')[0];
 s0.parentNode.insertBefore(sNew, s0);
     </pre>
 
-    <div>Without <i>async=true</i> in the dynamic scripts <a href="http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBjrq90MDA?v=2&layout=simple&highlight=1">some browsers</a>(FF3.6, Opera12) would wait(block) on other async dynamic scripts</div>
     <ul class="topics">
-        <div>What about if you'd want to execute a callback when the async script finishes loading?</div>
-        <div>Turns out it's not that easy</div>
+        <li>
+            <span class="title">What about if you'd want to execute a callback when the async script finishes loading?</span>
+            <span class="desc">Turns out it's not that easy</span>
+        </li>
     </ul>
-
 </div>
 
 <div id="deffered" class="step" data-x="15000" data-y="3000" data-scale="2" style="padding: 0;">
     <h3>Async vs Deffered</h3>
-    <div>IE also permit the <b>&lt;script </b></div>
+    <div>IE also had from a long time the <b>&lt;script defer="defer" src=""http:/ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js";"&gt;</b></div>
+    <ul class="topics">
+        <li >
+            <span class="title">Like async when a <b>defer</b> script is encountered the parsing and rendering does not block</span>
+        </li>
+        <li>
+            <span class="title">Execution is deferred until the DOM is constructed </span>
+        </li>
+        <li>
+            <span class="title"></span>
+        </li>
+    </ul>
 </div>
 
 <div id="spdy" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">

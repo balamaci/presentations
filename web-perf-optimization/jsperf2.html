@@ -1,0 +1,44 @@
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Web Performance Optimization Tips</title>
+
+    <meta name="description" content=""/>
+    <meta name="author" content="Serban Balamaci" />
+
+    <link rel="stylesheet" href="css/perf.css">
+
+    <link href='http://git-scm.com/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+
+    <style type="text/css">
+        .background {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background: -moz-radial-gradient(50% 50%, farthest-side, #fff, #efefef);
+            background: -webkit-gradient(radial, 50% 50%, 350, 50% 50%, 750, from(#fff), to(#bbb));
+            z-index: 0;
+        }
+        .white {
+            height: 100%;
+            width: 100%;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="left">
+	<h3>Scripts in head</h3>
+	<img src="img/slow_jquery_head_5sec.png"/>
+</div>
+
+<div class="left">
+	<h3>Scripts at page bottom</h3>
+	<img src="img/fast_jquery_footer_5sec.png"/>
+</div>
+
+</body>
+</html>
