@@ -446,30 +446,32 @@ postProcessors=jsMin,cssMinJawr
 </div>
 
 <div id="break" class="step" data-x="6000" data-y="3000" data-scale="2" style="padding: 0;">
-    <h3>Your script killed my site - Beware of</h3>
-    <img src="img/images.jpg"/>
+    <h3 class="title">What can we do?</h3>
     <div>
         <ul class="topics">
-            <li><b> - SPOFs from 3rd party scripts</b></li>
-            <li><b> - 404s when referencing external JS files</b></li>
-            <li><b> - empty JS files block needlessly until response comes</b></li>
+            <li>
+                <span class="title">Move scripts to page bottom</span>
+                <span class="desc">Prevent render blocking by moving the script as down in the page as possible => bottom script</span>
+                <span class="desc">(+) User will see the page render</span>
+                <span class="desc">(-) User interactions with "active" components will not work until dependant js script is downloaded and executed</span>
+            </li>            
+            <li><span class="title">Look for and remove <b>404s</b> when referencing external JS files</span></li>
+            <li>
+                <span class="title">Look for empty JS files</span>
+                <span class="desc">They'll block needlessly until response comes</span>
+            </li>
         </ul>
     </div>
 </div>
 
 <div id="asyncscript" class="step" data-x="9000" data-y="3000" data-scale="2" style="padding: 0;">
-    <h3 class="title">What can we do?</h3>
+    <h3>Your script killed my site - Beware of SPOFs from 3rd party scripts</h3>
+    <img src="img/images.jpg"/>
 
     <ul class="topics">
         <li>
-            <span class="title">Move scripts to page bottom</span>
-            <span class="desc">Prevent render blocking by moving the script as down in the page as possible => bottom script</span>
-            <span class="desc">(+) User will see the page render</span>
-            <span class="desc">(-) User interactions with "active" components will not work until dependant js script is downloaded and executed</span>
-        </li>
-        <li>
             <span class="title">Make the scripts not blocking, make them <b>async</b></span>
-            <span class="desc"><b>HTML5 introduced the &lt;script async="async"&gt;</b> attribute. See Browserscope for support(IE9 doesn't)</span>
+            <span class="desc"><b>HTML5 introduced the &lt;script async="async"&gt;</b> attribute. See <a href="http://caniuse.com/">CanIUse</a> for support(&lt;IE10 don't)</span>
             <span class="desc">When async script is encountered, browser begins downloading and executes it as soon as available</span>
         </li>
         <li>
@@ -513,7 +515,7 @@ s0.parentNode.insertBefore(sNew, s0);
         </li>
         <li>
             <span class="title">What if you also have dependent libraries?</span>
-            <span class="desc">JQuery << Bootstrap.js << inline script</span>
+            <span class="desc">JQuery &lt;&lt; Bootstrap.js &lt;&lt; inline script</span>
             <span class="desc">Things get messy and we need to resort to a specialized async loader - there are quite
                 <a href="https://docs.google.com/spreadsheet/ccc?key=0Aqln2akPWiMIdERkY3J2OXdOUVJDTkNSQ2ZsV3hoWVE#gid=2">a bunch</a> of them </span>
             <span class="desc">Is it worth the additional of another js library?</span>
@@ -536,15 +538,31 @@ s0.parentNode.insertBefore(sNew, s0);
             <span class="title">Execution order of scripts is preserved so <b>scripts block one another</b> but not page rendering</span>
         </li>
         <li><span class="title"><b>Transfer-Encoding: Chuncked</b></span> for <a href="">slow response</a> servers</li>
-
     </ul>
 </div>
 
-<div id="image-defered" class="step" data-x="15000" data-y="3000" data-scale="2" style="padding: 0;">
+<div id="image-defered" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
+    <h3>Load non visible / non essential images at a later time</h3>
+    <ul class="topics">
+        <li>Think of Gravatar, Disqus user images, carroussel other non essential</li>
+        <li>The browser does not know that images are not visible and will try to download them when &lt;img src="photo.jpg"&gt; encountered</li>
+    </ul>
+    <pre class="code">
+&lt;img src="placeholder.png"
+  data-original="tiger.jpg"
+  class="lazy"&gt;
+&lt;noscript&gt;&lt;img src="tiger.jpg"&gt;&lt;/noscript&gt;
+
+function deferredImageLoading() {
+    $('img[data-src]').each(function() {
+        $(this).attr('src', $(this).attr('data-src'));
+    });
+}
+    </pre>
 
 </div>
 
-<div id="spdy" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
+<div id="spdy" class="step" data-x="3000" data-y="9000" data-scale="2" style="padding: 0;">
     <h3>SPDY or HTML2.0</h3>
     <div class="left">
         <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOw5PwszRB_wIkAHR8BMnLlsDAYLBwQ0Pw3WWXb4WKamSZAbgB" width="400"/>
@@ -567,11 +585,6 @@ s0.parentNode.insertBefore(sNew, s0);
         </li>
     </ul>
 </div>
-
-<div id="async" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
-
-</div>
-
 
 </div>
 
