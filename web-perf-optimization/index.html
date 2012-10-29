@@ -45,7 +45,7 @@
     <div>
         <a href="https://github.com/balamaci/presentations/tree/master/web-perf-optimization">See Detailed Summary</a>
     </div>
-    <img src="http://25.media.tumblr.com/tumblr_mbqrbbE09s1rb5qwwo1_500.gif"/>
+    <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Florida_Box_Turtle_Digon3.jpg/320px-Florida_Box_Turtle_Digon3.jpg"/>
 </div>
 
 
@@ -81,26 +81,47 @@
 </div>
 
 <div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
+    <h3>The Tools</h3>
     <ul class="topics left" style="width:350px;">
         <li><span class="title">YSLow / PageSpeed</span></li>
-        <li><span class="title"><a href="">BrowserScope</a></span></li>
-        <li><span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span></li>
+        <li>
+            <span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span>
+            <span class="desc">
+                <a href="http://gtmetrix.com/">GMetrix</a>
+                <a href="http://pageload.monitis.com/">Monotis</a>
+                <a href="http://pageload.monitis.com/">Monotis</a>
+                <a href="http://site-perf.com/">SitePerf</a>
+            </span>
+            <span class="title"><a href="https://developers.google.com/speed/pagespeed/insight">Pagespeed Insights-Critical path</a></span>
+
+        </li>
+
+        <li><span class="title"><a href="http://stevesouders.com/cuzillion/">Cuzzilion</a> / <a href="https://github.com/alessioalex/DelayME">DelayMe</a></span></li>
         <li><span class="title"><a href="chrome://net-internals">chrome://net-internals</a></span></li>
+        <li><span class="title"><a href="">BrowserScope</a></span></li>
         <li><span class="title"><a href="http://yahoo.github.com/boomerang/doc/">boomerang</a></span></li>
         <li><span class="title"><a href="http://zoompf.com/free">ZoomPF Free</a></span></li>
         <li><span class="title"><a href="http://caniuse.com/">CanIUse</a></span></li>
     </ul>
     <div>
-        <img src="http://img.ehowcdn.com/article-new/ehow/images/a01/ui/kt/increase-download-speed-800x800.jpg" alt="" width="450"/>
+        <img src="http://img.ehowcdn.com/article-new/ehow/images/a01/ui/kt/increase-download-speed-800x800.jpg" alt="" width="400"/>
     </div>
 </div>
 
 
 <div id="waterfall" class="step" data-x="3000" data-y="-5000" data-scale="2">
-    <a href="">
-        <img src="http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C&run=1&cached=0" alt="" width="800" height="600"/>
-    </a>
-
+    <div>
+        <a href="#" onclick="window.open('http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C', '_blank');">
+            <img src="http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C&run=1&cached=0" alt="" height="600"/>
+        </a>
+    </div>
+    <ul class="topics-small" style="font-size: 0.6em;">
+        <li>DNS lookup time</li>
+        <li>Connection time</li>
+        <li>Time to first byte</li>
+        <li>Content download</li>
+        <li>DomContentLoaded</li>
+    </ul>
 </div>
 
 <div id="cdn" class="step" data-x="6000" data-y="-5000" data-scale="2">
@@ -150,7 +171,7 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
         <li style="margin-top: 10px;">
             <span class="title">Most famous JS libraries have already known CDN locations to use</span>
             <span class="desc">Using those may mean that the library it's already in cache when a user comes for the first time</span>
-            <span class="desc">Checkout http://cdnjs.com/index.html to add</span>
+            <span class="desc">Checkout <a href="http://cdnjs.com/index.html">cndj</a> to add</span>
             <span class="desc">DON'T use GitHub references: <i>http://bartaz.github.com/impress.js/js/impress.js</i> They don't set any caching headers.</span>
         </li>
     </ul>
@@ -168,10 +189,10 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
             <span class="desc">They wanted to prevent unnecessary downloading of resources - eventual <i>document.write("&lt!--")</i></span>
         </li>
         <li>
-            <span class="title">No longer true for more recent browsers(IE8 was first one)</span>
+            <span class="title">No longer true for more recent browsers(IE8 included)</span>
         </li>
     </ul>
-    <img src="img/paralel.png"/>
+    <img src="img/apple-waterfall-small.png"/>
 </div>
 
 <div id="minify" class="step" data-x="3000" data-y="-3000" data-scale="2">
@@ -188,7 +209,7 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
             <span class="desc">Uglify.js, Google Closure, YUIMin, Jawr for CSS, etc - check what works for you</span>
         </li>
         <li>
-            <span class="title">Use <a href="">wro4j</a></span>
+            <span class="title">Use <a href="http://code.google.com/p/wro4j/">wro4j</a></span>
             <span class="desc">Has all the above mentioned options for minifying and merging plus other useful plugins</span>
         </li>
     </ul>
@@ -276,7 +297,7 @@ postProcessors=jsMin,cssMinJawr
         </li>
         <li>
             <span class="title"><b>JSLint</b> and <b>CSSLint</b></span>.
-            <span class="desc">Static analysis - "Findbugs" for JS and CSS</span>.
+            <span class="desc">Static analysis - "Findbugs" for JS and CSS</span>
         </li>
     </ul>
 </div>
@@ -294,7 +315,7 @@ postProcessors=jsMin,cssMinJawr
             <div><b>Content-Encoding: gzip</b></div>
         </li>
 
-        <li>Not only text can be compressed, .ico and web fonts, . Good text candidates .xml, .rss, json content type</li>
+        <li>Not only text can be compressed, .ico and web fonts. Good text candidates .xml, .rss, json content type</li>
         <li>Should not set it for resources that are already compressed like .png or .gif, .jpeg</li>
         <li>Best use the <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">.htaccess</a> file from the <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a> project as example</li>
     </ul>
@@ -385,9 +406,16 @@ postProcessors=jsMin,cssMinJawr
 </IfModule>
             </pre>
         </li>
-        <li>This only updates the cache related headers in the browser</li>
-        <li></li>
+        <li>
+            <span class="title">This only updates the cache related headers in the browser</span>
+            <span class="desc">Does not mean we've turned the Apache frontend into a <b>Caching Reverse Proxy</b></span>
+        </li>
     </ul>
+
+</div>
+
+<div>
+
 </div>
 
 <div id="block" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
@@ -407,8 +435,8 @@ postProcessors=jsMin,cssMinJawr
             </li>
             <li>
                 <span class="title">What can Browsers do?</span>
-                <span class="desc">- Only look ahead and start downloading and NOT executing following scripts.</span>
-                <span class="desc">- Older browsers .</span>
+                <span class="desc">- Only look ahead and start downloading(but NOT executing) following scripts.</span>
+                <span class="desc">- Remember older browsers didn't even do that.</span>
             </li>
         </ul>
     </div>
@@ -437,7 +465,7 @@ postProcessors=jsMin,cssMinJawr
             <span class="title">Move scripts to page bottom</span>
             <span class="desc">Prevent render blocking by moving the script as down in the page as possible => bottom script</span>
             <span class="desc">(+) User will see the page render</span>
-            <span class="desc">(-) User interactions with "active" components will not work until lo</span>
+            <span class="desc">(-) User interactions with "active" components will not work until dependant js script is downloaded and executed</span>
         </li>
         <li>
             <span class="title">Make the scripts not blocking, make them <b>async</b></span>
@@ -448,16 +476,12 @@ postProcessors=jsMin,cssMinJawr
             <span class="title">With <b>async</b> you don't get any guarantees about order of execution</span>
             <span class="desc">Can't assume that one async script will load before another async script.</span>
             <span class="desc">3rd Party scripts on which you don't depend are ideal candidates:  GA, Facebook, Tweeter, LinkedIn libraries</span>
-            <span class="desc">You fire the requests in parallel.</span>
+            <span class="desc">You fire the requests in parallel and there is no blocking.</span>
         </li>
         <li>
-            <span class="title">DOMContentLoaded aka $.ready() happens faster</span>
-            <span class="desc">Because it does not wait for JS to download</span>
-        </li>
-        <li>
-            <span class="title">Advantage when keeping the scripts at the &lt;head&gt;</span>
-            <span class="desc">The browser can begin downloading the script early</span>
-            <span class="desc">Tried to put JQuery as async => not good as you can't count on DOMContentLoaded</span>
+            <span class="title"><b>DOMContentLoaded</b> event aka $.ready() happens faster</span>
+            <span class="desc">Because it does not wait for JS to download and execute</span>
+            <span class="desc">Your script is not delayed by any other 3rd party slow response</span>
         </li>
         <li>
             <span class="title">Don't use <b>document.write()</b> in scripts</span>
@@ -467,38 +491,57 @@ postProcessors=jsMin,cssMinJawr
 </div>
 
 <div id="dynamic" class="step" data-x="12000" data-y="3000" data-scale="2" style="padding: 0;">
-    <h3>Dynamic Script Tag Injection for</h3>
+    <h3>Dynamic Script Tag Injection because IE<10 does not support async</h3>
 
     <pre class="code">
 var sNew = document.createElement("script");
-sNew.async = true;
-sNew.src = "http:/ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js";
+sNew.async = true; //does not mean that when we set to false
+sNew.src = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js";
 var s0 = document.getElementsByTagName('script')[0];
 s0.parentNode.insertBefore(sNew, s0);
     </pre>
 
     <ul class="topics">
         <li>
+            <span class="title">Advantage when keeping the scripts at the &lt;head&gt;</span>
+            <span class="desc">The browser can begin downloading the script early</span>
+        </li>
+        <li>
             <span class="title">What about if you'd want to execute a callback when the async script finishes loading?</span>
-            <span class="desc">Turns out it's not that easy</span>
+            <span class="desc">You can listen for the <b>onload</b> event on the script. For IE this is <b>onreadystatechanged</b></span>
+
+        </li>
+        <li>
+            <span class="title">What if you also have dependent libraries?</span>
+            <span class="desc">JQuery << Bootstrap.js << inline script</span>
+            <span class="desc">Things get messy and we need to resort to a specialized async loader - there are quite
+                <a href="https://docs.google.com/spreadsheet/ccc?key=0Aqln2akPWiMIdERkY3J2OXdOUVJDTkNSQ2ZsV3hoWVE#gid=2">a bunch</a> of them </span>
+            <span class="desc">Is it worth the additional of another js library?</span>
         </li>
     </ul>
 </div>
 
 <div id="deffered" class="step" data-x="15000" data-y="3000" data-scale="2" style="padding: 0;">
     <h3>Async vs Deffered</h3>
-    <div>IE also had from a long time the <b>&lt;script defer="defer" src=""http:/ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js";"&gt;</b></div>
+    <div>IE also had from a long time the <b>defer</b> attribute for scripts</div>
+    <pre class="code">&lt;script defer="defer" src="http://ajax.googleapis.com/.../jquery.min.js"&gt;</pre>
     <ul class="topics">
         <li >
-            <span class="title">Like async when a <b>defer</b> script is encountered the parsing and rendering does not block</span>
+            <span class="title">Like async when a <b>defer</b> script is encountered the <b>parsing and rendering does not block</b></span>
         </li>
         <li>
-            <span class="title">Execution is deferred until the DOM is constructed </span>
+            <span class="title">Execution is deferred until the DOM is constructed</span>
         </li>
         <li>
-            <span class="title"></span>
+            <span class="title">Execution order of scripts is preserved so <b>scripts block one another</b> but not page rendering</span>
         </li>
+        <li><span class="title"><b>Transfer-Encoding: Chuncked</b></span> for <a href="">slow response</a> servers</li>
+
     </ul>
+</div>
+
+<div id="image-defered" class="step" data-x="15000" data-y="3000" data-scale="2" style="padding: 0;">
+
 </div>
 
 <div id="spdy" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
