@@ -36,7 +36,7 @@ Contents
    - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
 
 ## Tools for measuring the performance and suggesting improvements.
-   - Google Chrome network timeline. Reading response headers for the caching info.
+   - Google Chrome network timeline. The easiest and most .
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
    - Sites for checking page loading time:
      -[Web Page Test](http://www.webpagetest.org/), [GMetrix](http://gtmetrix.com/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/), [Pingdom](http://tools.pingdom.com/), [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
@@ -45,7 +45,9 @@ Contents
          - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
          - Time to First Byte(the time it takes to receive a first byte of data as a response)
          - Content download.(time it takes for the resource to download).
-   -
+   - [ZoomPF] () -
+   - [Cuzzilion]() Tools for delaying a . DelayMe it's a server in node.js that you can start locally and start serving your own page with
+   - Great that you can see who contributed
 
 ## Using CDNs.
    - Theory behind is that you should distribute and serve the resources need by the users from servers that are "close" to them.
@@ -152,7 +154,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - Library has a web filter that you can add to **web.xml** and can group and process the resource files on the fly with the request.
   This is useful in development to check on the fly when you change something and you want to refresh the page.
 
-  - Can also be invoked on the command line with a 'java -jar wro4j-runner-1.4.5-jar-with-dependencies.jar'.
+  - Can also be invoked on the command line with a 'java -jar wro4j-runner-1.xxxxx-jar-with-dependencies.jar'.
 
 
 #### Useful Wro4j Processors
@@ -166,13 +168,31 @@ Note that this is no longer true, even for browser like IE8 according to Browser
           AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
           9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot">
 
-    -This processor looks for 'background-image' and if the referenced image is less than 32KB transform it do data-uri.
+    -This processor looks for 'background-image' and if the referenced image is less than 32KB(IE8 acceptable) transform it do data-uri.
 
-  - **JS** and **CSS Lint**: "Findbugs" for JS and CSS.
+  - **JS Lint** and **CSS Lint**: "Findbugs" for JS and CSS.
 
 #### Good Maven integration
-  - There is a Maven plugin that allows to run wro4j as a build step and create the groups and apply the processors at **build time**.
+  - There is a Maven plugin that allows to run wro4j as a build step in your projects lifecycle and create the groups and apply the processors at **build time**.
 
+## Compressing text on the wire
+
+   Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser announces to the server
+   what "languages"(encodings) it speaks so that the server knows to respond according:
+
+       Accept-Encoding: gzip, deflate, sdch
+
+   and receiving back:
+
+       Content-Encoding: gzip
+
+   if the content was served up in a gziped form.
+  - Checking that you succesfully implemented this is to look for response header **Content-Encoding**.
+
+### What to compress
+  - Some resources are already compressed(.png, .jpeg, .pdf) and retrying to compress them would only be a waste of time and CPU resources.
+  - As a general rule text compresses best so ideal candidates for gzipping are(html, css, js, xml) but not only those think .ico .
+  - Best checkout the .htaccess file
 
 ### Other useful performance tips
   - **No 404s** Check the application to not request resources that are no longer available and return 404 status code responses.
@@ -208,43 +228,31 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
   - **ETag** also can be used for REST entities caching to verify that another client application has the latest version of the entity.
 
+
   - Setting Last-Modified with no Expires or Cache-Control triggers an heuristic setting of max-age which for IE9 is max-age = (DownloadTime - LastModified) * 0.1
-
-### Using an Apache http server as frontend for reverse proxy
-
-
-### Enabling caching on the Apache server
+  - Apache needs the presence of the *mod_expires* module to configure the caching headers.
+  - What you need to understand is that Apache only add this caching headers it does in no way protect the "origin" Tomcat server from.
+   In order to do this we must checkout the config to turn the frontend into a Caching Reverse Proxy server
 
 
 ### How to use caching
-  - You typically would want to use long future expiration times(weeks, months) so you eliminate even the checking validity round trips to the server.
+  - You typically would want to use long future expiration times(months, years) so you eliminate even the checking validity round trips to the server.
 
   - On the other hand you also let the users know when there is a new version of the css, so they don't have to wait a month to see the nice
 
   - **Solution**: Reference the cacheable resource along with some kind of version token in a file that is not cached
   (most common the .html files). One could use for ex:
-   - the file timestamp on disk `<script type="text/javascript" src="/js/site-B0439F858745C84EA46792F9AC42B6CF.js"></script>` or
-   - a specific file version `<link rel="stylesheet" type="text/css" href="/css/site.css?ver=1.23" />` (hint )or the
-   - application version `<link rel="stylesheet" type="text/css" href="/2.14/css/site.css" />`
+   - the file timestamp on disk `<script type="text/javascript" src="/js/site-B0439F858745C84EA46792F9AC42B6CF.js"></script>` - this would rather be ok for a development version not a production env to have to check on the server the status of the file
+   - a specific file version `<link rel="stylesheet" type="text/css" href="/css/site.css?ver=1.23" />`
+   - application version `<link rel="stylesheet" type="text/css" href="/2.14/css/site.css" />` - what we currently use
 
-
-## Compressing text on the wire
-
-   Browser negotiate the possible communication by sending an **Accept-Encoding** header with the request. This way the browser announces to the server
-   what "languages"(encodings) it speaks so that the server knows to respond according:
-
-       Accept-Encoding: gzip, deflate, sdch
-
-   and receiving back:
-
-       Content-Encoding: gzip
-
-   if the content was served up in a gziped form.
-  - Checking that you succesfully implemented this is to look for response header **Content-Encoding**.
-
-### What to compress
-  - Some resources are already compressed(.png, .jpeg, .pdf) and retrying to compress them would only be a waste of time and CPU resources.
-  - As a general rule text compresses best so ideal candidates for gzipping are(html, css, js, xml).
+### Using an Apache http server as a Caching Reverse Proxy
+  - *mod_cache* graduated from experimental in 2.2 version.
+  -
+  - Using Nginx - the new kid on the block. Takes a different approach as a frontend being an event based server so rather than spaning a new thread for every new request it .
+   While some argue about the one thing is certain that it takes less resources than Apache to serve a large number of requests.
+   Also since it's new(and does not carry any legacy support baggage) the configuration is less complicated than the Apache.
+  -
 
 ###
 
@@ -252,18 +260,25 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ### Putting JS at the bottom
   - When browsers encounter a <script> tag they stop what they are doing and begin downloading and aftewards executing the script.
-  This is a 'synchronous blocking' behaviour. All they can do is to begin downloading the next scripts/images in the html.
-
-  - They cannot begin executing the other downloaded scripts below because those scripts might rely on the blocking script. Think of the JQuery dependency of other libraries.
+  This is a 'synchronous blocking' behaviour. All the browsers can do is to look ahead in the DOM to begin downloading the next scripts/images in the html.
   In older browser versions(pre IE8) they were not even looking and starting the downloads of other scripts because they were 'afraid' the downloading script might
   redirect to another page or comment out the following code after the script and so have wasted the time on the downloads.
 
+  - They cannot begin executing the other downloaded scripts below because those scripts might rely on the blocking script.
+  Think of the *JQuery* dependency of other libraries.
 
-  - But rendering
+  - The idea is about "progressive rendering" to render the page in a somew
+  - See the example of the "White Page of Death".
+   We have prepared some examples .
+
+
 
   - domContentLoaded - fired when the 'document' object has been created, jQuery hooks onto this when you're doing **$.ready()**
   - onLoad all files have finished loading.
 
+### Protect your page from the 3rd party scripts
+  - HTML5 introduces the "async" tag for scripts lie '<script async="async" />.
+  - Async scripts when encountered the browser does not block but instead
 
 ### JQuery optimizations
   - Know selector rules:
@@ -299,16 +314,18 @@ Note that this is no longer true, even for browser like IE8 according to Browser
          });
          ```
 
-    - Cache reference to
 
 ### Deferred image loading:
   - Images take longer to download and some may not really be essential to the first page impression so it would make
   sense to load them at a more appropriate time after other more important resources have loaded.
-  For ex. some images might be visible only after scrolling down the page, or in an image carousel when a timer triggers the next slide.
+  For ex. some images might be visible only after scrolling down the page(think Gravatar/Disqus User images, or in an image carousel when a timer triggers the next slide.
   The browser will not know those images are not even visible on the page, it only know that while parsing the DOM and encountering <img src=""> it will request
   the images from the server.
 
   - Instead of having `<img src="tiger.png"/>` why not have `<img data-src="tiger.png"/>` for the non-critical images.
+  - We can still preserve the old way images were loaded for the users who don't have JS enabled by wrapping them in a <noscript> tag:
+    ```
+     <noscript></noscript>
 
   - At the page bottom have a js script that replaces the "data-src" attribute to "src" something like:
     ```
@@ -317,7 +334,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
              $(this).attr('src', $(this).attr('data-src'));
         });
     }
-
+    ```
 
 Sources of info
 ----------------
@@ -327,3 +344,5 @@ Sources of info
    - Html5 async - http://davidwalsh.name/html5-async
    - JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
    - Caching headers explained http://www.symkat.com/understanding-http-caching
+   - Guypo blog http://www.guypo.com/
+   - ZoomPF video series: http://www.guypo.com/
