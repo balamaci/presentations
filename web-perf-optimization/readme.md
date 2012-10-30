@@ -105,7 +105,7 @@ Older browsers used to serialize requests of JS resources to in order to prevent
 
 Image from Firefox 3.0.
    ![Serial requests JS](https://developers.google.com/speed/docs/insights/images/externaljs1.png)
-   ![Paralel requests JS](https://developers.google.com/speed/docs/insights/images/externaljs2.png)
+   ![Paralel requests JS](http://balamaci.github.com/presentations/web-perf-optimization/img/apple-waterfall-small.png)
 Note that this is no longer true, even for browser like IE8 according to Browserscope, JS resources are downloaded in parallel.
 
    - In development it makes sense to have the JS logic distributed into separate files according to the function they serve, while in production we'd want
@@ -326,6 +326,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - We can still preserve the old way images were loaded for the users who don't have JS enabled by wrapping them in a <noscript> tag:
     ```
      <noscript></noscript>
+    ```
 
   - At the page bottom have a js script that replaces the "data-src" attribute to "src" something like:
     ```
