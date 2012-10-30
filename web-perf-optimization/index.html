@@ -49,9 +49,43 @@
 </div>
 
 
-<div id="rules" class="step" data-x="500" data-y="-5000" data-scale="2">
-    <h2>Performance golden rules</h2>
-    <ul class="topics">
+
+<div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
+    <h3>The Tools</h3>
+    <ul class="topics left" style="width:350px;">
+        <li><span class="title">YSLow / PageSpeed</span></li>
+        <li>
+            <span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span>
+            <span class="desc">
+                <a href="http://gtmetrix.com/">GMetrix</a>
+                <a href="http://pageload.monitis.com/">Monotis</a>
+                <a href="http://tools.pingdom.com/">Pingdom</a>
+                <a href="http://site-perf.com/">SitePerf</a>
+            </span>
+            <span class="title"><a href="https://developers.google.com/speed/pagespeed/insights">Pagespeed Insights-Critical path</a></span>
+
+        </li>
+
+        <li><span class="title"><a href="http://stevesouders.com/cuzillion/">Cuzzilion</a> / <a href="https://github.com/alessioalex/DelayME">DelayMe</a></span></li>
+        <li><span class="title"><a href="chrome://net-internals">chrome://net-internals</a></span></li>
+        <li><span class="title"><a href="http://www.browserscope.org/">BrowserScope</a></span></li>
+        <li><span class="title"><a href="http://caniuse.com/">CanIUse</a></span></li>
+        <li><span class="title"><a href="http://zoompf.com/free">ZoomPF Free</a></span></li>
+        <li><span class="title"><a href="http://yahoo.github.com/boomerang/doc/">boomerang</a></span></li>
+    </ul>
+    <div>
+        <img src="http://img.ehowcdn.com/article-new/ehow/images/a01/ui/kt/increase-download-speed-800x800.jpg" alt="" width="400"/>
+    </div>
+</div>
+
+
+<div id="waterfall" class="step" data-x="3000" data-y="-5000" data-scale="2" style="padding: 0">
+    <div style="width: 500px;" class="left">
+        <a href="#" onclick="window.open('http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C', '_blank');">
+            <img src="http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C&run=1&cached=0" alt="" width="500"/>
+        </a>
+    </div>
+    <ul class="topics-small right" style="width: 400px;">
         <li>
             <span class="title">Reduce RTT and data exchanged on the wire</span>
             <span class="desc">-Use Keep-Alive header to reuse connections(default for Http 1.1)</span>
@@ -71,56 +105,13 @@
         </li>
         <li>
             <span class="title">Progressive enhancement</span>
-            <span class="desc">Determine a set of "critical" resources that are required for rendering the page in a seeming usable state for the user</span>
+            <span class="desc">Determine a set of "critical path" resources that are required for rendering the page in a seeming usable state for the user</span>
             <span class="desc">Improve user experience by downloading in "the background" additional JS, resources for functionality as the user decides what to do next.</span>
         </li>
         <li>
             <span class="title">Cache is king</span>
+            <span class="desc">"Fastest web request is the one not made"</span>
         </li>
-    </ul>
-</div>
-
-<div id="tools" class="step" data-x="500" data-y="-6500" data-scale="2">
-    <h3>The Tools</h3>
-    <ul class="topics left" style="width:350px;">
-        <li><span class="title">YSLow / PageSpeed</span></li>
-        <li>
-            <span class="title"><a href="http://www.webpagetest.org/">WebPageTest</a></span>
-            <span class="desc">
-                <a href="http://gtmetrix.com/">GMetrix</a>
-                <a href="http://pageload.monitis.com/">Monotis</a>
-                <a href="http://pageload.monitis.com/">Monotis</a>
-                <a href="http://site-perf.com/">SitePerf</a>
-            </span>
-            <span class="title"><a href="https://developers.google.com/speed/pagespeed/insight">Pagespeed Insights-Critical path</a></span>
-
-        </li>
-
-        <li><span class="title"><a href="http://stevesouders.com/cuzillion/">Cuzzilion</a> / <a href="https://github.com/alessioalex/DelayME">DelayMe</a></span></li>
-        <li><span class="title"><a href="chrome://net-internals">chrome://net-internals</a></span></li>
-        <li><span class="title"><a href="">BrowserScope</a></span></li>
-        <li><span class="title"><a href="http://yahoo.github.com/boomerang/doc/">boomerang</a></span></li>
-        <li><span class="title"><a href="http://zoompf.com/free">ZoomPF Free</a></span></li>
-        <li><span class="title"><a href="http://caniuse.com/">CanIUse</a></span></li>
-    </ul>
-    <div>
-        <img src="http://img.ehowcdn.com/article-new/ehow/images/a01/ui/kt/increase-download-speed-800x800.jpg" alt="" width="400"/>
-    </div>
-</div>
-
-
-<div id="waterfall" class="step" data-x="3000" data-y="-5000" data-scale="2">
-    <div>
-        <a href="#" onclick="window.open('http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C', '_blank');">
-            <img src="http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C&run=1&cached=0" alt="" height="600"/>
-        </a>
-    </div>
-    <ul class="topics-small" style="font-size: 0.6em;">
-        <li>DNS lookup time</li>
-        <li>Connection time</li>
-        <li>Time to first byte</li>
-        <li>Content download</li>
-        <li>DomContentLoaded</li>
     </ul>
 </div>
 
@@ -168,10 +159,10 @@ e5416.g.akamaiedge.net. A       2.16.109.234</pre>
             <span class="desc"> <span>Solution:</span> Using placeholders that are replaced at build time: `background-image:url('${img_cdn}/paper.gif');` </span>
             <span class="desc"> <b>(-)</b> Additional DNS lookups to resolve subdomains</span>
         </li>
-        <li style="margin-top: 10px;">
+        <li style="margin-top: 30px;">
             <span class="title">Most famous JS libraries have already known CDN locations to use</span>
             <span class="desc">Using those may mean that the library it's already in cache when a user comes for the first time</span>
-            <span class="desc">Checkout <a href="http://cdnjs.com/index.html">cndj</a> to add</span>
+            <span class="desc">Checkout <a href="http://cdnjs.com/index.html">cndjs</a> to add</span>
             <span class="desc">DON'T use GitHub references: <i>http://bartaz.github.com/impress.js/js/impress.js</i> They don't set any caching headers.</span>
         </li>
     </ul>
@@ -337,6 +328,7 @@ postProcessors=jsMin,cssMinJawr
     </ul>
     <img src="img/king_cache.jpg" width="200">
 </div>
+
 <div id="caching2" class="step" data-x="3500" data-y="0" data-scale="2" style="padding: 0;">
     <ul class="topics">
         <li>
@@ -414,8 +406,15 @@ postProcessors=jsMin,cssMinJawr
 
 </div>
 
-<div>
-
+<div id="proxy_cache" class="step" data-x="9500" data-y="0" data-scale="2" >
+    <h3>Caching reverse proxy</h3>
+    <img src="img/proxy_cache.jpg" height="400"/>
+    <ul class="topics">
+        <li><span class="title">Apache <b>mod_cache</b> no longer experimental since 2.2</span></li>
+        <li><span class="title">Uses the <b>Cache Control</b> and <b>Expires</b> header to know when to request again</span></li>
+        <li><span class="title"><b>Varnish Cache</b> - more configurable can sit in front of the Apache</span></li>
+        <li><span class="title">Nginx - also has the possibility to cache proxy requests</span></li>
+    </ul>
 </div>
 
 <div id="block" class="step" data-x="3000" data-y="3000" data-scale="2" style="padding: 0;">
@@ -454,7 +453,7 @@ postProcessors=jsMin,cssMinJawr
                 <span class="desc">Prevent render blocking by moving the script as down in the page as possible => bottom script</span>
                 <span class="desc">(+) User will see the page render</span>
                 <span class="desc">(-) User interactions with "active" components will not work until dependant js script is downloaded and executed</span>
-            </li>            
+            </li>
             <li><span class="title">Look for and remove <b>404s</b> when referencing external JS files</span></li>
             <li>
                 <span class="title">Look for empty JS files</span>
@@ -537,29 +536,33 @@ s0.parentNode.insertBefore(sNew, s0);
         <li>
             <span class="title">Execution order of scripts is preserved so <b>scripts block one another</b> but not page rendering</span>
         </li>
-        <li><span class="title"><b>Transfer-Encoding: Chuncked</b></span> for <a href="">slow response</a> servers</li>
+        <li><span class="title"><b>Transfer-Encoding: Chuncked</b></span> for <a href="#" onclick="window.open('http://www.webpagetest.org/waterfall.php?test=121017_Z8_X2C', '_blank');">slow response</a> servers</li>
     </ul>
 </div>
 
 <div id="image-defered" class="step" data-x="3000" data-y="6000" data-scale="2" style="padding: 0;">
-    <h3>Load non visible / non essential images at a later time</h3>
-    <ul class="topics">
-        <li>Think of Gravatar, Disqus user images, carroussel other non essential</li>
-        <li>The browser does not know that images are not visible and will try to download them when &lt;img src="photo.jpg"&gt; encountered</li>
-    </ul>
-    <pre class="code">
-&lt;img src="placeholder.png"
-  data-original="tiger.jpg"
-  class="lazy"&gt;
+    <div>
+        <h3>Load non visible / non essential images at a later time</h3>
+        <ul class="topics">
+            <li>Think of Gravatar, Disqus user images, carroussel other non essential</li>
+            <li><span class="title">The browser does not know that images are not visible and will try to download them when &lt;img <b>src="photo.jpg"</b>&gt; encountered</span></li>
+        </ul>
+    </div>
+    <pre class="code" style="clear:left;">
+&lt;img src="placeholder.png" data-original="tiger.jpg"&gt;
 &lt;noscript&gt;&lt;img src="tiger.jpg"&gt;&lt;/noscript&gt;
+</pre>
 
+<pre class="code" style="clear:left;">
 function deferredImageLoading() {
     $('img[data-src]').each(function() {
         $(this).attr('src', $(this).attr('data-src'));
     });
 }
-    </pre>
+</pre>
 
+    <div>
+    </div>
 </div>
 
 <div id="spdy" class="step" data-x="3000" data-y="9000" data-scale="2" style="padding: 0;">
