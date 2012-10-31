@@ -20,33 +20,38 @@ Due to the different topics reached this lecture may be split into two parts.
 
 Talk Time
 ---------
-  about 2 hours.
+  about 2.5 hours.
 
 
 Contents
 --------
 
 ## Generic rules about improving performance.
-   - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth.
-   - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files.
-   - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [[Browserscope]http://www.browserscope.org/?category=network].
+   - RTT - Round Trip Time - refers to the overhead needed by a web request(DNS lookup, connection setup) not considering the time for actual data transfer and thus not related to bandwidth. CDNs and **KeepAlive** can help with this.
+   - Minimize the number of requests needed: CSS Sprites, Merging of CSS and JS files, Data-URIs.
+   - Try to make more simultaneous requests. Browsers have a maximum of simultaneous connections opened "per hostname". Browser dependent see [Browserscope](http://www.browserscope.org/?category=network).
    - "Progressive enhancement" - Try to set a "critical path" that would render the page in a seaming usable state for the user.
    Deffer the rest of the 3rd party scripts and images after this is finished and while the user is probably looking at the products or figuring out what to do next.
    (Putting only core js files that are at the page bottom
-   - Caching of course is great because the best performance would be 0 time which in turn would be to not download the resource but instead retrieve it from somewhere local.
+   - Caching of course is great because the best performance would be to not need to make a network request which in turn would mean we'd already have the resource locally.
 
 ## Tools for measuring the performance and suggesting improvements.
-   - Google Chrome network timeline. The easiest and most .
+   - Chrome/Firefox Network timeline. The easiest and most at hand tool for seeing what is going on.
    - Browser tools like "YSlow" and "PageSpeed Insights" provide easy hints on improving performance.
    - Sites for checking page loading time:
-     -[Web Page Test](http://www.webpagetest.org/), [GMetrix](http://gtmetrix.com/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/), [Pingdom](http://tools.pingdom.com/), [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
+     - [Web Page Test](http://www.webpagetest.org/)
+     - Others : [GMetrix](http://gtmetrix.com/), [Monotis](http://pageload.monitis.com/), [SitePerf](http://site-perf.com/), [Pingdom](http://tools.pingdom.com/), [Gomez](http://www.gomeznetworks.com/custom/instant_test.html)
        Metrics shown:
+
          - DNS lookup time(time to lookup the host name and match it to an IP)
          - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
          - Time to First Byte(the time it takes to receive a first byte of data as a response)
          - Content download.(time it takes for the resource to download).
-   - [ZoomPF] () -
-   - [Cuzzilion]() Tools for delaying a . DelayMe it's a server in node.js that you can start locally and start serving your own page with
+   - [ZoomPF] () - lists in details and clearly the problems with a site.
+   They also have a nice video series where they apply their own tool to look at major sites and pinpoint their perf problems.
+
+   - [Cuzzilion]() Tools for delaying a .
+   - [DelayMe] it's a server in node.js that a collegue offered to build . I was not content with the fact that Cuzzilion you can start locally and start serving your own page with
    - Great that you can see who contributed
 
 ## Using CDNs.
@@ -57,11 +62,11 @@ Contents
   - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server that may know the entry or .
 
   A DNS setup may look like:
-
+      ```
       js.web.de.              CNAME   js.web.de.edgekey.net.
       js.web.de.edgekey.net   CNAME   e5416.g.akamaiedge.net.
       e5416.g.akamaiedge.net. A       2.16.109.234
-
+      ```
   Check it out using the "dig" command:
 
       $ dig js.web.de
@@ -71,16 +76,15 @@ Contents
 responds by looking up the closest CDN to the requester.
 
   - Problem with using Google Public DNS is that the CDN will see the request coming from Google DNS and suggest edge servers close to it instead of you.
-    So you should at least choose one of the [closest servers](https://developers.google.com/speed/public-dns/docs/using).
     By using your ISP's DNS which probably is geographically close to you you'll also get directed to close CDNs.
   - Some CDN providers: Akamai, Amazon Cloudfront
 
   - Common misconception is that they only can act like some mirroring FTP servers where content gets refreshed periodically from the origin server.
 
-  In fact they act more like reverse proxy servers something Amazon Cloudfront calls [custom origin](http://aws.typepad.com/aws/2010/11/amazon-cloudfront-support-for-custom-origins.html)
+  In fact they act more like reverse proxy servers something Amazon Cloudfront called [custom origin](http://aws.typepad.com/aws/2010/11/amazon-cloudfront-support-for-custom-origins.html)
     ![CDN as Proxy](http://www.nczonline.net/blog/wp-content/uploads/2011/11/cdn2.png)
 
-    If the resource is not found on the edge server, that server requests it from the 'origin server' and caches it locally.
+    If the resource is not found on the edge server, that server requests it from the 'origin server' and caches it locally on the edge.
     Next request that comes for that resource will get served from the edge server's cache.
 
 ### Using multiple CDNs
@@ -97,7 +101,7 @@ referencing a relative image `background-image:url('../img/paper.gif');` will no
    - Most "famous" libraries already have their files on "famous" CDN locations.
    By using those you also have the benefit that the user when arriving on your site he probably already has visited other sites that included the libraries so they are served actually from the cache.
    - On the same line of thinking, you might think that using Github references for those and hoping for caching. Github is great, but it was not meant for this and but doesn't set the cache headers when serving files.
-   - Checkout http://cdnjs.com/index.html and see how you can propose to add what you need.
+   - Checkout http://cdnjs.com/index.html for a great collection of CDN hosted js libraries. You can also make a request to add what you need.
 
 ## Merging and minify JS files and CSS files.
    - Reason behind merging of JS and CSS resources is related to making fewer requests and minimize the RTT.
@@ -189,9 +193,10 @@ Note that this is no longer true, even for browser like IE8 according to Browser
    if the content was served up in a gziped form.
   - Checking that you succesfully implemented this is to look for response header **Content-Encoding**.
 
+
 ### What to compress
   - Some resources are already compressed(.png, .jpeg, .pdf) and retrying to compress them would only be a waste of time and CPU resources.
-  - As a general rule text compresses best so ideal candidates for gzipping are(html, css, js, xml) but not only those think .ico .
+  - As a general rule text compresses best so ideal candidates for gzipping are(html, css, js, xml) but not only those, think also at .ico and web fonts files.
   - Best checkout the .htaccess file
 
 ### Other useful performance tips
@@ -225,20 +230,21 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   So to check the validity of the resource on the browser, the server has to respond to a check request if there is a new version of the resource.
   There is the same logic behind as in **Last-Modified** case only that now the browser issues an **"If-None-Match"** header.
       ![ETag](http://betterexplained.com/wp-content/uploads/compression/HTTP_caching_if_none_match.png)
-
+  -
   - **ETag** also can be used for REST entities caching to verify that another client application has the latest version of the entity.
 
 
-  - Setting Last-Modified with no Expires or Cache-Control triggers an heuristic setting of max-age which for IE9 is max-age = (DownloadTime - LastModified) * 0.1
-  - Apache needs the presence of the *mod_expires* module to configure the caching headers.
-  - What you need to understand is that Apache only add this caching headers it does in no way protect the "origin" Tomcat server from.
-   In order to do this we must checkout the config to turn the frontend into a Caching Reverse Proxy server
+  - Setting **Last-Modified** with no **Expires** or **Cache-Control** triggers an heuristic setting of max-age which for IE9 is max-age = (DownloadTime - LastModified) * 0.1
+  - Apache needs the presence of the **mod_expires** module to configure these caching headers. Again see the nice *.htaccess* file of the HTML5Boilerplate.
+
+  - What you need to understand is that Apache only add these Caching Headers to a web response. It does in no way turn the Apache server into a caching machine serving itself cacheable Tomcat resources. Two different users requesting the
+same resource will be served from the "backend" Tomcat server. In order to do this we must read more on how to turn the frontend into a *Caching Reverse Proxy* server.
 
 
 ### How to use caching
   - You typically would want to use long future expiration times(months, years) so you eliminate even the checking validity round trips to the server.
 
-  - On the other hand you also let the users know when there is a new version of the css, so they don't have to wait a month to see the nice
+  - On the other hand you also want the users get a new version of the css immediately as it is available, so they don't have to wait a month to see the nice way in which you fixed your layout for example.
 
   - **Solution**: Reference the cacheable resource along with some kind of version token in a file that is not cached
   (most common the .html files). One could use for ex:
@@ -248,13 +254,9 @@ Note that this is no longer true, even for browser like IE8 according to Browser
 
 ### Using an Apache http server as a Caching Reverse Proxy
   - *mod_cache* graduated from experimental in 2.2 version.
-  -
-  - Using Nginx - the new kid on the block. Takes a different approach as a frontend being an event based server so rather than spaning a new thread for every new request it .
+  - Using Nginx - the new kid on the block. Takes a different approach as a frontend being an event based server so rather than spawning a new thread for every new request it .
    While some argue about the one thing is certain that it takes less resources than Apache to serve a large number of requests.
    Also since it's new(and does not carry any legacy support baggage) the configuration is less complicated than the Apache.
-  -
-
-###
 
 ## JS Optimizations
 
@@ -267,7 +269,7 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - They cannot begin executing the other downloaded scripts below because those scripts might rely on the blocking script.
   Think of the *JQuery* dependency of other libraries.
 
-  - The idea is about "progressive rendering" to render the page in a somew
+  - The idea is about "progressive rendering" to render the page in an no and then progressively add more . or wh
   - See the example of the "White Page of Death".
    We have prepared some examples .
 
@@ -276,9 +278,13 @@ Note that this is no longer true, even for browser like IE8 according to Browser
   - domContentLoaded - fired when the 'document' object has been created, jQuery hooks onto this when you're doing **$.ready()**
   - onLoad all files have finished loading.
 
-### Protect your page from the 3rd party scripts
+### Protect your page from SinglePoint of Failures of the 3rd party scripts
   - HTML5 introduces the "async" tag for scripts lie '<script async="async" />.
-  - Async scripts when encountered the browser does not block but instead
+  - Async scripts when encountered the browser does not block but instead the browser begins the download and when finished it will execute.
+  - You can't make any assumptions about .
+  - They are great .
+
+
 
 ### JQuery optimizations
   - Know selector rules:
@@ -337,12 +343,12 @@ Note that this is no longer true, even for browser like IE8 according to Browser
     }
     ```
 
+
 Sources of info
 ----------------
    - The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
    - Steve Sounders blog - http://www.stevesouders.com/
    - https://webforscher.wordpress.com/
-   - Html5 async - http://davidwalsh.name/html5-async
    - JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
    - Caching headers explained http://www.symkat.com/understanding-http-caching
    - Guypo blog http://www.guypo.com/
