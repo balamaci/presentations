@@ -265,17 +265,3 @@ same resource will be served from the "backend" Tomcat server. In order to do th
 
 ## JS Optimizations
 
-### Putting JS at the bottom
-  - When browsers encounter a <script> tag they stop what they are doing and begin downloading and aftewards executing the script.
-  This is a *synchronous blocking* behaviour. All the browsers can do is to look ahead in the DOM to begin downloading the next scripts/images in the html.
-  In older browser versions(pre IE8) they were not even looking and starting the downloads of other scripts because they were *afraid* the downloading script might
-  redirect to another page or comment out the following code after the script and so have wasted the time on the downloads.
-
-  - They cannot begin executing the other downloaded scripts below because those scripts might rely on the blocking script.
-  Think of the *JQuery* dependency of other libraries.
-
-  - The idea is about "progressive rendering" to render the page in an no and then progressively add more . or wh
-  - See the example done with *DelayMe* of the "White Page of Death" for the difference in a slow response script present at header vs present at bottom.
-
-  - domContentLoaded - fired when the 'document' object has been created, jQuery hooks onto this when you're doing **$.ready()**
-  - onLoad all files(even images) have finished loading.
