@@ -265,3 +265,129 @@ same resource will be served from the "backend" Tomcat server. In order to do th
 
 ## JS Optimizations
 
+### Putting JS at the bottom
+
+  - When browsers encounter a &lt;script&gt; tag they stop what they are doing and begin downloading and afterwards executing the script.
+  This is a *synchronous blocking* behaviour. All the browsers can do is to look ahead in the DOM to begin downloading the next scripts/images in the html.
+  In older browser versions(pre IE8) they were not even looking and starting the downloads of other scripts because they were *afraid* the downloading script might
+  redirect to another page or comment out the following code after the script and so have wasted the time on the downloads.
+
+  - They cannot begin executing the other downloaded scripts below because those scripts might rely on the blocking script.
+  Think of the *JQuery* dependency of other libraries.
+
+  - The idea is about "progressive rendering" to render the page in an no and then progressively add more . or wh
+  - See the example done with *DelayMe* of the "White Page of Death" for the difference in a slow response script present at header vs present at bottom.
+
+  - domContentLoaded - fired when the 'document' object has been created, jQuery hooks onto this when you're doing **$.ready()**
+  - onLoad all files(even images) have finished loading.
+
+
+### Protect your page from SinglePoint of Failures of the 3rd party scripts using **ASYNC** scripts
+  - HTML5 introduces the "async" tag for scripts lie '&lt;script async="async" /&gt;.
+  - Async scripts when encountered the browser does not block but instead the browser begins the download the script and when finished it will execute.
+  It basically decouples the loading and execution of the script from that of the page.
+  - Without *async* if you have some 3rd party script from a site(that is not async) and that other site is slow in response or offline it will cause the browser to lock up on waiting for that script.
+  - But having two or more async scripts also means that since it's more of a "fire and forget" technique that you can't make any assumptions about order of execution of those async scripts.
+  Even if one of the scripts was put in the page before the other async script it will not mean they will execute in that order.
+  - The fact that they never block rendering but neither can you  are great for 3rd party scripts .
+
+### Create *async* scripts dynamically
+  - The *async* attribute is not known to IE before IE-10 but we can still create an *async* script by adding the script tag dynamically in the page like:
+    ```
+    <script>
+     var sNew = document.createElement("script");
+     sNew.async = true; //does not mean that when we set to false
+     sNew.src = "https://www.google-analytics.com/ga.js";
+     var s0 = document.getElementsByTagName('script')[0];
+     s0.parentNode.insertBefore(sNew, s0);
+    </script>
+    ```
+   we can go more generic and turn this into a function like Stoyan Stefanov suggests for 3rd party scripts see [here](http://www.phpied.com/social-button-bffs/)
+  - We can add a callback though for invoking something when the script finishes you can do it like (here)[https://gist.github.com/1390496].
+  - If we would want to load scripts after other it's better to use one of the things would get messy. It's time for an **async script loader**.
+
+### Difference of **async** vs *defer**
+  - IE also had from a long time the **defer** attribute for scripts. Support for it in the browsers it's pretty good.
+  - Like async when a **defer** script is encountered the **parsing and rendering does not block** the download begins
+  but the script execution is delayed until the DOM is constructed. (So with there is no need to wrap the execution in a $.ready() block).
+  - Thing is we'd want to keep the script in the head so that downloading will start early. Otherwise there would not be much difference from putting scripts at bottom.
+
+### Keeping JS at the top
+  - Tipically servers build up the full markup page response page before sending it down the wire to the client along
+  with the size of the resulted page returned in a **Content-Length** header.
+  If a page takes long to generate because say a slow DB query the browser will not receive nothing and therefor cannot start downloading any resources like CSS and JS.
+  - It will be nice to at least initiate the downloading for those needed resources since they may be known before the slow DB process.
+  - We could do that by flushing the response buffer early.
+  - **Transfer-Encoding: chunked** - sends and the browser knows how to read and parse the partial response as it comes through.
+
+### Analysis of the different method of script loading
+  - Waterfall [charts]()
+
+### JQuery optimizations
+  - Know selector rules:
+   - ID & tag element selector are fastest: $('#id, form, input') because backed up by native js. See it here:
+   - $('.class') fast backed up by native getElementByClassname(not supported in <IE8).
+
+    - Chaining:
+     DONT:
+        ```
+        $("#cart").addClass("active");
+        $("#cart").css("color","#f20");
+        $("#cart").height(300);
+        ```
+     DO:
+        ```
+        $("#cart").addClass("active").css("color","#f0f").height(300);
+        ```
+
+    - Event delegation: Event listeners cost memory and processing power. Imagine the case where you want to add events to all the buttons in a table's row:
+
+        ```
+        $('table').find('td').click(function() {
+            $(this).toggleClass('active');
+        });
+        ```
+
+      That means as many events listeners created as the number of table rows. Instead we try to use a single event listener:
+
+         ```
+         $('table').on('click','td',function() {
+             $(this).toggleClass('active');
+         });
+         ```
+
+
+### Deferred image loading:
+  - Images take longer to download and some may not really be essential to the first page impression so it would make
+  sense to load them at a more appropriate time after other more important resources have loaded.
+  For ex. some images might be visible only after scrolling down the page(think Gravatar/Disqus User images, or in an image carousel when a timer triggers the next slide.
+  The browser will not know those images are not even visible on the page, it only know that while parsing the DOM and encountering <img src=""> it will request
+  the images from the server.
+
+  - Instead of having `<img src="tiger.png"/>` why not have `<img data-src="tiger.png"/>` for the non-critical images.
+  - We can still preserve the old way images were loaded for the users who don't have JS enabled by wrapping them in a <noscript> tag:
+
+    ```
+     <noscript><img src="tiger.png"/></noscript>
+    ```
+
+  - At the page bottom have a js script that replaces the "data-src" attribute to "src" something like:
+
+    ```
+    function deferredImageLoading() {
+        $('img[data-src]').each(function() {
+             $(this).attr('src', $(this).attr('data-src'));
+        });
+    }
+    ```
+
+
+Sources of info
+----------------
+   - The Book of Speed http://www.bookofspeed.com/ - great book for performance tips - sadly unfinished but great
+   - Steve Sounders blog - http://www.stevesouders.com/
+   - https://webforscher.wordpress.com/
+   - JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
+   - Caching headers explained http://www.symkat.com/understanding-http-caching
+   - Guypo blog http://www.guypo.com/
+   - ZoomPF video series: http://www.guypo.com/
