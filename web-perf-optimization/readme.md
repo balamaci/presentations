@@ -295,8 +295,10 @@ same resource will be served from the "backend" Tomcat server. In order to do th
   - The *async* attribute is not known to IE before IE-10 but we can still create an *async* script by adding the script tag dynamically in the page like:
     ```
     <script>
+
      var sNew = document.createElement("script");
      sNew.async = true; //does not mean that when we set to false
+
      sNew.src = "https://www.google-analytics.com/ga.js";
      var s0 = document.getElementsByTagName('script')[0];
      s0.parentNode.insertBefore(sNew, s0);
