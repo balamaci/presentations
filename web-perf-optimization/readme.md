@@ -295,7 +295,6 @@ same resource will be served from the "backend" Tomcat server. In order to do th
   - The *async* attribute is not known to IE before IE-10 but we can still create an *async* script by adding the script tag dynamically in the page like:
     ```
     <script>
-
      var sNew = document.createElement("script");
      sNew.async = true; //does not mean that when we set to false
 
@@ -305,10 +304,10 @@ same resource will be served from the "backend" Tomcat server. In order to do th
     </script>
     ```
    we can go more generic and turn this into a function like Stoyan Stefanov suggests for 3rd party scripts see [here](http://www.phpied.com/social-button-bffs/)
-  - We can add a callback though for invoking something when the script finishes you can do it like (here)[https://gist.github.com/1390496].
+  - We can add a callback though for invoking something when the script finishes you can do it like [here](https://gist.github.com/1390496)
   - If we would want to load scripts after other it's better to use one of the things would get messy. It's time for an **async script loader**.
 
-### Difference of **async** vs *defer**
+### Difference of **async** vs **defer**
   - IE also had from a long time the **defer** attribute for scripts. Support for it in the browsers it's pretty good.
   - Like async when a **defer** script is encountered the **parsing and rendering does not block** the download begins
   but the script execution is delayed until the DOM is constructed. (So with there is no need to wrap the execution in a $.ready() block).
