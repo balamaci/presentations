@@ -49,18 +49,19 @@ Contents
          - Connection time(time it takes for setting up the connection - handshaking, sending the request headers)
          - Time to First Byte(the time it takes to receive a first byte of data as a response)
          - Content download.(time it takes for the resource to download).
-   - [ZoomPF Free] () - lists in details and clearly the problems with a site.
+   - [ZoomPF Free] (http://zoompf.com/free) - lists in details and clearly the problems with a site.
    They also have a nice video series where they apply their own tool to look at major sites and pinpoint their perf problems.
 
-   - [Cuzzilion]() Tools for delaying a response from the server by passing the delay timeout in the url along with the requested resource.
+   - [Cuzzilion](http://stevesouders.com/cuzillion/) Tools for delaying a response from the server by passing the delay timeout in the url along with the requested resource.
    - [DelayMe](https://github.com/alessioalex/DelayME) it's a server in node.js that a colleague offered to build .
    I was not content with the fact that Cuzzilion you can only use it's resources, and with this you can start locally and start serving your own page with
    - [Pagespeed Insights-Critical path](https://developers.google.com/speed/pagespeed/insights) Great that you can see in the waterfall chart who(html, which css file) contributed the requested resources.
+   - [CanIUse](http://caniuse.com/) - Shows support in browsers of APIs.
    - [RedBot](http://redbot.org/) - Checking the headers from the response and pointing out the problems.
 
 ## Using CDNs.
    - Theory behind is that you should distribute and serve the resources need by the users from servers that are "close" to them.
-   ![Edge Servers](../img/cdn.png)
+   ![Edge Servers](http://balamaci.github.com/presentations/web-perf-optimization/img/cdn.png)
 
 ### How CDNs work:
   - Think DNS are like a phonebook for web sites. When connecting to a website your computer is first making a query to a DNS Server that may know the entry or .
@@ -391,4 +392,4 @@ Sources of info
    - JQuery optimizations http://24ways.org/2011/your-jquery-now-with-less-suck
    - Caching headers explained http://www.symkat.com/understanding-http-caching
    - Guypo blog http://www.guypo.com/
-   - ZoomPF video series: http://www.guypo.com/
+   - ZoomPF video series: http://zoompf.com/free

@@ -11,7 +11,7 @@ so I apologise to people that the slides hold minimum amount of info.
 
 ### [Git](http://balamaci.github.com/presentations/git/index.html) - held
 
-### Web Performance optimizations - coming
+### [Web Performance optimizations](http://balamaci.github.com/presentations/web-perf-optimization/index.html) - held
 
 ### Web Security - coming
 
