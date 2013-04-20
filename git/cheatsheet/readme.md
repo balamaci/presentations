@@ -24,19 +24,19 @@ Contents
     git config --global core.autocrlf true
 
 ## Concepts
-    **master** 	        :default development branch - trunk in svn speach
+   **master** 	        :default development branch - trunk in svn speach
 
-    **origin**	        :default upstream repository - the one you cloned from
+   **origin**	        :default upstream repository - the one you cloned from
 
-    **stage**/**index** :what goes into the next commit
+   **stage**/**index**  :what goes into the next commit
 
-    **HEAD**	        :pointer to the current commit, parent to the next commit
+   **HEAD**	            :pointer to the current commit, parent to the next commit
                          normally a reference to the current branch which is a symbolic reference(but for a 'detached
-                         HEAD' a direct commit)
+                         HEAD', HEAD points to a direct commit)
 
-    **HEAD^**	        :previous commit
-    **HEAD-1**          :previous commit same as above
-    **HEAD-4**	        :previous 4th commit ago from current
+   **HEAD^**	        :previous commit
+   **HEAD-1**           :previous commit same as above
+   **HEAD-4**	        :previous 4th commit ago from current
 
 
 ## Branching
@@ -60,13 +60,17 @@ Contents
    Removing all the added files from the stage but leave with your work intact
     git reset HEAD
 
-### **'git reset'** - The reset command moves the current branch to another position, and optionally updates the stage and
-the working directory.
-It also is used to copy files from the history to the stage without touching the working directory.
+### **'git reset'** - The reset command moves the current branch and HEAD to another position.
+### Optionally updates the stage the working directory depending on the extra parameters.
 
-     --soft moves HEAD but doesn't touch the staging area or the working tree(Neither the modifications or what goes into the next commit is affected)
-     --mixed it's the default
-     --hard WARNING
+   It also is used to copy files from the history to the stage without touching the working directory.
+
+   --soft : moves HEAD and current branch pointer, but doesn't touch the staging area or the working tree
+        (Neither the ongoing file modifications or what goes into the next commit is affected)
+   --mixed(default) :
+   --hard **WARNING**: you'll loose the work of the changed files because also the working directory.
+
+   http://marklodato.github.io/visual-git-guide/index-en.html
 
 ### Undoing the modifications to a file
    You did some changes to a file and that file now appears modified and you want to drop the changes and get it as it
@@ -78,45 +82,55 @@ It also is used to copy files from the history to the stage without touching the
     $
 
 ### git reset vs rebase
-   *git reset* moves only the reference, while *git rebase* makes rewrites to the previous commits.
+   **git reset** moves only the references(HEAD and current branch),
+   while
+   **git rebase** makes rewrites to the previous commits.
 ### git reset vs checkout
+
 
 ### Listing files modified in a certain commit
     git diff-tree --no-commit-id --name-only -r [commit number]
 
-### Reflog
-   Git keeps a log of all ref updates (ex: checkout, reset, commit, merge).
-   Very usefull if you need to reach a previous commit. Think of you get back too much in history.
+### Reflog - recover from mistakes:
+   Git keeps a log of all references updates (ex: checkout, reset, commit, merge).
+   Very usefull if you need to reach a previous commit that was made unreachable.
    You can view it by typing:.
 
     $ git reflog
     530dca7 HEAD@{0}: reset: moving to 530dca7
     4f91201 HEAD@{1}: checkout: moving from 530dca70b736e4465ff688e9e05046cbccc9b4f3
 
-
+    530dca7 is the commit where the HEAD is currently pointing
+    4f91201 is how it got there.
 
 ### Undoing all the modifications to a file
 
 ## Throwing away your last commit(s)
-   Why would you want to do it?
+
     git reset 101739f
 
    If you change your mind
     git reset HEAD-3
 
-### Stash - usefull for saving your work in progress
+## Stash - usefull for saving your work in progress
 
-   Place current modifications in a stash
+   Place current modifications in a stash(working directory and index). Think of the stash more like a stack.
 
     $ git stash
      or better give also a name to be more clear
     $ git stash save "work in progress on blue theme"
 
+   Extract the top of the stack and apply the changes to the current .
+    $ git stash pop
 
    Listing all the stash entries:
 
     $ git stash list
 
+## Merging
+### Merge abort
+
+    $ git merge --abort
 
 ## Getting to a specific point in history
 
@@ -133,7 +147,14 @@ It also is used to copy files from the history to the stage without touching the
     //merge the changes on the branch back into master or whatever branch you need it on
 
 
-## Aliases:
+## Other interested
+### Even if file is tracked don't show as modified
+    Usefull for a config property file that even if it's in the repository, every user would have it locally
+    modified with his settings
+
+##
+
+## Git Aliases
 
     [alias]
        co = checkout
