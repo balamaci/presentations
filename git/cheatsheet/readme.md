@@ -28,7 +28,7 @@ Contents
 
    **origin**	        :default upstream repository - the one you cloned from
 
-   **stage**/**index**  :what goes into the next commit
+   **stage** / **index**  :what goes into the next commit
 
    **HEAD**	            :pointer to the current commit, parent to the next commit
                          normally a reference to the current branch which is a symbolic reference(but for a 'detached
@@ -60,14 +60,17 @@ Contents
    Removing all the added files from the stage but leave with your work intact
     git reset HEAD
 
-### **'git reset'** - The reset command moves the current branch and HEAD to another position.
-### Optionally updates the stage the working directory depending on the extra parameters.
+### **'git reset'**
+#### The reset command moves the **current branch** and **HEAD** to another position.
+#### The reset command moves the **current branch** and **HEAD** to another position.
 
-   It also is used to copy files from the history to the stage without touching the working directory.
+   Optionally updates the stage the working directory depending on the extra parameters.
 
    --soft : moves HEAD and current branch pointer, but doesn't touch the staging area or the working tree
         (Neither the ongoing file modifications or what goes into the next commit is affected)
+
    --mixed(default) :
+
    --hard **WARNING**: you'll loose the work of the changed files because also the working directory.
 
    http://marklodato.github.io/visual-git-guide/index-en.html
