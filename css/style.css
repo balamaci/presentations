@@ -674,6 +674,10 @@ a:focus {
     clear: left;
 }
 
+.right {
+    float: right;
+}
+
 /*
     There is one funny thing I just realized.
 

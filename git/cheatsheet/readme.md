@@ -85,18 +85,19 @@ Contents
 
     $ git checkout [commit_sha or reference] path_to_file/file.ext
 
-    //
-    $
-
 ### git reset vs checkout
    **git reset** the references(HEAD and current branch)
 
 
 ## Referencing commits
 ### Difference between ^ and ~
-    For example HEAD~1 and HEAD^1 both mean same thing
-    ^ - is refering to merges
+    For example HEAD~1 and HEAD^1 both mean same thing.
+    ^ - is usefull when refering to merge commits. Since merge commits can have at least two parents, the HEAD^2 will mean 2nd parent of the commit, HEAD^3 third parent, etc. This is different than HEAD^^ which will mean the parent of the first parent. 
+    ~ - means the commit before. HEAD~10, the 10th commit before current.
+   Ex: 10fead^2^~10 - means find 2nd parent of 10fead, get the first parent of that commit and go back 10 commits.
+
 ### Using range
+    We can also specify a range of commits.
 
 ### Listing files modified in a certain commit
     git diff-tree --no-commit-id --name-only -r [commit number]
@@ -113,32 +114,29 @@ Contents
 
     530dca7 is the commit where the HEAD is currently pointing
     4f91201 is how it got there.
-###
-
-
-### Undoing all the modifications to a file
-
 
 ## Throwing away your last commit(s)
-    You need to be careful about undoing commit sure
+    You need to be careful about undoing commits - check the case where you are that you're not rewritting the history some others based work on.
 
-### Commits have not been pushed to the remotes
+### 1. Commits have not been pushed to the remotes
 
     git reset HEAD~3
 
    - See 'reset' extra parameters to reset that would influence or not the working directory.
    See bellow 'reflog' reference to undo.
 
-### Commits have been pushed but nobody pulled and based work on them.
+### 2. Commits have been pushed but nobody pulled and based work on them.
     git reset HEAD~3
    If you try to push to origin it will complain that you are behind commits since 'origin/HEAD' seems to be pointing
    into the future. So you need to 'force' your push. Be carefull that
 
-    git push
+    git push -f 
+   To force your new version of history upon the repository.
 
 
-### Commits have been pushed and work done on them.
-
+### 3. Commits have been pushed and work done on them.
+    git revert 3de4af b3f8d5a 
+   This will create 2 commits that each reverting the changes of the specified commits.
 
 ## Stash - usefull for saving your work in progress
 
@@ -157,6 +155,12 @@ Contents
     stash@{0}: WIP on master: 049d078 added the index file
     stash@{1}: WIP on master: c264051... Revert "added file_size"
 
+## Local backup
+   You can still have multiple clones of the repository locally.
+    $ git clone . /new/fs_path/
+   
+   You can work on them and pull 
+
 ## Merging
 ### Steps to fix a merge conflict:
     1. Merge the conflicting files to a final form. Remove any <<<< ==== and >>>> from them.
@@ -167,9 +171,10 @@ Contents
 
 ### Merge abort
     $ git merge --abort
+    $ git reset --merge
 
 ## Getting to a specific point in history
-
+### Fix a certain 
    Specific example that we need to fix a bug in version 2.31.
    1. We list all the commits and find out the commit we're interested. We'd most likely have a tag, but we can reference a
    commit with it's hash. So to get back to that particular point:
@@ -187,23 +192,51 @@ Contents
 
 ## Rebase
 
+### Interactive
+   Great way to delete some local commits, reorder or group together.
+    $ git rebase -i HEAD~5
 
-## Reverting pushed commits
-   When you already pushed to the remote repositories and someone else has gotten the changes and
+
+## Cherry pick
+   Pick a specific commit and apply it to the current branch. It will create a different SHA1 commit that has the same contents of the specified commit.
+    $ git cherry-pick fix_security^^
 
 
 ## Pulling from remotes:
 
 ### Avoiding unnecessary merge commits when pulling:
-   When you want to push your changes to a branch, but someone else already pushed before you, you have to pull in
-    their changes first. Normally, git does a merge commit in that situation.
+   When you want to push your changes to a branch, but someone else already pushed before you, you have to pull in their changes first. Normally, git does a merge commit in that situation.
+   Such merge commits can be numerous, especially between a team of people who push their changes often. These merges convey no useful information to others, and litter the project’s history.
 
-   Such merge commits can be numerous, especially between a team of people who push their changes often.
-    Those merges convey no useful information to others, and litter the project’s history.
+    $ git pull --rebase
+   
+## Pushing to remotes:
+
+### Short summary of what's changed on the remote.
+#### Files that have changed
+    $ git diff --stat [remote/branch]
+   The --stat provide the short summary. It could be used with any diff command.
+
+#### Commits missing from remote
+
+
+## Log filtering
+### Between dates
+    $ git log --since=2013.1.1 --until=2013.4.15
 
 
 
-## Other interested
+## Other interesting commands
+
+### Find commits where a change matched regex pattern
+  Actual search of the commits for diffs that added or removed a string. 
+    $ git log -G<regex>
+    $ git log -G'checkstyle'
+  added some filtering
+    $ git log --since=2009.1.1 --until=2010.1.1
+
+### Find first commit with a 'commit message' that matches regex
+$ git show :/checkstyle
 
 ### Find if commit is part of a release:
     $ git name-rev --name-only 50f3754
@@ -215,6 +248,9 @@ Contents
 ### More concise git status
     $ git status -sb
 
+  Don't show untracked files(-uno aka --untracked=no)
+    $ git status -sb -uno
+
 ## Git Aliases
 
     [alias]
@@ -224,10 +260,12 @@ Contents
        br = branch
        ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short
        graph = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+       sl  = stash list
+       ss  = stash save
+       sp  = stash pop
 
-       //alias for showing the aliases
+       #alias for showing the aliases
        alias = config --get-regexp 'alias.*'
-
 
 
 
