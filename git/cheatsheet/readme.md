@@ -105,9 +105,32 @@ Contents
     ~ - means the commit before. HEAD~10, the 10th commit before current.
    Ex: 10fead^2^~10 - means find 2nd parent of 10fead, get the first parent of that commit and go back 10 commits.
 
-### Using range
+### Using range for logs
   We can also specify a range of commits. 
       $ git log fe2c3a12..HEAD
+
+  Given: 
+  
+      A---B---C feature
+     /
+D---E---F---G master
+           
+      $ git log master..feature - shows commits which are in feature but not in master, so C,B,A
+      
+      This means the order of the range matters and thus it's called an asymetric log.
+      However doing a 3 point range for the log like:
+      $ git log master...feature - would 
+  
+
+             H--I--J  topicB
+            /
+            | E---F---G  topicA
+            |/
+A---B---C---D  master
+  
+      $ git log topicA..topicB - means what's in topicB and not in topicA - so H,I,J
+### Show only certain type of info from the logs:
+      $ git log --name-status --diff-filter=A master..featureX  - shows the commit message along with the filename and the status. Will only show commits that added a file.
 
 ### Listing files modified in a certain commit
 
@@ -340,7 +363,7 @@ Contents
        sp  = stash pop
        standup = log --since '1 day ago' --oneline --author 'author_email@mail.com'
 
-       #alias for showing the aliases
+       //alias for showing the aliases
        alias = config --get-regexp 'alias.*'
 
 
