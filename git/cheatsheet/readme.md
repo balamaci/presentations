@@ -110,7 +110,6 @@ Contents
       $ git log fe2c3a12..HEAD
 
   Given: 
-  
       A---B---C feature
      /
 D---E---F---G master
@@ -118,10 +117,11 @@ D---E---F---G master
       $ git log master..feature - shows commits which are in feature but not in master, so C,B,A
       
       This means the order of the range matters and thus it's called an asymetric log.
+      
       However doing a 3 point range for the log like:
-      $ git log master...feature - would 
-  
-
+      
+      $ git log master...feature 
+      - would return C,B,A,F,G and would be the same as 
              H--I--J  topicB
             /
             | E---F---G  topicA
